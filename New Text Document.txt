@@ -1,0 +1,49 @@
+[
+      {
+        PID: "ML4398",
+        variableName: "Colour",
+        variableValues: [
+          {
+            variationValue: "Red",
+            stock: 0,
+            price: "N/A",
+          },
+          {
+            variationValue: "Pink",
+            stock: "N/A",
+            price: "N/A",
+          },
+          {
+            variationValue: "Yellow",
+            stock: "N/A",
+            price: "N/A",
+          },
+          {
+            variationValue: "Gold",
+            stock: "N/A",
+            price: "N/A",
+          },
+        ],
+      },
+      {
+        PID: "ML4398",
+        variableName: "Storage",
+        variableValues: [
+          {
+            variationValue: "32GB",
+            stock: "N/A",
+            price: "N/A",
+          },
+          {
+            variationValue: "64GB",
+            stock: "N/A",
+            price: "N/A",
+          },
+          {
+            variationValue: "128GB",
+            stock: "N/A",
+            price: "N/A",
+          },
+        ],
+      },
+    ]
