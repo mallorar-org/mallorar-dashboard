@@ -14,12 +14,20 @@ const productInitialReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case "UPDATE_PRODUCTS_SELLER_PRODUCTS":
       let pd = state.productPage;
-      pd = { ...pd, products: actions.payload };
+
+      let pd_new = {
+        ...pd,
+        products: actions.payload,
+      };
+
+      console.log({ pd_new });
+
       return {
         ...state,
-        productPage: pd,
+        productPage: pd_new,
         selectedProducts: [],
       };
+
     case "LOAD_SELLER_PRODUCTS":
       return {
         ...state,

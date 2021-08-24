@@ -31,6 +31,12 @@ const initialData = {
   sellerSlug: "",
   esShippingDates: "",
   tags: "",
+  product_short_desc: [
+    // {
+    //   id: 1,
+    //   text: "this is the desc",
+    // },
+  ],
   productSD1: "",
   productSD2: "",
   productSD3: "",
@@ -45,6 +51,42 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "ADD_NEW_SHORT_DESC_FIELD":
+      let current_short_desc_list = state.product_short_desc;
+      let c_sd_highest = 0;
+
+      current_short_desc_list.forEach((x) => {
+        if (x.id > c_sd_highest) {
+          c_sd_highest = x.id;
+        }
+      });
+
+      current_short_desc_list.push({
+        id: c_sd_highest + 1,
+        text: "",
+      });
+
+      return {
+        ...state,
+        product_short_desc: current_short_desc_list,
+      };
+
+    case "SHORT_DESC_UPDATE":
+      let product_short_desc = state.product_short_desc;
+      let updated_product_short_desc = [];
+
+      product_short_desc.forEach((x) => {
+        if (action.payload.index === x.id) {
+          updated_product_short_desc.push({
+            id: x.id,
+            text: action.payload.value,
+          });
+        } else {
+          updated_product_short_desc.push(x);
+        }
+      });
+
+      return { ...state, product_short_desc: updated_product_short_desc };
     case "SET_PRODUCT_ID":
       return { ...state, productID: action.payload };
     case "SET_SUB_CAT":

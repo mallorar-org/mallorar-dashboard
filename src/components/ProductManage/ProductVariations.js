@@ -51,7 +51,7 @@ class ProductVariations extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
+    // console.log(prevState);
 
     if (prevState.variations !== this.state.variations) {
       this.modelizeVariations();

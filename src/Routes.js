@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 import Products from "./pages/Products";
 import ProductManage from "./pages/ProductManage";
-import ProductEdit from "./pages/ProductEdit";
 import Orders from "./pages/Orders";
 import OrderManage from "./pages/OrderManage";
 

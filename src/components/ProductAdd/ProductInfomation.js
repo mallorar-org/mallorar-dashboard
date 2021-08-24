@@ -61,11 +61,11 @@ class ProductInfomation extends Component {
 
     setTimeout(
       () => store.dispatch({ type: "SET_SPECS_FIELDS", payload: [] }),
-      50
+      50,
     );
     setTimeout(
       () => store.dispatch({ type: "SET_SPECS_FIELDS", payload: ftd }),
-      100
+      100,
     );
 
     //   store.dispatch({ type: "SET_SPECS_FIELDS", payload: [] });
@@ -182,11 +182,10 @@ class ProductInfomation extends Component {
                 </div>
               )}
               {this.props.productAR.specifications.map((x, index) => (
-                <div className="col-6 p-0">
+                <div key={"key_" + index} className="col-6 p-0">
                   <Pspecifics
                     index={index}
                     removeslItem={(n) => this.removeslItem(n)}
-                    key={index}
                     x={x}
                   />
                 </div>

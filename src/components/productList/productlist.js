@@ -50,11 +50,11 @@ class productlist extends Component {
           </div>
         </div>
 
-        {this.state.products.map((pr, index) => (
+        {this.props.products.map((pr) => (
           <ProductItem
             productDeleted={(p) => this.props.productDeleted(p)}
             messageShow={(m) => this.props.messageShow(m)}
-            key={index}
+            key={pr.PID}
             pid={pr.PID}
             productName={pr.productName}
             productpic={pr.img}

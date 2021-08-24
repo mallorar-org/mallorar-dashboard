@@ -159,7 +159,7 @@ class ProductAdd extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     if (!this.props.product.productID && this.state.page !== "add") {
       return "";

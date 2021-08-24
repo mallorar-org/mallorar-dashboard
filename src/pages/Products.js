@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import ProductList from "../components/productList/productlist";
-import { getProducts } from "../store/actions/actions";
+import { getProducts, deleteSelectedProducts } from "../store/actions/actions";
 import Loading from "../pages/loading";
 import { connect } from "react-redux";
 import { navTitle } from "../store/actions/navTitles";
 import { Link } from "react-router-dom";
 import icons from "../components/common/icons";
 import MLSelect from "../components/MLSelect/MLSelect";
+import ShortDescription from "../components/ProductManage/ShortDescription";
 
 const mapStateToProps = (state) => {
   return {
     productPage: state.productAR.productPage,
+    products_page: state.productAR,
   };
 };
+
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: (n) => dispatch(getProducts(n)),
     navTitle: (n) => dispatch(navTitle(n)),
+    deleteSelectedProducts: (n) => dispatch(deleteSelectedProducts(n)),
   };
 };
 
@@ -92,14 +96,14 @@ class Products extends Component {
             </h6>
             <div className="mt-2 d-flex justify-content-center">
               <span>
-                <a href="/products/add">
+                <Link to="/products/add">
                   <button
                     type="button"
                     className="ml-dash-header-APBTN ml-dash-btn btn-md btn-md-text"
                   >
                     Add Product
                   </button>
-                </a>
+                </Link>
               </span>
             </div>
           </div>
@@ -123,6 +127,8 @@ class Products extends Component {
     return (
       <section className="ml-container bg-white">
         {this.messageShowDisp()}
+        import ShortDescription from "../ProductManage/ShortDescription";
+        <ShortDescription />
         <div className="">
           <div className="">
             <div className="">
@@ -158,6 +164,16 @@ class Products extends Component {
               >
                 View products analyics
               </button>
+
+              {this.props.products_page.selectedProducts.length > 1 && (
+                <button
+                  onClick={this.props.deleteSelectedProducts}
+                  className="ml-dash-bt bold btn btn-danger mr-2 t15 c-blue- py-1 h30px ml-shadow"
+                >
+                  Delete selected&nbsp;(
+                  {this.props.products_page.selectedProducts.length})
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -223,7 +239,6 @@ class Products extends Component {
             </div>
           </div>
         </div>
-
         <div className="container-fluid">
           <div className="row">
             <div className="col-12 px-0">

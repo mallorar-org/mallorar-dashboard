@@ -55,16 +55,16 @@ class OrderListItem extends Component {
         onMouseEnter={this.hoverInItem}
         onMouseLeave={this.mouseOut}
       >
-        <div className="col-2 pl-3 d-flex justify-content-between">
+        <div className="col-2 text-truncate pl-3 d-flex justify-content-between">
           {this.props.orderId}
-          <Tooltip text="view" className="cursor">
+          {/* <Tooltip text="view" className="cursor">
             <img
               src={icons.solid.eye.gray}
               alt=""
               className=""
               data-role="icon"
             />
-          </Tooltip>
+          </Tooltip> */}
         </div>
         <div className="col-2">{dayjs(this.props.dateOfOrder).format("l")}</div>
         <div className="col-2">{this.props.shippingCountry}</div>

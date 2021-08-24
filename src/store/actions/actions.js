@@ -2,6 +2,19 @@ import axios from "axios";
 import store from "../store";
 import { notify, close } from "../../components/MLNotify/controls";
 
+export const add_new_short_desc_field = () => {
+  return {
+    type: "ADD_NEW_SHORT_DESC_FIELD",
+  };
+};
+
+export const short_desc_update = (index, value) => (dispatch) => {
+  dispatch({
+    type: "SHORT_DESC_UPDATE",
+    payload: { index, value },
+  });
+};
+
 export const setLoadingBarProgress = (value) => ({
   type: "SET_PROGRESS",
   payload: value,
@@ -60,9 +73,9 @@ export const createProduct = () => (dispatch) => {
   productSpecs.forEach((x) => {
     productSpecsObject = {
       ...productSpecsObject,
-      [x.sname
+      [x.sname.toLowerCase().replace(/ /g, "_")]: x.svalue
         .toLowerCase()
-        .replace(/ /g, "_")]: x.svalue.toLowerCase().replace(/ /g, "_"),
+        .replace(/ /g, "_"),
     };
     specNameObject.push(x.sname.toLowerCase().replace(/ /g, "_"));
   });
@@ -82,7 +95,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid name",
       "",
-      "All products must have a suitable name so that customers can easily find what they looking for"
+      "All products must have a suitable name so that customers can easily find what they looking for",
     );
   }
   if (product.productPrice === "" || product.productPrice === "0") {
@@ -90,7 +103,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid price",
       "",
-      "Products are required to have a suitable pricing. Free products are not allowed in Mallorar. See mallorar policy"
+      "Products are required to have a suitable pricing. Free products are not allowed in Mallorar. See mallorar policy",
     );
   }
   if (product.esShippingDates === "" || product.esShippingDates === "0") {
@@ -98,7 +111,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid shipping dur...",
       "",
-      "We require sellers to provide an estimation to the possible shipping duration taken to deliver a product to your furthest shipping zone"
+      "We require sellers to provide an estimation to the possible shipping duration taken to deliver a product to your furthest shipping zone",
     );
   }
   if (product.productImg === "default") {
@@ -106,7 +119,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "No product image",
       "",
-      "All products are required to have a product image so that customers can see what they buying"
+      "All products are required to have a product image so that customers can see what they buying",
     );
   }
   if (product.productDepartment === "") {
@@ -114,7 +127,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid Department",
       "",
-      "Assign your product to a suitable department to increase performance"
+      "Assign your product to a suitable department to increase performance",
     );
   }
   if (product.productCategory === "") {
@@ -122,7 +135,7 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid Category",
       "",
-      "Assign your product to a suitable category to increase performance"
+      "Assign your product to a suitable category to increase performance",
     );
   }
   if (product.childCategry === "") {
@@ -130,13 +143,18 @@ export const createProduct = () => (dispatch) => {
       2,
       "Invalid Sub category",
       "",
-      "Assign your product to a suitable sub category to better place your product"
+      "Assign your product to a suitable sub category to better place your product",
     );
   }
 
   close();
 
   store.dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+
+  console.log({ finalProduct });
+
+  return;
+  return;
 
   let productID;
   axios
@@ -168,7 +186,7 @@ export const createProduct = () => (dispatch) => {
         1,
         `Product Created`,
         finalProduct.productImg,
-        `Product successfully created with ID ${productID}. Your product will be spread around Mallorar immediately`
+        `Product successfully created with ID ${productID}. Your product will be spread around Mallorar immediately`,
       );
     })
     .catch((err) => {
@@ -190,63 +208,115 @@ export const createNewProduct = () => (dispatch) => {
   dispatch({ type: "RESET_PRODUCT_STATE" });
   dispatch({ type: "MLPC", payload: false });
 };
-export const editProduct = (n = store.getState().product.productID) => (
-  dispatch
-) => {
-  dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
-  dispatch({ type: "MLPC", payload: false });
+export const editProduct =
+  (n = store.getState().product.productID) =>
+  (dispatch) => {
+    dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+    dispatch({ type: "MLPC", payload: false });
 
-  let pid;
+    let pid;
 
-  if (!pid) {
-    pid = n;
-  }
+    if (!pid) {
+      pid = n;
+    }
 
-  if (pid === null) {
-    dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
-    return notify(
-      3,
-      `Operation halted`,
-      "",
-      `Unfortunately this product does not exist as yet, try reselecting a product to edit.`
-    );
-  }
-
-  dispatch({ type: "RESET_PRODUCT_STATE" });
-  axios
-    .get(`/dash/product/${pid}/get`)
-    .then((e) => {
-      let product = {};
-      product = {
-        ...product,
-        ...e.data,
-        ...e.data.description,
-        ...e.data.productImages,
-      };
-      // console.log("+++=>>>>", e.data);
-      dispatch({
-        type: "LOAD_PRODUCT_DETAILS",
-        payload: product,
-      });
-      dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
-    })
-    .catch(() => {
-      dispatch({ type: "RESET_PRODUCT_STATE" });
+    if (pid === null) {
       dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
       return notify(
         3,
-        `Product not found`,
+        `Operation halted`,
         "",
-        `The product you just tried to edit does not exist in your store, try to create a new product or go back and select the correct product from the product list`
+        `Unfortunately this product does not exist as yet, try reselecting a product to edit.`,
       );
-    });
-};
+    }
+
+    dispatch({ type: "RESET_PRODUCT_STATE" });
+    axios
+      .get(`/dash/product/${pid}/get`)
+      .then((e) => {
+        let product = {};
+        product = {
+          ...product,
+          ...e.data,
+          ...e.data.description,
+          ...e.data.productImages,
+        };
+        // console.log("+++=>>>>", e.data);
+        dispatch({
+          type: "LOAD_PRODUCT_DETAILS",
+          payload: product,
+        });
+        dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+      })
+      .catch(() => {
+        dispatch({ type: "RESET_PRODUCT_STATE" });
+        dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+        return notify(
+          3,
+          `Product not found`,
+          "",
+          `The product you just tried to edit does not exist in your store, try to create a new product or go back and select the correct product from the product list`,
+        );
+      });
+  };
 
 export const addToSelectedPDList = (id) => (dispatch) => {};
 
 export const deleteProduct = (pid) => (dispatch) => {
   dispatch({ type: "SAVE_DE_PR", payload: pid });
   dispatch({ type: "PD_DEL-CONF", payload: true });
+};
+
+export const deleteSelectedProducts = () => (dispatch) => {
+  let selectedProducts = store.getState().productAR.selectedProducts;
+
+  dispatch({ type: "PD_DEL-CONF", payload: false });
+  dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+
+  selectedProducts.forEach((tobdeleted, index) => {
+    return axios
+      .get(`/dash/product/delete/${tobdeleted}`)
+      .then(() => {
+        if (index === selectedProducts.length - 1) {
+          dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+        }
+        let currentProducts = store.getState().productAR.productPage.products;
+
+        let newlist = [];
+
+        currentProducts.forEach((x) => {
+          if (x.PID !== tobdeleted) {
+            newlist.push(x);
+          }
+        });
+
+        dispatch({
+          type: "SUBT_TOTAL_PRODUCTS",
+        });
+        dispatch({
+          type: "UPDATE_PRODUCTS_SELLER_PRODUCTS",
+          payload: newlist,
+        });
+
+        console.log("updated==>", newlist);
+
+        return notify(
+          1,
+          `Product deleted`,
+          "",
+          `The product with ID ${tobdeleted} has been removed from Mallorar Online Mall`,
+        );
+      })
+      .catch(() => {
+        dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+        return notify(
+          2,
+          `Operation failed`,
+          "",
+          `This is probably because the product with ID ${tobdeleted} has already been deleted. Try refeshing page`,
+        );
+      });
+  });
 };
 
 export const confirmDeletion = () => (dispatch) => {
@@ -260,7 +330,7 @@ export const confirmDeletion = () => (dispatch) => {
       3,
       `Operation halted`,
       "",
-      `We encountered an un-usual error, please try deleting this product again or contact support if the problem persists`
+      `We encountered an un-usual error, please try deleting this product again or contact support if the problem persists`,
     );
   }
 
@@ -286,11 +356,13 @@ export const confirmDeletion = () => (dispatch) => {
         payload: newlist,
       });
 
+      console.log("updated==>", newlist);
+
       return notify(
         1,
         `Product deleted`,
         "",
-        `The product with ID ${tobdeleted} has been removed from Mallorar Online Mall`
+        `The product with ID ${tobdeleted} has been removed from Mallorar Online Mall`,
       );
     })
     .catch(() => {
@@ -299,26 +371,28 @@ export const confirmDeletion = () => (dispatch) => {
         2,
         `Operation failed`,
         "",
-        `This is probably because the product with ID ${tobdeleted} has already been deleted. Try refeshing page`
+        `This is probably because the product with ID ${tobdeleted} has already been deleted. Try refeshing page`,
       );
     });
 };
 
-export const getProducts = (qs = null) => (dispatch) => {
-  if (store.getState().productAR.productPage.products.length > 0) {
-    dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
-  }
-  axios
-    .get(`/dash/products?${qs}`)
-    .then((res) => {
-      dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
-      dispatch({
-        type: "LOAD_SELLER_PRODUCTS",
-        payload: res.data,
+export const getProducts =
+  (qs = null) =>
+  (dispatch) => {
+    if (store.getState().productAR.productPage.products.length > 0) {
+      dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+    }
+    axios
+      .get(`/dash/products?${qs}`)
+      .then((res) => {
+        dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+        dispatch({
+          type: "LOAD_SELLER_PRODUCTS",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        // console.log(err);
+        // store.dispatch(logOutSeller());
       });
-    })
-    .catch((err) => {
-      // console.log(err);
-      // store.dispatch(logOutSeller());
-    });
-};
+  };
