@@ -98,7 +98,9 @@ class LogIn extends Component {
               {this.props.loading ? "Please Wait.." : "Sign in"}
             </button>
           </form>
-          <div className="mt-3 text-center c-blue-">&copy; Mallorar LLC</div>
+          <div className="mt-3 text-center c-blue-">
+            &copy; Mallorar (Pty) Ltd
+          </div>
         </div>
         {/* <div className="mt-3 text-center c-blue-">v2.5</div> */}
       </div>

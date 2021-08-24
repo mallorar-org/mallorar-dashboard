@@ -51,6 +51,19 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "REMOVE_SHORT_DESC_FIELD":
+      let filtered_short_desc_field = [];
+
+      state.product_short_desc.forEach((x) => {
+        if (x.id !== parseInt(action.payload)) {
+          filtered_short_desc_field.push(x);
+        }
+      });
+
+      return {
+        ...state,
+        product_short_desc: filtered_short_desc_field,
+      };
     case "ADD_NEW_SHORT_DESC_FIELD":
       let current_short_desc_list = state.product_short_desc;
       let c_sd_highest = 0;

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   short_desc_update,
   add_new_short_desc_field,
+  remove_short_desc,
 } from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {
@@ -17,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     short_desc_update: (index, value) =>
       dispatch(short_desc_update(index, value)),
     add_new_short_desc_field: () => dispatch(add_new_short_desc_field()),
+    remove_short_desc: (id) => dispatch(remove_short_desc(id)),
   };
 };
 
@@ -24,6 +26,7 @@ function ShortDescription({
   add_new_short_desc_field,
   short_desc_update,
   product_short_desc,
+  remove_short_desc,
 }) {
   const on_short_desc_change = (e) => {
     short_desc_update(parseInt(e.target.name), e.target.value);
@@ -32,16 +35,18 @@ function ShortDescription({
   console.log({ product_short_desc });
   return (
     <div className="mt-3 mr-2 card card-body ml-card-shadow">
-      <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
+      <h5 className="c-blue d-flex align-items-center border-bottom pb-2 mb-3">
         <CgDetailsLess className="ml-icon-size2 mr-2" />
         <span className="bold c-blue">Short Details</span>
       </h5>
 
-      {product_short_desc.map((x) => (
-        <div key={x.id} className="mt-3 form-group">
-          <div className="mt-2 row form-group">
-            <div className="col col-md-1 d-flex align-items-center">{1}.</div>
-            <div className="col-12 col-md-8">
+      {product_short_desc.map((x, index) => (
+        <div key={x.id} className="">
+          <div className="mt-1 row form-group">
+            <div className="col-1 cl-md-1 d-flex align-items-center">
+              {index + 1}.
+            </div>
+            <div className="col-9 d-flex col-m-8">
               <input
                 type="text"
                 value={x.text}
@@ -50,6 +55,13 @@ function ShortDescription({
                 placeholder="Type a short description.."
                 className="form-control"
               />
+              <button
+                type="button"
+                onClick={() => remove_short_desc(x.id)}
+                className="btn ml-btn"
+              >
+                Remove
+              </button>
             </div>
           </div>
         </div>

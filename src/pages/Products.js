@@ -127,8 +127,7 @@ class Products extends Component {
     return (
       <section className="ml-container bg-white">
         {this.messageShowDisp()}
-        import ShortDescription from "../ProductManage/ShortDescription";
-        <ShortDescription />
+
         <div className="">
           <div className="">
             <div className="">
