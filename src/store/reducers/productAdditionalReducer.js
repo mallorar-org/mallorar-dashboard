@@ -1,6 +1,4 @@
 const initialState = {
-  variations: [],
-  specifications: [],
   selectedProducts: [],
   tobdeleted: null,
   productPage: {
@@ -39,30 +37,9 @@ const productInitialReducer = (state = initialState, actions) => {
         ...state,
         selectedProducts: actions.payload,
       };
-    case "UPDATE_VARIATIONS":
-      return { ...state, variations: actions.payload };
+
     case "SAVE_DE_PR":
       return { ...state, tobdeleted: actions.payload };
-    case "SET_SPECS_FIELDS":
-      return { ...state, specifications: actions.payload };
-
-    case "CHANGE_SPEC_FIELD_VALUE":
-      let newvalue = actions.payload;
-
-      let curS = state.specifications;
-      let newSpecs = [];
-
-      curS.forEach((x) => {
-        if (newvalue.sname !== x.sname) {
-          newSpecs.push(x);
-        } else {
-          newSpecs.push(newvalue);
-        }
-      });
-
-      //   newSpecs.push(newvalue);
-
-      return { ...state, specifications: newSpecs };
 
     default:
       return state;
