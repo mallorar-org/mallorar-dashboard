@@ -13,13 +13,16 @@ export const add_new_short_desc_field = () => (dispatch) => {
   dispatch({
     type: "ADD_NEW_SHORT_DESC_FIELD",
   });
-  dispatch({
-    type: "SHORT_DESC_UPDATE",
-    payload: {
-      index: 1,
-      value: store.getState().product.product_short_desc[0].value,
-    },
-  });
+
+  if (store.getState().product.product_short_desc.length > 0) {
+    dispatch({
+      type: "SHORT_DESC_UPDATE",
+      payload: {
+        index: 1,
+        value: store.getState().product.product_short_desc[0].value,
+      },
+    });
+  }
 };
 
 export const short_desc_update = (index, value) => (dispatch) => {

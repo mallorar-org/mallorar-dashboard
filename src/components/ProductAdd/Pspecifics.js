@@ -4,7 +4,7 @@ import store from "../../store/store";
 
 const mapStateToProps = (state) => {
   return {
-    productAR: state.productAR,
+    productAR: state.product,
   };
 };
 
@@ -19,7 +19,7 @@ class Pspecifics extends Component {
           type: "CHANGE_SPEC_FIELD_VALUE",
           payload: { sname: this.props.x.sname, svalue: v },
         }),
-      50
+      50,
     );
   };
 
@@ -28,12 +28,17 @@ class Pspecifics extends Component {
       <div className="d-flex mb-3 ">
         <div class="form-group d-flex align-items-center">
           <label for="Student" className="mr-3 mb-0">
-            {this.props.productAR.specifications[this.props.index].sname} :
+            {
+              this.props.productAR.product_specifications[this.props.index]
+                .sname
+            }{" "}
+            :
           </label>
           <input
             onChange={this.changeValue}
             defaultValue={
-              this.props.productAR.specifications[this.props.index].svalue
+              this.props.productAR.product_specifications[this.props.index]
+                .svalue
             }
             name={this.props.x.sname}
             type="text"

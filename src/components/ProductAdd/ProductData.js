@@ -13,7 +13,6 @@ import ProductVariations from "../ProductManage/ProductVariations";
 const mapStateToProps = (state) => {
   return {
     product: state.product,
-    productAR: state.productAR,
   };
 };
 
@@ -37,7 +36,7 @@ class ProductData extends Component {
 
     setTimeout(
       () => store.dispatch({ type: "PRODUCT_DATA", payload: this.state }),
-      50
+      50,
     );
   };
 
@@ -48,7 +47,7 @@ class ProductData extends Component {
 
     setTimeout(
       () => store.dispatch({ type: "PRODUCT_DATA", payload: this.state }),
-      50
+      50,
     );
   };
 
@@ -81,10 +80,10 @@ class ProductData extends Component {
   };
 
   removeVar = (e) => {
-    let currentV = this.props.productAR.variations[e];
+    let currentV = this.props.product.product_variations[e];
     let newArr = [];
 
-    this.props.productAR.variations.forEach((x) => {
+    this.props.product.product_variations.forEach((x) => {
       if (currentV !== x) {
         newArr.push(x);
       }
@@ -121,7 +120,7 @@ class ProductData extends Component {
     store.dispatch({ type: "UPDATE_VARIATIONS", payload: newVarr });
   };
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <section className="pr-2" autocomplete="off">
         <ProductVariations />
@@ -130,7 +129,7 @@ class ProductData extends Component {
             <div className="mb-3 h5 pb-2 bold ">
               <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
                 <img alt="" className="ml-icon-size1 mr-2" src={setup} />
-                <span className="bold c-blue">Product Variations</span>
+                <span className="bold c-blue">Product Variations 2</span>
               </h5>
             </div>
             <div className="mb-2">
@@ -142,7 +141,7 @@ class ProductData extends Component {
               <Atrribute addvarr={this.addvarr} />
             </div>
             <div className="">
-              {this.props.productAR.variations.map((x, index) => {
+              {this.props.product.product_variations.map((x, index) => {
                 return (
                   <AtrributeManage
                     removeVar={(n) => this.removeVar(n)}

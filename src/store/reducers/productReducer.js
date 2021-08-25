@@ -1,8 +1,8 @@
 const initialData = {
   // productID: "90383",
   productID: null,
-  productName: "",
-  productSlug: "",
+  product_name: "",
+  product_slug: "",
   status: "active",
   stock_count: 0,
   productImg: "",
@@ -34,6 +34,7 @@ const initialData = {
   tags: "",
   product_short_desc: [],
   product_long_description: "",
+  desc_editor: "quill",
   product_variations: [],
   product_specifications: [],
   product_images: [],
@@ -41,8 +42,19 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "PP_UPDATE_PRODUCT_NAME":
+      return {
+        ...state,
+        product_name: action.payload,
+      };
+    case "PRODUCT_DESCRIPTION":
+      return {
+        ...state,
+        product_long_description: action.payload,
+      };
+
     case "CHANGE_SPEC_FIELD_VALUE":
-      let newvalue = actions.payload;
+      let newvalue = action.payload;
 
       let curS = state.product_specifications;
       let newSpecs = [];
@@ -59,9 +71,9 @@ const productReducer = (state = initialData, action) => {
 
       return { ...state, product_specifications: newSpecs };
     case "SET_SPECS_FIELDS":
-      return { ...state, product_specifications: actions.payload };
+      return { ...state, product_specifications: action.payload };
     case "UPDATE_VARIATIONS":
-      return { ...state, product_variations: actions.payload };
+      return { ...state, product_variations: action.payload };
     case "REMOVE_SHORT_DESC_FIELD":
       let filtered_short_desc_field = [];
 
@@ -152,74 +164,9 @@ const productReducer = (state = initialData, action) => {
         };
       }
 
-    case "UPDATE_PRODUCT_IMG":
-      return { ...state, productImg: action.payload };
-    case "UPDATE_PRODUCTS_IMGS":
-      return {
-        ...state,
-        img1: action.payload.img1,
-        img2: action.payload.img2,
-        img3: action.payload.img3,
-        img4: action.payload.img4,
-      };
-    case "UPDATE_BRAND":
-      return { ...state, brand: action.payload };
-    case "PRODUCT_TITLE":
-      return {
-        ...state,
-        productName: action.payload.productName,
-        productSlug: action.payload.productSlug,
-      };
-    case "PRODUCT_POINTS":
-      return {
-        ...state,
-        productSD1: action.payload.productSD1,
-        productSD2: action.payload.productSD2,
-        productSD3: action.payload.productSD3,
-        productSD4: action.payload.productSD4,
-        productSD5: action.payload.productSD5,
-      };
-
-    case "PRODUCT_DESCRIPTION":
-      return {
-        ...state,
-        productDescription: action.payload,
-      };
-
-    case "PRODUCT_DATA":
-      if (action.payload.salePrice !== "" && action.payload.salePrice !== "0") {
-        return {
-          ...state,
-          productType: action.payload.productType,
-          sellingCurrency: action.payload.sellingCurrency,
-          oldPrice: action.payload.productPrice,
-          productPrice: action.payload.salePrice,
-          shippingType: action.payload.shippingType,
-          stockfrom: action.payload.stockfrom,
-          esShippingDates: action.payload.esShippingDates,
-          isDiscounted: "true",
-        };
-      } else
-        return {
-          ...state,
-          productType: action.payload.productType,
-          sellingCurrency: action.payload.sellingCurrency,
-          productPrice: action.payload.productPrice,
-          oldPrice: "0",
-          shippingType: action.payload.shippingType,
-          stockfrom: action.payload.stockfrom,
-          esShippingDates: action.payload.esShippingDates,
-          isDiscounted: "false",
-        };
-
     case "RESET_PRODUCT_STATE":
       return { ...initialData };
 
-    case "LOAD_PRODUCT_DETAILS":
-      return {
-        ...state,
-        ...action.payload,
-      };
     default:
       return state;
   }

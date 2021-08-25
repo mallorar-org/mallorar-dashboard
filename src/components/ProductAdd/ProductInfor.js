@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import productlist from "../productList/productlist";
 import RTE from "../MallorarRichTextEditor/MallorarRichTextEditor";
 import { connect } from "react-redux";
 import store from "../../store/store";
-import whitetag from "../../assets/images/whitetag.svg";
-import list from "../../assets/images/list.svg";
-import productdescription from "../../assets/images/productdescription.svg";
 import { AiOutlineTags } from "react-icons/ai";
 import { BiDetail } from "react-icons/bi";
-import { CgDetailsLess } from "react-icons/cg";
 import ShortDescription from "../ProductManage/ShortDescription";
+
+import { update_product_name } from "../../store/actions/productActions";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,55 +14,28 @@ const mapStateToProps = (state) => {
   };
 };
 
-class ProductInfor extends Component {
-  state = {
-    productSlugPreview: "",
-    productSlugPreview: "",
-    productSlug: "",
-    productName: "",
-    productSD1: "",
-    productSD2: "",
-    productSD3: "",
-    productSD4: "",
-    productSD5: "",
+const mapDispatchToProps = (dispatch) => {
+  return {
+    update_product_name: (name) => dispatch(update_product_name(name)),
   };
+};
+
+class ProductInfor extends Component {
+  state = {};
 
   slugPreview = (e) => {
     let value = e.replace(/ /g, "-").toLowerCase();
     return <span>{`https://mallorar.com/p/MP000/${value}`}</span>;
   };
 
-  onChangeFM = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
-
-    store.dispatch({
-      type: "PRODUCT_POINTS",
-      payload: { ...this.state, [e.target.id]: e.target.value },
-    });
+  on_productname_change = (e) => {
+    this.props.update_product_name(e.target.value);
   };
 
-  pnChange = (e) => {
-    let value = e.target.value.replace(/ /g, "-").toLowerCase();
-    this.setState({
-      productSlugPreview: value,
-      productSlug: value,
-      productName: e.target.value,
-    });
-
-    store.dispatch({
-      type: "PRODUCT_TITLE",
-      payload: {
-        productName: e.target.value,
-        productSlug: e.target.value.replace(/ /g, "-").toLowerCase(),
-      },
-    });
-  };
   render() {
     return (
       <>
-        <form autocomplete="off" onSubmit={this.handleSubmit} id="formDetails">
+        <div>
           <div className="card card-body ml-shadow card-block mr-2">
             <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
               <AiOutlineTags className="ml-icon-size2 mr-2" />
@@ -77,16 +47,15 @@ class ProductInfor extends Component {
                 <input
                   required
                   type="text"
-                  value={this.props.product.productName}
-                  onChange={this.pnChange}
-                  id="productName"
+                  value={this.props.product.product_name}
+                  onChange={this.on_productname_change}
                   placeholder="..."
                   className="form-control mb-2"
                 />
                 <label>
                   {" "}
                   Permalink Preview:{" "}
-                  {this.slugPreview(this.props.product.productName)}
+                  {this.slugPreview(this.props.product.product_name)}
                 </label>
               </div>
             </div>
@@ -102,8 +71,9 @@ class ProductInfor extends Component {
             <div className="border rounded">
               <RTE
                 initial={
-                  this.props.product.productDescription &&
-                  this.props.product.productDescription
+                  this.props.product.product_long_description
+                    ? this.props.product.product_long_description
+                    : ""
                 }
                 ohtml={(n) =>
                   store.dispatch({
@@ -116,10 +86,10 @@ class ProductInfor extends Component {
               />
             </div>
           </div>
-        </form>
+        </div>
       </>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(ProductInfor);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductInfor);

@@ -90,7 +90,7 @@ class ProductVariations extends Component {
     this.setState({
       variationsToDisplay: pVar,
     });
-    console.log(pVar);
+    // console.log(pVar);
   };
 
   pvModal = () => {
@@ -191,7 +191,9 @@ class ProductVariations extends Component {
               <button
                 type="button"
                 onClick={() =>
-                  this.setState({ pvModalOpen: !this.state.pvModalOpen })
+                  this.setState({
+                    pvModalEditVariations: !this.state.pvModalEditVariations,
+                  })
                 }
                 className="bold i-i-btn btn cp h3 mb-0"
               >
@@ -231,6 +233,7 @@ class ProductVariations extends Component {
   };
 
   render() {
+    console.log("==>", this.state);
     return (
       <div>
         {this.pvModal()}

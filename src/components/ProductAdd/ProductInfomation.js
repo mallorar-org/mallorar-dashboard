@@ -8,7 +8,7 @@ import store from "../../store/store";
 
 const mapStateToProps = (state) => {
   return {
-    productAR: state.productAR,
+    productAR: state.product,
   };
 };
 
@@ -25,7 +25,7 @@ class ProductInfomation extends Component {
 
   setFields = (e) => {
     let ns = [];
-    ns = ns.concat(e, this.props.productAR.specifications);
+    ns = ns.concat(e, this.props.productAR.product_specifications);
     store.dispatch({ type: "SET_SPECS_FIELDS", payload: ns });
     this.setState({
       templateModal: false,
@@ -53,7 +53,7 @@ class ProductInfomation extends Component {
 
   removeslItem = (e) => {
     let ftd = [];
-    this.props.productAR.specifications.forEach((x) => {
+    this.props.productAR.product_specifications.forEach((x) => {
       if (e !== x) {
         ftd.push(x);
       }
@@ -174,14 +174,14 @@ class ProductInfomation extends Component {
                 </form>
               </div>
 
-              {this.props.productAR.specifications.length === 0 && (
+              {this.props.productAR.product_specifications.length === 0 && (
                 <div className="col-12 p-0">
                   <div className="p-3 border  d-flex justify-content-center align-items-center">
                     No additional specifications created
                   </div>
                 </div>
               )}
-              {this.props.productAR.specifications.map((x, index) => (
+              {this.props.productAR.product_specifications.map((x, index) => (
                 <div key={"key_" + index} className="col-6 p-0">
                   <Pspecifics
                     index={index}
