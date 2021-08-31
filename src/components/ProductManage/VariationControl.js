@@ -53,6 +53,14 @@ class VariationControl extends Component {
     this.setState({
       vdstate: rs,
     });
+
+    if (this.props.var_data.variableName) {
+      this.setState({
+        variationName: this.props.var_data.variableName,
+        variantValues: this.props.var_data.variableValues,
+        mlSelected: { value: this.props.var_data.variableName },
+      });
+    }
   };
 
   deleteVariation = () => {
@@ -86,31 +94,16 @@ class VariationControl extends Component {
     });
   };
 
-  onChangeChbx = (n) => {
-    if (n === "price") {
-      this.setState({
-        priceDiff: !this.state.priceDiff,
-      });
-    }
-
-    if (n === "stock") {
-      this.setState({
-        stockDiff: !this.state.stockDiff,
-      });
-    }
-  };
-
   saveVariation = () => {
     let variableValues = [];
     this.state.variantValues.forEach((x) => {
       variableValues.push({
         variationValue: x.variationValue,
-        stock: this.state.stockDiff ? 0 : "N/A",
-        price: this.state.priceDiff ? 0 : "N/A",
       });
     });
 
     let variationObject = {
+      variableIndex: this.props.var_index,
       variableName: this.state.variationName,
       variableValues: variableValues,
     };
@@ -133,6 +126,8 @@ class VariationControl extends Component {
       variantValues: vvalues,
     });
 
+    document.getElementById(this.state.vdstate).value = "";
+
     if (this.state.variantValues.length >= 2) {
       this.saveVariation();
     }
@@ -147,7 +142,7 @@ class VariationControl extends Component {
       <div className="border-bottom py-3 mb-0">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-6">
+            <div className="col-4 px-0">
               <div className="mt-">
                 {this.state.mlSelected.value == "" ? (
                   <>
@@ -187,31 +182,7 @@ class VariationControl extends Component {
 
                     {this.state.mlSelected.value !== "create-new-variation" && (
                       <>
-                        <div className="mt-2 t14">
-                          <div className="mb-1 d-flex">
-                            <CheckBox
-                              id="443psonin"
-                              checked={this.state.priceDiff}
-                              onchange={() => this.onChangeChbx("price")}
-                            />{" "}
-                            <span className="ml-2">
-                              Different prices for each&nbsp;
-                              {this.state.variationName}
-                            </span>
-                          </div>
-                          <div className="mb-1 d-flex">
-                            <CheckBox
-                              label="stock episjespeo"
-                              id="543psonin"
-                              checked={this.state.stockDiff}
-                              onchange={() => this.onChangeChbx("stock")}
-                            />{" "}
-                            <span className="ml-2">
-                              Quantities differ for each{" "}
-                              {this.state.variationName}
-                            </span>
-                          </div>
-                        </div>
+                        <div className="mt-2 t14"></div>
                       </>
                     )}
                   </div>
@@ -240,7 +211,7 @@ class VariationControl extends Component {
               </div>
               {/* </div> */}
             </div>
-            <div className="col-6">
+            <div className="col-4">
               {this.state.variationName && (
                 <>
                   {this.state.mlSelected.value !== "create-new-variation" && (

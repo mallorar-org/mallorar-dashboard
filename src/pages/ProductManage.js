@@ -202,24 +202,24 @@ class ProductAdd extends Component {
           <div className="row">
             <div className="col-lg-9 px-0">
               {this.props.product.productID && <ProductControls />}
-              {/* <ProductInfor /> */}
-              {/* <ProductInfomation /> */}
+              <ProductInfor />
+              <ProductInfomation />
               <ProductData />
             </div>
             {/* Begining of Left SideBar and the */}
             <div className="col-lg-3 px-0">
               {this.operationButtons()}
-              {/* <ProductImg />
-              <ProductImgs /> */}
+              <ProductImg />
+              <ProductImgs />
               <div className="position-department-sticky">
-                {/* <ProductDepartment
+                <ProductDepartment
                   getDep={this.getDep}
                   onRef5={(ref5) => (this.child5 = ref5)}
                 />
                 <ProductTags
                   getTags={this.getTags}
                   onRef6={(ref6) => (this.child6 = ref6)}
-                /> */}
+                />
               </div>
             </div>
           </div>
