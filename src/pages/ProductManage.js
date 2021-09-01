@@ -200,14 +200,14 @@ class ProductAdd extends Component {
         </div>
         <div className="container-fluid my-3">
           <div className="row">
-            <div className="col-lg-9 px-0">
+            <div className="col-lg-12 px-0">
               {this.props.product.productID && <ProductControls />}
-              <ProductInfor />
-              <ProductInfomation />
+              {/* <ProductInfor /> */}
+              {/* <ProductInfomation /> */}
               <ProductData />
             </div>
             {/* Begining of Left SideBar and the */}
-            <div className="col-lg-3 px-0">
+            <div className="col-lg-12 d-none px-0">
               {this.operationButtons()}
               <ProductImg />
               <ProductImgs />

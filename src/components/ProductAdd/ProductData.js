@@ -124,7 +124,7 @@ class ProductData extends Component {
     return (
       <section className="pr-2" autocomplete="off">
         <ProductVariations />
-        <div className="ml-card-shadow mt-4">
+        <div className="d-none ml-card-shadow mt-4">
           <div className="card-body">
             <div className="mb-3 h5 pb-2 bold ">
               <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
@@ -141,7 +141,7 @@ class ProductData extends Component {
               <Atrribute addvarr={this.addvarr} />
             </div>
             <div className="">
-              {this.props.product.product_variations.map((x, index) => {
+              {/* {this.props.product.product_variations.map((x, index) => {
                 return (
                   <AtrributeManage
                     removeVar={(n) => this.removeVar(n)}
@@ -150,12 +150,12 @@ class ProductData extends Component {
                     x={x}
                   />
                 );
-              })}
+              })} */}
             </div>
           </div>
         </div>
 
-        <div className="ml-card-shadow mt-4">
+        <div className="d-none ml-card-shadow mt-4">
           <div className="card-body  px-0">
             <div>
               <div className="bold h5 mx-3 mb-3 pt-0 pb-3">
@@ -264,7 +264,7 @@ class ProductData extends Component {
           </div>
         </div>
 
-        <div className="ml-card-shadow mt-4">
+        <div className="d-none ml-card-shadow mt-4">
           <div className="card-body pb-2 p-0 mt-3">
             <div className="bold h5 mx-3 mb-3 py-3">
               <h5 className="c-blue d-flex align-items-center border-bottom pb-2">

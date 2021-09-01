@@ -42,6 +42,11 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_PRODUCT_VARIATIONS":
+      return {
+        ...state,
+        product_variations: action.payload,
+      };
     case "PP_UPDATE_PRODUCT_NAME":
       return {
         ...state,

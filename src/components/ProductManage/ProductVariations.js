@@ -5,59 +5,28 @@ import Variation from "./Variation";
 import VariationControl from "./VariationControl";
 import VariationEditControl from "./VariationEditControl";
 import VariationCombRow from "./VariationCombRow";
+import { update_product_variations } from "../../store/actions/productActions";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    variations: state.product.product_variations,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    update_product_variations: (v) => dispatch(update_product_variations(v)),
+  };
+};
 
 class ProductVariations extends Component {
   state = {
     edit_state: true,
-    variation_names: ["Color", "Size", "Model"],
-    variations: [
-      {
-        variation_index: 1,
-        stock_count: 13,
-        variations_cost: 43,
-        variation_values: [
-          {
-            variation_name: "Color",
-            value_value: "Red",
-          },
-          {
-            variation_name: "Size",
-            value_value: "32gb",
-          },
-          {
-            variation_name: "Model",
-            value_value: "Fine",
-          },
-        ],
-      },
-      {
-        variation_index: 1,
-        stock_count: 3,
-        variations_cost: 73.99,
-        variation_values: [
-          {
-            variation_name: "Color",
-            value_value: "Pink",
-          },
-          {
-            variation_name: "Size",
-            value_value: "64gb",
-          },
-          {
-            variation_name: "Model",
-            value_value: "Soak",
-          },
-        ],
-      },
-    ],
+    add_variations: false,
+    variation_names: [],
+    variations: [],
     temp_variations: [],
-    variationDafts: [
-      {
-        variableIndex: 1,
-        variableName: "Width",
-        variableValues: [{ variationValue: "2" }, { variationValue: "6" }],
-      },
-    ],
+    variationDafts: [],
   };
 
   switchToEdit = () => {
@@ -66,7 +35,136 @@ class ProductVariations extends Component {
     });
   };
   switchToDisplay = () => {
+    let variationDafts = this.state.variationDafts;
+
+    let variation_names = [];
+    let variations = [];
+
+    // variationDafts.forEach((x) => {
+    //   let variation_values = [];
+
+    //   x.variableValues.forEach((x) => {
+    //     variation_values.push({
+    //       variation_name: "Color",
+    //       value_value: "Red",
+    //     });
+    //   });
+
+    //   variations.push({
+    //     variation_index: x.variableIndex,
+    //     stock_count: 1,
+    //     variations_cost: 0.0,
+    //     variation_values: variation_values,
+    //   });
+    // });
+
+    //
+
+    let other_variations = this.state.variationDafts;
+
+    if (other_variations.length === 0) return;
+
+    other_variations.forEach((x) => {
+      variation_names.push(x.variableName);
+    });
+
+    other_variations[0].variableValues.forEach((v, index) => {
+      let position = 0;
+      position += 1;
+
+      let pVar = [];
+
+      if (other_variations.length === 1) {
+        variations.push({
+          variation_index: index + v.variationValue.toLowerCase(),
+          stock_count: 1,
+          variations_cost: 0.0,
+          variation_values: {
+            variation_name: other_variations[0].variableName,
+            value_value: v.variationValue,
+          },
+        });
+      }
+      // with different price
+      if (other_variations.length > position) {
+        other_variations[position].variableValues.forEach((otherV) => {
+          let tempVaval_2 = [];
+          // tempVaval_2.push(v.variationValue);
+          tempVaval_2.push({
+            variation_name: other_variations[0].variableName,
+            value_value: v.variationValue,
+          });
+
+          tempVaval_2.push({
+            variation_name: other_variations[1].variableName,
+            value_value: otherV.variationValue,
+          });
+
+          if (!(other_variations.length > position + 1)) {
+            pVar.push(tempVaval_2);
+            variations.push({
+              variation_index:
+                index +
+                (v.variationValue + otherV.variationValue).toLowerCase(),
+              stock_count: 1,
+              variations_cost: 0.0,
+              variation_values: tempVaval_2,
+            });
+          }
+          if (other_variations.length > position + 1) {
+            other_variations[position + 1].variableValues.forEach(
+              (other_otherV) => {
+                let tempVaval_3 = [];
+                tempVaval_3.push({
+                  variation_name: other_variations[0].variableName,
+                  value_value: v.variationValue,
+                });
+                tempVaval_3.push({
+                  variation_name: other_variations[1].variableName,
+                  value_value: otherV.variationValue,
+                });
+                tempVaval_3.push({
+                  variation_name: other_variations[2].variableName,
+                  value_value: other_otherV.variationValue,
+                });
+                // tempVaval_3.push(other_otherV.variationValue);
+                pVar.push(tempVaval_3);
+                variations.push({
+                  variation_index:
+                    index +
+                    (
+                      v.variationValue +
+                      otherV.variationValue +
+                      other_otherV.variationValue
+                    ).toLowerCase(),
+                  stock_count: 1,
+                  variations_cost: 0.0,
+                  variation_values: tempVaval_3,
+                });
+              },
+            );
+          }
+        });
+      } else {
+        let tempVaval = [];
+        tempVaval.push(v.variationValue);
+        pVar.push(tempVaval);
+      }
+      // console.log({ pVar });
+    });
+
+    // console.log({ pVar });
+
+    // this.setState({
+    //   variationsToDisplay: pVar,
+    // });
+
+    //
+
+    this.props.update_product_variations(variations);
+
     this.setState({
+      variation_names,
       edit_state: false,
     });
   };
@@ -85,7 +183,7 @@ class ProductVariations extends Component {
   displayTab = () => {
     return (
       <>
-        {this.state.variations.length === 0 && (
+        {this.props.variations.length === 0 && (
           <>
             <div className="mb-2 pt-2">Add at least 1 product variation</div>
             <button
@@ -108,10 +206,11 @@ class ProductVariations extends Component {
             <div className="col-3 border-right p-2">Price</div>
             <div className="col-3 p-2">Stock</div>
           </div>
-          {this.state.variations.map((x) => (
+          {this.props.variations.map((x) => (
             <VariationCombRow
               variation_names={this.state.variation_names}
               x={x}
+              update_combination_cost={(c) => this.update_combination_cost(c)}
               key={x.variation_index}
             />
           ))}
@@ -142,7 +241,120 @@ class ProductVariations extends Component {
     });
   };
 
+  switchToAddvariations = () => {
+    this.setState({
+      add_variations: !this.state.add_variations,
+    });
+  };
+
+  add_variation_toList = () => {
+    let txtNV_van = document.getElementById("txtNV_van").value;
+    document.getElementById("txtNV_van").value = "";
+
+    let variationDafts = this.state.variationDafts;
+    let v_index = -1;
+    let new_index = 0;
+    if (variationDafts.length < 3) {
+      variationDafts.forEach((x, index) => {
+        if (x.variableName === txtNV_van) {
+          v_index = index;
+        }
+
+        if (x.variableIndex > new_index) {
+          new_index = x.variableIndex;
+        }
+      });
+
+      if (v_index === -1) {
+        variationDafts.push({
+          variableIndex: new_index + 1,
+          variableName: txtNV_van,
+          variableValues: [],
+        });
+      }
+    }
+
+    this.setState({
+      variationDafts,
+    });
+  };
+
+  remove_var_from_list = (index) => {
+    let current_List = this.state.variationDafts;
+    let newlist = [];
+    current_List.forEach((x) => {
+      if (x.variableIndex !== index) {
+        newlist.push(x);
+      }
+    });
+
+    this.setState({
+      variationDafts: newlist,
+    });
+  };
+
   editTab = () => {
+    if (this.state.add_variations) {
+      return (
+        <div>
+          <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
+            <div to="#" role="tab">
+              Create Variation
+            </div>
+          </div>
+          <div className="pt-3">
+            <div className="d-flex mb-3">
+              <input
+                id="txtNV_van"
+                placeholder="Variation name"
+                className="form-control rounded-0 "
+                type="text"
+              />
+              <button
+                disabled={this.state.variationDafts.length >= 3 ? true : false}
+                onClick={this.add_variation_toList}
+                type="button"
+                className="ml-btn rounded-0 btn border-left-0 border"
+              >
+                Add
+              </button>
+            </div>
+            <div>
+              <table className="table table-bordered">
+                <tr className="bold shadow-sm">
+                  <td>Variation name</td>
+                  <td>Action</td>
+                </tr>
+                {this.state.variationDafts.map((x) => (
+                  <tr key={x.variableIndex}>
+                    <td>{x.variableName}</td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          this.remove_var_from_list(x.variableIndex)
+                        }
+                        className="ml-btn"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </table>
+            </div>
+          </div>
+          <div className="py-3">
+            <button
+              onClick={() => this.switchToAddvariations()}
+              className="btn ml-btn"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <div className="ml-container py-0 px-0">
@@ -169,19 +381,33 @@ class ProductVariations extends Component {
         </div>
 
         <div className="py-3">
-          <button onClick={() => this.switchToDisplay()} className="btn ml-btn">
-            Save combination
-          </button>
+          {this.state.variationDafts.length === 0 ? (
+            <button
+              onClick={() => this.switchToAddvariations()}
+              className="btn ml-btn"
+            >
+              Add Product Variations
+            </button>
+          ) : (
+            <button
+              onClick={() => this.switchToDisplay()}
+              className="btn ml-btn"
+            >
+              Save combination
+            </button>
+          )}
         </div>
       </div>
     );
   };
 
+  update_combination_cost = () => {};
+
   render() {
-    console.log("variationDafts=>", this.state.variationDafts);
+    console.log("state=>", this.state);
     return (
       <div className="ml-card-shadow mt-4">
-        <div className="card-body">
+        <div className="card-body col-8">
           <div className="h5 bold ">
             <div className="d-flex justify-content-between align-items-center">
               <div className="">
@@ -209,308 +435,4 @@ class ProductVariations extends Component {
   }
 }
 
-export default ProductVariations;
-
-// import { MDBModal, MDBModalBody } from "mdbreact";
-// import React, { Component } from "react";
-// import { FaStumbleupon } from "react-icons/fa";
-// import Variation from "./Variation";
-// import VariationControl from "./VariationControl";
-// import VariationEditControl from "./VariationEditControl";
-
-// class ProductVariations extends Component {
-//   state = {
-//     pvModalOpen: false,
-//     pvModalEditOpen: false,
-//     pvModalEditVariations: false,
-//     variations: [],
-//     variationsToDisplay: [],
-//     variationDafts: [],
-//   };
-
-//   saveVariation = (n) => {
-//     let cv = this.state.variations;
-
-//     let vindex = -1;
-
-//     cv.forEach((x, index) => {
-//       if (x.variableName === n.variableName) {
-//         vindex = index;
-//       }
-//     });
-
-//     if (vindex === -1) {
-//       cv.push(n);
-//     } else {
-//       cv[vindex] = n;
-//     }
-
-//     this.setState({
-//       variationDafts: cv,
-//     });
-//   };
-
-//   finallySaveVariations = () => {
-//     this.setState({
-//       variations: this.state.variationDafts,
-//       pvModalOpen: false,
-//     });
-
-//     this.modelizeVariations();
-//   };
-
-//   componentDidMount = () => {
-//     this.modelizeVariations();
-//   };
-
-//   componentDidUpdate(prevProps, prevState) {
-//     // console.log(prevState);
-
-//     if (prevState.variations !== this.state.variations) {
-//       this.modelizeVariations();
-//       // console.log("safe to run !");
-//     }
-//   }
-
-//   modelizeVariations = () => {
-//     let variations = this.state.variations;
-//     let pVar = [];
-
-//     if (variations.length === 0) return;
-
-//     variations[0].variableValues.forEach((v) => {
-//       let position = 0;
-//       position += 1;
-
-//       if (!v.priceDiff) {
-//       }
-
-//       // with different price
-//       if (variations.length > position) {
-//         variations[position].variableValues.forEach((otherV) => {
-//           let tempVaval = [];
-//           tempVaval.push(v.variationValue);
-//           tempVaval.push(otherV.variationValue);
-//           pVar.push(tempVaval);
-//         });
-//       } else {
-//         let tempVaval = [];
-//         tempVaval.push(v.variationValue);
-//         pVar.push(tempVaval);
-//       }
-//     });
-
-//     this.setState({
-//       variationsToDisplay: pVar,
-//     });
-//     // console.log(pVar);
-//   };
-
-//   pvModal = () => {
-//     return (
-//       <MDBModal
-//         size="lg"
-//         isOpen={this.state.pvModalOpen}
-//         toggle={() => this.setState({ pvModalOpen: !this.state.pvModalOpen })}
-//       >
-//         <MDBModalBody className="p-0">
-//           <div
-//             style={{ minHeight: "32rem" }}
-//             className="ml-container py-2 px-1"
-//           >
-//             <div className="d-flex px-3  justify-content-between">
-//               <div className=" h4 mb-0 d-flex align-items-center">
-//                 {/* <img alt="" className="ml-icon-size1 mr-2" src={skills} /> */}
-//                 <div>
-//                   <div className="bold">Add variations</div>
-//                   <div className="t14">
-//                     List all product options you have for this item.
-//                   </div>
-//                 </div>
-//               </div>
-//               <button
-//                 type="button"
-//                 onClick={() =>
-//                   this.setState({ pvModalOpen: !this.state.pvModalOpen })
-//                 }
-//                 className="bold i-i-btn btn cp h3 mb-0"
-//               >
-//                 &times;
-//               </button>
-//             </div>
-//             <div className="mt-2 border-top">
-//               <div>
-//                 <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
-//                   <div to="#" role="tab">
-//                     Create Variation
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="px-2 ">
-//                 <VariationControl
-//                   saveVariation={(n) => this.saveVariation(n)}
-//                   key="v1"
-//                 />
-
-//                 {this.state.variationDafts.length >= 1 && (
-//                   <>
-//                     <VariationControl
-//                       saveVariation={(n) => this.saveVariation(n)}
-//                       key="v2"
-//                     />
-//                   </>
-//                 )}
-//               </div>
-//             </div>
-//             <div className="p-3">
-//               <button
-//                 onClick={this.finallySaveVariations}
-//                 className="btn ml-btn"
-//               >
-//                 Save Variation(s)
-//               </button>
-//             </div>
-//           </div>
-//         </MDBModalBody>
-//       </MDBModal>
-//     );
-//   };
-//   pvModalEditVariations = () => {
-//     return (
-//       <MDBModal
-//         size="lg"
-//         isOpen={this.state.pvModalEditVariations}
-//         toggle={() =>
-//           this.setState({
-//             pvModalEditVariations: !this.state.pvModalEditVariations,
-//           })
-//         }
-//       >
-//         <MDBModalBody className="p-0">
-//           <div
-//             style={{ minHeight: "32rem" }}
-//             className="ml-container py-2 px-1"
-//           >
-//             <div className="d-flex px-3  justify-content-between">
-//               <div className=" h4 mb-0 d-flex align-items-center">
-//                 {/* <img alt="" className="ml-icon-size1 mr-2" src={skills} /> */}
-//                 <div>
-//                   <div className="bold">Edit variations</div>
-//                   <div className="t14">
-//                     List all product options you have for this item.
-//                   </div>
-//                 </div>
-//               </div>
-//               <button
-//                 type="button"
-//                 onClick={() =>
-//                   this.setState({
-//                     pvModalEditVariations: !this.state.pvModalEditVariations,
-//                   })
-//                 }
-//                 className="bold i-i-btn btn cp h3 mb-0"
-//               >
-//                 &times;
-//               </button>
-//             </div>
-//             <div className="mt-2 border-top">
-//               <div>
-//                 <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
-//                   <div to="#" role="tab">
-//                     Create Variation
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="px-0 ">
-//                 {this.state.variations.map((x, index) => (
-//                   <VariationEditControl
-//                     x={x}
-//                     saveVariation={(n) => this.saveVariation(n)}
-//                     key={`v` + index}
-//                   />
-//                 ))}
-//               </div>
-//             </div>
-//             <div className="p-3">
-//               <button
-//                 onClick={this.finallySaveVariations}
-//                 className="btn ml-btn"
-//               >
-//                 Save Variation(s)
-//               </button>
-//             </div>
-//           </div>
-//         </MDBModalBody>
-//       </MDBModal>
-//     );
-//   };
-
-//   render() {
-//     console.log("==>", this.state);
-//     return (
-//       <div>
-//         {this.pvModal()}
-//         {this.pvModalEditVariations()}
-//         <div className="ml-card-shadow mt-4">
-//           <div className="card-body">
-//             <div className="h5 bold ">
-//               <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-//                 <FaStumbleupon className="ml-icon-size1 mr-2" />
-//                 <span className="bold c-blue">Product Variations</span>
-//               </h5>
-//             </div>
-//             <div className="">
-//               Add product variation options like color or size. Customers will
-//               choose from these before adding products to cart.
-//             </div>
-//             <div className="my-3 pb-2">
-//               {this.state.variations.length === 0 && (
-//                 <button
-//                   onClick={() =>
-//                     this.setState({ pvModalOpen: !this.props.pvModalOpen })
-//                   }
-//                   type="button"
-//                   className="ml-btn"
-//                 >
-//                   Add Variation(s)
-//                 </button>
-//               )}
-//               {this.state.variations.length > 0 && (
-//                 <button
-//                   onClick={() => this.setState({ pvModalEditVariations: true })}
-//                   type="button"
-//                   className="ml-0 ml-btn"
-//                 >
-//                   Edit Variations(s)
-//                 </button>
-//               )}
-//             </div>
-
-//             {this.state.variations.length > 0 && (
-//               <div className="mt-2 border rounded">
-//                 <div className="container-fluid">
-//                   <div className="row shadow-sm text-center bold">
-//                     {this.state.variations.map((x) => (
-//                       <div className="col-2 p-2 border-right">
-//                         {x.variableName}
-//                       </div>
-//                     ))}
-
-//                     <div className="col-3 p-2">Price</div>
-//                     {/* <div className="col-3 p-2">Stock</div> */}
-//                   </div>
-
-//                   {this.state.variationsToDisplay.map((x, index) => (
-//                     <Variation key={index} x={x} />
-//                   ))}
-//                 </div>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default ProductVariations;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductVariations);

@@ -4,3 +4,9 @@ export const update_product_name = (name) => {
     payload: name,
   };
 };
+export const update_product_variations = (v) => {
+  return {
+    type: "UPDATE_PRODUCT_VARIATIONS",
+    payload: v,
+  };
+};
