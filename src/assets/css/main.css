@@ -748,7 +748,7 @@ input[type="radio"]:checked + .ml-radio-btn .ml-dot {
 }
 
 .ml-main {
-  background: #f6f8fb;
+  background: #fafafa;
   position: relative;
   float: right;
   min-height: 100vh;
@@ -3858,6 +3858,6 @@ a.ml-btn {
 }
 
 .ml-product-pm .border-bottom {
-  border-bottom: 2px solid #b8b8b8 !important;
+  border-bottom: 3px solid #f0f0f0 !important;
 }
 /*# sourceMappingURL=main.css.map */

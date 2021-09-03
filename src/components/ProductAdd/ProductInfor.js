@@ -36,13 +36,15 @@ class ProductInfor extends Component {
     return (
       <>
         <div>
-          <div className="card card-body px-0  card-block">
-            <h5 className="c-blue d-flex align-items-center border-bottom pb-3">
-              <AiOutlineTags className="ml-icon-size2" />
-              <span className="bold c-blue">&nbsp;Product Name</span>
+          <div className="card card-body">
+            <h5 className="c-blue bold d-flex align-items-center pb-3">
+              Product Details
             </h5>
-            <div className="">
-              <div className="mt-3 px-0 col-lg-7 col-12">
+            <div className="row mt-3">
+              <div className="col-2 d-flex align-items-">
+                <div>Title*</div>
+              </div>
+              <div className="col-lg-6 col-12">
                 <input
                   required
                   type="text"
@@ -58,31 +60,32 @@ class ProductInfor extends Component {
                 </label>
               </div>
             </div>
-          </div>
-
-          <ShortDescription />
-
-          <div className="card ml-card-shadow card-body mt-3 mr-2">
-            <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-              <BiDetail className="ml-icon-size2 mr-2" />
-              <span className="bold c-blue">Description</span>
-            </h5>
-            <div className="border rounded">
-              <RTE
-                initial={
-                  this.props.product.product_long_description
-                    ? this.props.product.product_long_description
-                    : ""
-                }
-                ohtml={(n) =>
-                  store.dispatch({
-                    type: "PRODUCT_DESCRIPTION",
-                    payload: `${n}`,
-                  })
-                }
-                type={"description"}
-                placeholder="Detailed Description.."
-              />
+            <ShortDescription />
+            <div className="container-fluid mt-4 pt-4 px-0 border-top">
+              <div className="row">
+                <div className="col-2">
+                  <span className="">Description*</span>
+                </div>
+                <div className="col-10">
+                  <div className="border rounded">
+                    <RTE
+                      initial={
+                        this.props.product.product_long_description
+                          ? this.props.product.product_long_description
+                          : ""
+                      }
+                      ohtml={(n) =>
+                        store.dispatch({
+                          type: "PRODUCT_DESCRIPTION",
+                          payload: `${n}`,
+                        })
+                      }
+                      type={"description"}
+                      placeholder="Detailed Description.."
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

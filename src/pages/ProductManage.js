@@ -166,7 +166,7 @@ class ProductAdd extends Component {
     }
 
     return (
-      <section className="ml-container ml-product-pm ml-card-rounded-0 bg-white">
+      <section className="ml-container ml-product-pm ml-card-rounded-0">
         <div>
           <div className="bg-whit d-flex justify-content-between px-0 ">
             <div>{this.renderHeader()}</div>

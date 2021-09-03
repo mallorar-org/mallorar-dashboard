@@ -34,46 +34,52 @@ function ShortDescription({
 
   console.log({ product_short_desc });
   return (
-    <div className="mt-3 mr-2 card card-body ml-card-shadow">
-      <h5 className="c-blue d-flex align-items-center border-bottom pb-2 mb-3">
-        <CgDetailsLess className="ml-icon-size2 mr-2" />
-        <span className="bold c-blue">Short Details</span>
-      </h5>
-
-      {product_short_desc.map((x, index) => (
-        <div key={x.id} className="">
-          <div className="mt-1 row form-group">
-            <div className="col-1 cl-md-1 d-flex align-items-center">
-              {index + 1}.
+    <div className="mt-3 border-top pt-4">
+      <div className="container-fluid px-0">
+        <div className="row">
+          <div className="col-2">
+            <div className="c-blue d-flex align-items-center pb-3 mb-3">
+              <span className="c-blue">Short Details</span>
             </div>
-            <div className="col-9 d-flex col-m-8">
-              <input
-                type="text"
-                value={x.text}
-                onChange={on_short_desc_change}
-                name={x.id}
-                placeholder="Type a short description.."
-                className="form-control"
-              />
+          </div>
+          <div className="col-10">
+            {product_short_desc.map((x, index) => (
+              <div key={x.id} className="">
+                <div className="mt-1 row form-group">
+                  <div className="col-1 cl-md-1 d-flex align-items-center">
+                    {index + 1}.
+                  </div>
+                  <div className="col-9 d-flex col-m-8">
+                    <input
+                      type="text"
+                      value={x.text}
+                      onChange={on_short_desc_change}
+                      name={x.id}
+                      placeholder="Type a short description.."
+                      className="form-control"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => remove_short_desc(x.id)}
+                      className="btn ml-2 ml-btn"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div>
               <button
                 type="button"
-                onClick={() => remove_short_desc(x.id)}
+                onClick={add_new_short_desc_field}
                 className="btn ml-btn"
               >
-                Remove
+                Add new field
               </button>
             </div>
           </div>
         </div>
-      ))}
-      <div>
-        <button
-          type="button"
-          onClick={add_new_short_desc_field}
-          className="btn ml-btn"
-        >
-          Add new field
-        </button>
       </div>
     </div>
   );

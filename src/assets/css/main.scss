@@ -724,8 +724,8 @@ input[type="radio"]:checked + .ml-radio-btn {
 }
 
 .ml-main {
-  // background: #fafafa;
-  background: #f6f8fb;
+  background: #fafafa;
+  // background: #f6f8fb;
   position: relative;
   float: right;
   min-height: 100vh;
@@ -3630,6 +3630,6 @@ a.ml-btn {
 
 .ml-product-pm {
   .border-bottom {
-    border-bottom: 2px solid rgb(184, 184, 184) !important;
+    border-bottom: 3px solid rgb(240, 240, 240) !important;
   }
 }
