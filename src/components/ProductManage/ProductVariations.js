@@ -311,7 +311,7 @@ class ProductVariations extends Component {
             </form>
             <div>
               <table className="table table-bordered">
-                <tr className="bold shadow-sm">
+                <tr className="bold bg-light shadow-sm">
                   <td>Variation name</td>
                   <td>Action</td>
                 </tr>

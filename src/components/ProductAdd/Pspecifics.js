@@ -25,15 +25,11 @@ class Pspecifics extends Component {
 
   render() {
     return (
-      <div className="d-flex mb-3 ">
-        <div class="form-group d-flex align-items-center">
-          <label for="Student" className="mr-3 mb-0">
-            {
-              this.props.productAR.product_specifications[this.props.index]
-                .sname
-            }{" "}
-            :
-          </label>
+      <tr className="">
+        <td>
+          {this.props.productAR.product_specifications[this.props.index].sname}
+        </td>
+        <td>
           <input
             onChange={this.changeValue}
             defaultValue={
@@ -44,14 +40,16 @@ class Pspecifics extends Component {
             type="text"
             className="ml-input"
           />
+        </td>
+        <td>
           <div
             onClick={() => this.props.removeslItem(this.props.x)}
-            className="bold h4 mb-0 pl-3 cp"
+            className=" a mb-0 cp"
           >
-            &times;
+            Remove
           </div>
-        </div>
-      </div>
+        </td>
+      </tr>
     );
   }
 }

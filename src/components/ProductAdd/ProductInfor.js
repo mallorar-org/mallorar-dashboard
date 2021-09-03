@@ -36,14 +36,13 @@ class ProductInfor extends Component {
     return (
       <>
         <div>
-          <div className="card card-body ml-shadow card-block mr-2">
-            <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-              <AiOutlineTags className="ml-icon-size2 mr-2" />
-
-              <span className="bold c-blue">Product Name</span>
+          <div className="card card-body px-0  card-block">
+            <h5 className="c-blue d-flex align-items-center border-bottom pb-3">
+              <AiOutlineTags className="ml-icon-size2" />
+              <span className="bold c-blue">&nbsp;Product Name</span>
             </h5>
             <div className="">
-              <div className="mt-3">
+              <div className="mt-3 px-0 col-lg-7 col-12">
                 <input
                   required
                   type="text"

@@ -3621,3 +3621,15 @@ button {
 a.ml-btn {
   color: black;
 }
+
+.table th {
+  padding: 0.75rem;
+  vertical-align: center;
+  border-top: 1px solid #dee2e6;
+}
+
+.ml-product-pm {
+  .border-bottom {
+    border-bottom: 2px solid rgb(184, 184, 184) !important;
+  }
+}

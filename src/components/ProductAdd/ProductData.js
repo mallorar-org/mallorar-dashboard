@@ -21,7 +21,7 @@ class ProductData extends Component {
     activeItem: "3",
     variables: [],
     productType: "new-product",
-    sellingCurrency: "US$",
+    sellingCurrency: "USD",
     productPrice: "0",
     salePrice: "0",
     shippingType: "calculated",
@@ -124,38 +124,8 @@ class ProductData extends Component {
     return (
       <section className="pr-2" autocomplete="off">
         <ProductVariations />
-        <div className="d-none ml-card-shadow mt-4">
-          <div className="card-body">
-            <div className="mb-3 h5 pb-2 bold ">
-              <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-                <img alt="" className="ml-icon-size1 mr-2" src={setup} />
-                <span className="bold c-blue">Product Variations 2</span>
-              </h5>
-            </div>
-            <div className="mb-2">
-              Add product variation for this product so that people can choose
-              the specific variation if thers any
-            </div>
 
-            <div>
-              <Atrribute addvarr={this.addvarr} />
-            </div>
-            <div className="">
-              {/* {this.props.product.product_variations.map((x, index) => {
-                return (
-                  <AtrributeManage
-                    removeVar={(n) => this.removeVar(n)}
-                    number={index}
-                    key={index}
-                    x={x}
-                  />
-                );
-              })} */}
-            </div>
-          </div>
-        </div>
-
-        <div className="d-none ml-card-shadow mt-4">
+        <div className="ml-card-shadow mt-4">
           <div className="card-body  px-0">
             <div>
               <div className="bold h5 mx-3 mb-3 pt-0 pb-3">
@@ -169,7 +139,7 @@ class ProductData extends Component {
               <div className="mb-3">
                 <div className="row">
                   <div className="col-lg-3">
-                    <span>Currency </span>
+                    <span>Base currency </span>
                   </div>
                   <div className="col-lg-3">
                     <MLSelect
@@ -177,9 +147,12 @@ class ProductData extends Component {
                         this.changeSelect("sellingCurrency", n)
                       }
                       defaultValue={[
-                        { label: "US$ (US Dollar)", value: "US$" },
+                        { label: "USD (US Dollar)", value: "USD" },
                       ]}
-                      options={[{ label: "US$ (US Dollar)", value: "US$" }]}
+                      options={[
+                        { label: "USD (US Dollar)", value: "USD" },
+                        { label: "ZAR (South African Rand)", value: "ZAR" },
+                      ]}
                     />
                   </div>
                 </div>
@@ -187,7 +160,7 @@ class ProductData extends Component {
               <div className="mb-3">
                 <div className="row">
                   <div className="col-lg-3">
-                    <span>Regular Price ($)</span>
+                    <span>Regular Price ({this.state.sellingCurrency})</span>
                   </div>
                   <div className="col-lg-3">
                     <input
@@ -209,7 +182,7 @@ class ProductData extends Component {
               <div className="mb-3">
                 <div className="row">
                   <div className="col-lg-3">
-                    <span> Sale Price ($) </span>
+                    <span> Sale Price ({this.state.sellingCurrency}) </span>
                   </div>
                   <div className="col-lg-3">
                     <input
@@ -237,18 +210,10 @@ class ProductData extends Component {
                     <MLSelect
                       handleChange={(n) => this.changeSelect("productType", n)}
                       defaultValue={[
-                        { label: "New product", value: "new-product" },
+                        { label: "General product", value: "general_product" },
                       ]}
                       options={[
-                        { label: "New product", value: "new-product" },
-                        {
-                          label: "Refubished product",
-                          value: "refubished-product",
-                        },
-                        {
-                          label: "Preowned product",
-                          value: "preowned-product",
-                        },
+                        { label: "General product", value: "general_product" },
                         {
                           label: "Downloadable product",
                           value: "downloadable",
@@ -264,7 +229,7 @@ class ProductData extends Component {
           </div>
         </div>
 
-        <div className="d-none ml-card-shadow mt-4">
+        <div className="ml-card-shadow mt-4">
           <div className="card-body pb-2 p-0 mt-3">
             <div className="bold h5 mx-3 mb-3 py-3">
               <h5 className="c-blue d-flex align-items-center border-bottom pb-2">

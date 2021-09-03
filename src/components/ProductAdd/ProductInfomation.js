@@ -174,22 +174,31 @@ class ProductInfomation extends Component {
                 </form>
               </div>
 
-              {this.props.productAR.product_specifications.length === 0 && (
-                <div className="col-12 p-0">
-                  <div className="p-3 border  d-flex justify-content-center align-items-center">
-                    No additional specifications created
-                  </div>
-                </div>
-              )}
-              {this.props.productAR.product_specifications.map((x, index) => (
-                <div key={"key_" + index} className="col-6 p-0">
-                  <Pspecifics
-                    index={index}
-                    removeslItem={(n) => this.removeslItem(n)}
-                    x={x}
-                  />
-                </div>
-              ))}
+              <div className="w-100 px-0 pt-0 mt-0 col-6 ttable-striped">
+                <table className="table table-bordered ">
+                  <tr className="bold bg-light">
+                    <td>Field Name</td>
+                    <td>Specification</td>
+                    <td>Action</td>
+                  </tr>
+                  {this.props.productAR.product_specifications.map(
+                    (x, index) => (
+                      <Pspecifics
+                        index={index}
+                        removeslItem={(n) => this.removeslItem(n)}
+                        x={x}
+                      />
+                    ),
+                  )}
+                  {this.props.productAR.product_specifications.length === 0 && (
+                    <tr className="p-0">
+                      <td className="p-3 border  justify-content-center align-items-center">
+                        No specifications created
+                      </td>
+                    </tr>
+                  )}
+                </table>
+              </div>
             </div>
           </div>
         </div>

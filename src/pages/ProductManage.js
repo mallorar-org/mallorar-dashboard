@@ -166,7 +166,7 @@ class ProductAdd extends Component {
     }
 
     return (
-      <section className="ml-container ml-card-rounded-0 bg-white">
+      <section className="ml-container ml-product-pm ml-card-rounded-0 bg-white">
         <div>
           <div className="bg-whit d-flex justify-content-between px-0 ">
             <div>{this.renderHeader()}</div>
@@ -202,24 +202,24 @@ class ProductAdd extends Component {
           <div className="row">
             <div className="col-lg-12 px-0">
               {this.props.product.productID && <ProductControls />}
-              {/* <ProductInfor /> */}
-              {/* <ProductInfomation /> */}
+              <ProductInfor />
+              <ProductDepartment
+                getDep={this.getDep}
+                onRef5={(ref5) => (this.child5 = ref5)}
+              />
+              <ProductInfomation />
               <ProductData />
             </div>
             {/* Begining of Left SideBar and the */}
-            <div className="col-lg-12 d-none px-0">
+            <div className="col-lg-12 d- px-0">
               {this.operationButtons()}
               <ProductImg />
               <ProductImgs />
-              <div className="position-department-sticky">
-                <ProductDepartment
-                  getDep={this.getDep}
-                  onRef5={(ref5) => (this.child5 = ref5)}
-                />
-                <ProductTags
+              <div className="position-department-stick">
+                {/* <ProductTags
                   getTags={this.getTags}
                   onRef6={(ref6) => (this.child6 = ref6)}
-                />
+                /> */}
               </div>
             </div>
           </div>

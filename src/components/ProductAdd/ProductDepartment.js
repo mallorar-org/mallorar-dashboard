@@ -130,11 +130,13 @@ class ProductDepartment extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="card card-body ml-card-shadow p-2 card-block mt-3 ml-2">
-        <h6 className="py-2 c-blue text-center bold border-bottom">
-          Department
-        </h6>
-        <div className="">
+      <div className="card card-body ml-card- card-block mt-3">
+        <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
+          {/* <BiDetail className="ml-icon-size2 mr-2" /> */}
+          <span className="bold c-blue">Department</span>
+        </h5>
+
+        <div className="mt-2 px-0 col-4">
           <div>
             <div className="mb-2">Departmemt</div>
             <MLSelect
