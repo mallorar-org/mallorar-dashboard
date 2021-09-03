@@ -71,6 +71,7 @@ class VariationControl extends Component {
       stockDiff: false,
       priceDiff: false,
     });
+    this.props.delete_var();
   };
 
   deleteVariantValue = (v) => {
@@ -84,6 +85,10 @@ class VariationControl extends Component {
     this.setState({
       variantValues: updatedVariantValues,
     });
+
+    if (this.state.variantValues.length >= 2) {
+      setTimeout(() => this.saveVariation(), 100);
+    }
   };
 
   saveCustomVariation = () => {
@@ -108,9 +113,8 @@ class VariationControl extends Component {
       variableValues: variableValues,
     };
 
-    this.props.saveVariation(variationObject);
-
     console.log(variationObject);
+    this.props.saveVariation(variationObject);
   };
 
   saveVariant = (e) => {
@@ -217,7 +221,10 @@ class VariationControl extends Component {
                   {this.state.mlSelected.value !== "create-new-variation" && (
                     <>
                       <div className="text-secondary">
-                        Add variants e.g Red, Blue for Colour
+                        Add variants for{" "}
+                        <span className="text-dark bold text-lowercase">
+                          {this.state.variationName}
+                        </span>
                       </div>
                       <div className="mt-2">
                         <form className="d-flex " onSubmit={this.saveVariant}>
@@ -228,7 +235,6 @@ class VariationControl extends Component {
                             type="text"
                           />
                           <button
-                            type="button"
                             type="button"
                             onClick={this.saveVariant}
                             className="ml-btn shadow-none rounded-0 rounded-left btn border-left-0 border"

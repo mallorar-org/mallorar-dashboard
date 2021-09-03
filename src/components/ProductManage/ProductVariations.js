@@ -24,9 +24,22 @@ class ProductVariations extends Component {
     edit_state: true,
     add_variations: false,
     variation_names: [],
-    variations: [],
-    temp_variations: [],
     variationDafts: [],
+  };
+
+  delete_var = (index) => {
+    let currentvariationDafts = this.state.variationDafts;
+
+    let filteredDafts = [];
+    currentvariationDafts.forEach((x) => {
+      if (x.variableIndex !== index) {
+        filteredDafts.push(x);
+      }
+    });
+
+    this.setState({
+      variationDafts: filteredDafts,
+    });
   };
 
   switchToEdit = () => {
@@ -35,72 +48,58 @@ class ProductVariations extends Component {
     });
   };
   switchToDisplay = () => {
-    let variationDafts = this.state.variationDafts;
-
+    //
     let variation_names = [];
     let variations = [];
+    let variationDafts = this.state.variationDafts;
 
-    // variationDafts.forEach((x) => {
-    //   let variation_values = [];
+    if (variationDafts.length === 0) return;
 
-    //   x.variableValues.forEach((x) => {
-    //     variation_values.push({
-    //       variation_name: "Color",
-    //       value_value: "Red",
-    //     });
-    //   });
-
-    //   variations.push({
-    //     variation_index: x.variableIndex,
-    //     stock_count: 1,
-    //     variations_cost: 0.0,
-    //     variation_values: variation_values,
-    //   });
-    // });
-
-    //
-
-    let other_variations = this.state.variationDafts;
-
-    if (other_variations.length === 0) return;
-
-    other_variations.forEach((x) => {
+    variationDafts.forEach((x) => {
       variation_names.push(x.variableName);
     });
 
-    other_variations[0].variableValues.forEach((v, index) => {
+    variationDafts[0].variableValues.forEach((v, index) => {
       let position = 0;
       position += 1;
-
       let pVar = [];
 
-      if (other_variations.length === 1) {
+      if (variationDafts.length === 1) {
+        console.log("supposed to end here");
+        let tempVaval_1 = [];
+        tempVaval_1.push({
+          variation_name: variationDafts[0].variableName,
+          value_value: v.variationValue,
+        });
         variations.push({
           variation_index: index + v.variationValue.toLowerCase(),
           stock_count: 1,
           variations_cost: 0.0,
-          variation_values: {
-            variation_name: other_variations[0].variableName,
-            value_value: v.variationValue,
-          },
+          variation_values: tempVaval_1,
+        });
+
+        this.props.update_product_variations(variations);
+        return this.setState({
+          variation_names,
+          edit_state: false,
         });
       }
       // with different price
-      if (other_variations.length > position) {
-        other_variations[position].variableValues.forEach((otherV) => {
+      if (variationDafts.length > position) {
+        variationDafts[position].variableValues.forEach((otherV) => {
           let tempVaval_2 = [];
           // tempVaval_2.push(v.variationValue);
           tempVaval_2.push({
-            variation_name: other_variations[0].variableName,
+            variation_name: variationDafts[0].variableName,
             value_value: v.variationValue,
           });
 
           tempVaval_2.push({
-            variation_name: other_variations[1].variableName,
+            variation_name: variationDafts[1].variableName,
             value_value: otherV.variationValue,
           });
 
-          if (!(other_variations.length > position + 1)) {
+          if (!(variationDafts.length > position + 1)) {
             pVar.push(tempVaval_2);
             variations.push({
               variation_index:
@@ -111,20 +110,20 @@ class ProductVariations extends Component {
               variation_values: tempVaval_2,
             });
           }
-          if (other_variations.length > position + 1) {
-            other_variations[position + 1].variableValues.forEach(
+          if (variationDafts.length > position + 1) {
+            variationDafts[position + 1].variableValues.forEach(
               (other_otherV) => {
                 let tempVaval_3 = [];
                 tempVaval_3.push({
-                  variation_name: other_variations[0].variableName,
+                  variation_name: variationDafts[0].variableName,
                   value_value: v.variationValue,
                 });
                 tempVaval_3.push({
-                  variation_name: other_variations[1].variableName,
+                  variation_name: variationDafts[1].variableName,
                   value_value: otherV.variationValue,
                 });
                 tempVaval_3.push({
-                  variation_name: other_variations[2].variableName,
+                  variation_name: variationDafts[2].variableName,
                   value_value: other_otherV.variationValue,
                 });
                 // tempVaval_3.push(other_otherV.variationValue);
@@ -153,16 +152,7 @@ class ProductVariations extends Component {
       // console.log({ pVar });
     });
 
-    // console.log({ pVar });
-
-    // this.setState({
-    //   variationsToDisplay: pVar,
-    // });
-
-    //
-
     this.props.update_product_variations(variations);
-
     this.setState({
       variation_names,
       edit_state: false,
@@ -210,7 +200,6 @@ class ProductVariations extends Component {
             <VariationCombRow
               variation_names={this.state.variation_names}
               x={x}
-              update_combination_cost={(c) => this.update_combination_cost(c)}
               key={x.variation_index}
             />
           ))}
@@ -239,6 +228,7 @@ class ProductVariations extends Component {
     this.setState({
       variationDafts: cv,
     });
+    console.log("save to drafts", cv);
   };
 
   switchToAddvariations = () => {
@@ -247,7 +237,8 @@ class ProductVariations extends Component {
     });
   };
 
-  add_variation_toList = () => {
+  add_variation_toList = (e) => {
+    e.preventDefault();
     let txtNV_van = document.getElementById("txtNV_van").value;
     document.getElementById("txtNV_van").value = "";
 
@@ -303,7 +294,7 @@ class ProductVariations extends Component {
             </div>
           </div>
           <div className="pt-3">
-            <div className="d-flex mb-3">
+            <form onSubmit={this.add_variation_toList} className="d-flex mb-3">
               <input
                 id="txtNV_van"
                 placeholder="Variation name"
@@ -312,13 +303,12 @@ class ProductVariations extends Component {
               />
               <button
                 disabled={this.state.variationDafts.length >= 3 ? true : false}
-                onClick={this.add_variation_toList}
-                type="button"
+                type="submit"
                 className="ml-btn rounded-0 btn border-left-0 border"
               >
                 Add
               </button>
-            </div>
+            </form>
             <div>
               <table className="table table-bordered">
                 <tr className="bold shadow-sm">
@@ -367,13 +357,13 @@ class ProductVariations extends Component {
               </div>
             </div>
             <div className="">
-              {this.state.variationDafts.map((x, index) => (
+              {this.state.variationDafts.map((x) => (
                 <VariationControl
                   var_index={x.variableIndex}
                   var_data={x}
                   saveVariation={(n) => this.saveVariation(n)}
                   delete_var={() => this.delete_var(x.variableIndex)}
-                  key={"v" + index}
+                  key={"v" + x.variableIndex}
                 />
               ))}
             </div>
@@ -389,19 +379,30 @@ class ProductVariations extends Component {
               Add Product Variations
             </button>
           ) : (
-            <button
-              onClick={() => this.switchToDisplay()}
-              className="btn ml-btn"
-            >
-              Save combination
-            </button>
+            <>
+              <button
+                onClick={() =>
+                  this.setState({
+                    add_variations: true,
+                  })
+                }
+                className="btn ml-btn mr-2"
+              >
+                Edit combinations
+              </button>
+
+              <button
+                onClick={() => this.switchToDisplay()}
+                className="btn ml-btn"
+              >
+                Save combination
+              </button>
+            </>
           )}
         </div>
       </div>
     );
   };
-
-  update_combination_cost = () => {};
 
   render() {
     console.log("state=>", this.state);

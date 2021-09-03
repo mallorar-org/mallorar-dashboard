@@ -42,6 +42,44 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_PRODUCT_STOCK_COUNT":
+      let updated_st_product_variations = [];
+      state.product_variations.forEach((x) => {
+        if (x.variation_index === action.payload.index) {
+          updated_st_product_variations.push({
+            ...x,
+            stock_count: action.payload.value,
+          });
+        } else {
+          updated_st_product_variations.push({
+            ...x,
+          });
+        }
+      });
+
+      return {
+        ...state,
+        product_variations: updated_st_product_variations,
+      };
+    case "UPDATE_PRODUCT_COMBINATION_COST":
+      let updated_product_variations = [];
+      state.product_variations.forEach((x) => {
+        if (x.variation_index === action.payload.index) {
+          updated_product_variations.push({
+            ...x,
+            variations_cost: action.payload.value,
+          });
+        } else {
+          updated_product_variations.push({
+            ...x,
+          });
+        }
+      });
+
+      return {
+        ...state,
+        product_variations: updated_product_variations,
+      };
     case "UPDATE_PRODUCT_VARIATIONS":
       return {
         ...state,
