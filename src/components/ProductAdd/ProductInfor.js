@@ -7,6 +7,7 @@ import { BiDetail } from "react-icons/bi";
 import ShortDescription from "../ProductManage/ShortDescription";
 
 import { update_product_name } from "../../store/actions/productActions";
+import ProductDepartment from "./ProductDepartment";
 
 const mapStateToProps = (state) => {
   return {
@@ -87,6 +88,7 @@ class ProductInfor extends Component {
                 </div>
               </div>
             </div>
+            <ProductDepartment />
           </div>
         </div>
       </>

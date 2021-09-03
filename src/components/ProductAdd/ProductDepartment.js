@@ -130,90 +130,116 @@ class ProductDepartment extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="card card-body ml-card- card-block mt-3">
-        <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-          {/* <BiDetail className="ml-icon-size2 mr-2" /> */}
-          <span className="bold c-blue">Department</span>
-        </h5>
-
-        <div className="mt-2 px-0 col-4">
-          <div>
-            <div className="mb-2">Departmemt</div>
-            <MLSelect
-              defaultValue={
-                this.props.product.productDepartment !== ""
-                  ? [
-                      {
-                        value: this.props.product.productDepartment,
-                        label: this.props.product.productDepartment,
-                      },
-                    ]
-                  : [{ value: "Select Department", label: "Select Department" }]
-              }
-              isSearchable={true}
-              placeholder="Select Department"
-              handleChange={(o) => this.onChangeDep(o)}
-              options={this.departmentOptions()}
-            />
-          </div>
-          <div className="my-3">
-            <div className="mb-2">Category</div>
-            <MLSelect
-              useRef={true}
-              onRef1={(ref1) => (this.child1 = ref1)}
-              isSearchable={true}
-              defaultValue={
-                this.props.product.productCategory !== ""
-                  ? [
-                      {
-                        value: this.props.product.productCategory,
-                        label: this.props.product.productCategory,
-                      },
-                    ]
-                  : [{ value: "Select Category", label: "Select Category" }]
-              }
-              placeholder="Select Category"
-              handleChange={(o) => this.onChangeCat(o)}
-              options={this.depOptions()}
-            />
-          </div>
-          <div>
-            <div className="mb-2">Sub-Category</div>
-            <MLSelect
-              useRef={true}
-              onRef1={(ref) => (this.child2 = ref)}
-              isSearchable={true}
-              value={[
-                {
-                  value: "Select Sub-Category",
-                  label: "Select Sub-Category",
-                },
-              ]}
-              defaultValue={
-                this.props.product.childCategry !== ""
-                  ? [
-                      {
-                        value: this.props.product.childCategry,
-                        label: this.props.product.childCategry,
-                      },
-                    ]
-                  : [
-                      {
-                        value: "Select Sub-Category",
-                        label: "Select Sub-Category",
-                      },
-                    ]
-              }
-              placeholder="Select Sub-Category"
-              handleChange={(o) => this.onChangeSelection("subcat", o)}
-              options={this.childCategories()}
-            />
-          </div>
-
-          <div className="mt-3 text-center">
-            <a href="https://support.mallorar.com/categories">
-              Report Missing Categories
-            </a>
+      <div className="mt-4">
+        <div className="container-fluid px-0">
+          <div className="row">
+            <div className="col-2">
+              <div className=" d-flex align-items-center pb-2">
+                <span>Product Department*</span>
+              </div>
+            </div>
+            <div className="col-10">
+              <div className="container-fluid px-0">
+                <div className="row">
+                  <div className="col-4">
+                    <div className="mb-3">
+                      <div className="mb-2">Main Department</div>
+                      <MLSelect
+                        defaultValue={
+                          this.props.product.productDepartment !== ""
+                            ? [
+                                {
+                                  value: this.props.product.productDepartment,
+                                  label: this.props.product.productDepartment,
+                                },
+                              ]
+                            : [
+                                {
+                                  value: "Select Department",
+                                  label: "Select Department",
+                                },
+                              ]
+                        }
+                        isSearchable={true}
+                        placeholder="Select Department"
+                        handleChange={(o) => this.onChangeDep(o)}
+                        options={this.departmentOptions()}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <div className="mb-3">
+                      <div className="mb-2">Category</div>
+                      <MLSelect
+                        useRef={true}
+                        onRef1={(ref1) => (this.child1 = ref1)}
+                        isSearchable={true}
+                        defaultValue={
+                          this.props.product.productCategory !== ""
+                            ? [
+                                {
+                                  value: this.props.product.productCategory,
+                                  label: this.props.product.productCategory,
+                                },
+                              ]
+                            : [
+                                {
+                                  value: "Select Category",
+                                  label: "Select Category",
+                                },
+                              ]
+                        }
+                        placeholder="Select Category"
+                        handleChange={(o) => this.onChangeCat(o)}
+                        options={this.depOptions()}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <div>
+                      <div className="mb-2">Sub-Category</div>
+                      <MLSelect
+                        useRef={true}
+                        onRef1={(ref) => (this.child2 = ref)}
+                        isSearchable={true}
+                        value={[
+                          {
+                            value: "Select Sub-Category",
+                            label: "Select Sub-Category",
+                          },
+                        ]}
+                        defaultValue={
+                          this.props.product.childCategry !== ""
+                            ? [
+                                {
+                                  value: this.props.product.childCategry,
+                                  label: this.props.product.childCategry,
+                                },
+                              ]
+                            : [
+                                {
+                                  value: "Select Sub-Category",
+                                  label: "Select Sub-Category",
+                                },
+                              ]
+                        }
+                        placeholder="Select Sub-Category"
+                        handleChange={(o) =>
+                          this.onChangeSelection("subcat", o)
+                        }
+                        options={this.childCategories()}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-0 col-4"></div>
+              <div className="mt-3 text-center">
+                <a target="_blank" href="https://support.mallorar.com/support">
+                  Report Missing Categories
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
