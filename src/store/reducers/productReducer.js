@@ -172,12 +172,12 @@ const productReducer = (state = initialData, action) => {
       if (action.payload) {
         return {
           ...state,
-          childCategry: action.payload.toLowerCase().replace(/ /g, "-"),
+          child_category: action.payload.toLowerCase().replace(/ /g, "-"),
         };
       } else {
         return {
           ...state,
-          childCategry: "",
+          child_category: "",
         };
       }
 
@@ -185,12 +185,12 @@ const productReducer = (state = initialData, action) => {
       if (action.payload) {
         return {
           ...state,
-          productCategory: action.payload.toLowerCase().replace(/ /g, "-"),
+          product_category: action.payload.toLowerCase().replace(/ /g, "-"),
         };
       } else {
         return {
           ...state,
-          productCategory: "",
+          product_category: "",
         };
       }
 
@@ -198,12 +198,12 @@ const productReducer = (state = initialData, action) => {
       if (action.payload) {
         return {
           ...state,
-          productDepartment: action.payload.toLowerCase().replace(/ /g, "-"),
+          product_department: action.payload.toLowerCase().replace(/ /g, "-"),
         };
       } else {
         return {
           ...state,
-          productDepartment: "",
+          productproduct_departmentDepartment: "",
         };
       }
 

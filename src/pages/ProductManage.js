@@ -203,7 +203,6 @@ class ProductAdd extends Component {
             <div className="col-lg-12 px-0">
               {this.props.product.productID && <ProductControls />}
               <ProductInfor />
-
               <ProductInfomation />
               <ProductData />
             </div>

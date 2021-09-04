@@ -63,7 +63,11 @@ class MLSelect extends Component {
     return (
       <Select
         isSearchable={this.props.isSearchable ? true : false}
-        value={this.state.selectedOption}
+        value={
+          this.props.use_prop_value
+            ? this.props.value
+            : this.state.selectedOption
+        }
         onChange={this.handletrigger}
         placeholder={this.props.placeholder}
         options={this.props.options}

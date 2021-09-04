@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import store from "../../store/store";
 import departments from "../../util/departments";
 import MLSelect from "../MLSelect/MLSelect";
-
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     product: state.product,
   };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
 };
 
 class ProductDepartment extends Component {
@@ -127,6 +130,14 @@ class ProductDepartment extends Component {
     return options;
   };
 
+  globaltextfixer = (text) => {
+    return (
+      <span className="text-capitalize">
+        {text.replace(/-/g, " ").replace(/ n /g, " & ")}
+      </span>
+    );
+  };
+
   render() {
     // console.log(this.state);
     return (
@@ -145,20 +156,18 @@ class ProductDepartment extends Component {
                     <div className="mb-3">
                       <div className="mb-2">Main Department</div>
                       <MLSelect
-                        defaultValue={
-                          this.props.product.productDepartment !== ""
+                        use_prop_value={true}
+                        value={
+                          this.props.product.product_department
                             ? [
                                 {
-                                  value: this.props.product.productDepartment,
-                                  label: this.props.product.productDepartment,
+                                  value: this.props.product.product_department,
+                                  label: this.globaltextfixer(
+                                    this.props.product.product_department,
+                                  ),
                                 },
                               ]
-                            : [
-                                {
-                                  value: "Select Department",
-                                  label: "Select Department",
-                                },
-                              ]
+                            : []
                         }
                         isSearchable={true}
                         placeholder="Select Department"
@@ -171,24 +180,22 @@ class ProductDepartment extends Component {
                     <div className="mb-3">
                       <div className="mb-2">Category</div>
                       <MLSelect
+                        use_prop_value={true}
+                        value={
+                          this.props.product.product_category
+                            ? [
+                                {
+                                  value: this.props.product.product_category,
+                                  label: this.globaltextfixer(
+                                    this.props.product.product_category,
+                                  ),
+                                },
+                              ]
+                            : []
+                        }
                         useRef={true}
                         onRef1={(ref1) => (this.child1 = ref1)}
                         isSearchable={true}
-                        defaultValue={
-                          this.props.product.productCategory !== ""
-                            ? [
-                                {
-                                  value: this.props.product.productCategory,
-                                  label: this.props.product.productCategory,
-                                },
-                              ]
-                            : [
-                                {
-                                  value: "Select Category",
-                                  label: "Select Category",
-                                },
-                              ]
-                        }
                         placeholder="Select Category"
                         handleChange={(o) => this.onChangeCat(o)}
                         options={this.depOptions()}
@@ -199,30 +206,22 @@ class ProductDepartment extends Component {
                     <div>
                       <div className="mb-2">Sub-Category</div>
                       <MLSelect
+                        use_prop_value={true}
+                        value={
+                          this.props.product.child_category
+                            ? [
+                                {
+                                  value: this.props.product.child_category,
+                                  label: this.globaltextfixer(
+                                    this.props.product.child_category,
+                                  ),
+                                },
+                              ]
+                            : []
+                        }
                         useRef={true}
                         onRef1={(ref) => (this.child2 = ref)}
                         isSearchable={true}
-                        value={[
-                          {
-                            value: "Select Sub-Category",
-                            label: "Select Sub-Category",
-                          },
-                        ]}
-                        defaultValue={
-                          this.props.product.childCategry !== ""
-                            ? [
-                                {
-                                  value: this.props.product.childCategry,
-                                  label: this.props.product.childCategry,
-                                },
-                              ]
-                            : [
-                                {
-                                  value: "Select Sub-Category",
-                                  label: "Select Sub-Category",
-                                },
-                              ]
-                        }
                         placeholder="Select Sub-Category"
                         handleChange={(o) =>
                           this.onChangeSelection("subcat", o)
@@ -247,4 +246,4 @@ class ProductDepartment extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(ProductDepartment);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDepartment);

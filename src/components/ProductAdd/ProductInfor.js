@@ -62,6 +62,7 @@ class ProductInfor extends Component {
               </div>
             </div>
             <ShortDescription />
+            <ProductDepartment />
             <div className="container-fluid mt-4 pt-4 px-0 border-top">
               <div className="row">
                 <div className="col-2">
@@ -88,7 +89,6 @@ class ProductInfor extends Component {
                 </div>
               </div>
             </div>
-            <ProductDepartment />
           </div>
         </div>
       </>
