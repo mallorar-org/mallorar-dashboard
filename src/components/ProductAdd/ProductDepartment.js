@@ -44,10 +44,18 @@ class ProductDepartment extends Component {
     let childCategories = [];
 
     this.state.childCategories.forEach((x) => {
-      childCategories.push({
-        value: x.subCatName,
-        label: x.subCatName.replace(/ n /g, " & "),
-      });
+      if (x.subCatName === "Choose Category") {
+        childCategories.push({
+          isDisabled: true,
+          value: x.subCatName,
+          label: x.subCatName.replace(/ n /g, " & "),
+        });
+      } else {
+        childCategories.push({
+          value: x.subCatName,
+          label: x.subCatName.replace(/ n /g, " & "),
+        });
+      }
     });
 
     return childCategories;
@@ -120,10 +128,18 @@ class ProductDepartment extends Component {
     let options = [];
 
     this.state.Category.forEach((x) => {
-      options.push({
-        value: x.subDName,
-        label: x.subDName.replace(/ n /g, " & "),
-      });
+      if (x.subDName === "Choose Department") {
+        options.push({
+          isDisabled: true,
+          value: x.subDName,
+          label: x.subDName.replace(/ n /g, " & "),
+        });
+      } else {
+        options.push({
+          value: x.subDName,
+          label: x.subDName.replace(/ n /g, " & "),
+        });
+      }
     });
 
     // console.log(options);
