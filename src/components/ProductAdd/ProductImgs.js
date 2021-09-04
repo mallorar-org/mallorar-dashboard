@@ -86,185 +86,37 @@ class ProductImgs extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="overflow-hidden card-block mt-3">
+      <div className="overflow-hidde  mt-3">
         {this.FileSelector()}
         <div className="container-fluid mb-3 px-0">
           <div className="row">
             <div className="col-2">Product Photos*</div>
             <div className="col-10">
-              <div className="container-fluid px-0">
+              <div className="container-fluid">
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-4 px-0">
                     <ProductImg />
                   </div>
-                  <div className="col-8">
-                    <div className="">
-                      <div className="container-fluid ml-other-images">
-                        <div className="row border px-0 d-flex justify-content-center">
-                          <div className="col-3 p-2 border-bottom border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img1"
-                                // onLoad={() => this.setState({ img1: "--htsp" })}
-                                src={
-                                  this.props.product.img1 !== "default"
-                                    ? this.props.product.img1
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-bottom ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img2"
-                                src={
-                                  this.props.product.img2 !== "default"
-                                    ? this.props.product.img2
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img3"
-                                src={
-                                  this.props.product.img3 !== "default"
-                                    ? this.props.product.img3
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img4"
-                                src={
-                                  this.props.product.img4 !== "default"
-                                    ? this.props.product.img4
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
+                  <div className="ml-pc-product-image-container px-0 border-left-0 border">
+                    {this.props.product.product_images.map((x) => (
+                      <div className="p-2 border ml-pc-product-image">
+                        <div className="">
+                          <img
+                            className="img-fluid"
+                            onClick={this.selectpicO}
+                            src={x.product_url}
+                          />
                         </div>
-                        <div className="row border px-0 d-flex justify-content-center">
-                          <div className="col-3 p-2 border-bottom border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img1"
-                                // onLoad={() => this.setState({ img1: "--htsp" })}
-                                src={
-                                  this.props.product.img1 !== "default"
-                                    ? this.props.product.img1
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-bottom ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img2"
-                                src={
-                                  this.props.product.img2 !== "default"
-                                    ? this.props.product.img2
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img3"
-                                src={
-                                  this.props.product.img3 !== "default"
-                                    ? this.props.product.img3
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img4"
-                                src={
-                                  this.props.product.img4 !== "default"
-                                    ? this.props.product.img4
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="row border px-0 d-flex justify-content-center">
-                          <div className="col-3 p-2 border-bottom border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img1"
-                                // onLoad={() => this.setState({ img1: "--htsp" })}
-                                src={
-                                  this.props.product.img1 !== "default"
-                                    ? this.props.product.img1
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-bottom ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img2"
-                                src={
-                                  this.props.product.img2 !== "default"
-                                    ? this.props.product.img2
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 border-right">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img3"
-                                src={
-                                  this.props.product.img3 !== "default"
-                                    ? this.props.product.img3
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div className="col-3 p-2 ">
-                            <div className="d-flex justify-content-center">
-                              <img
-                                onClick={this.selectpicO}
-                                id="img4"
-                                src={
-                                  this.props.product.img4 !== "default"
-                                    ? this.props.product.img4
-                                    : PlaceHolderImage
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
+                      </div>
+                    ))}
+
+                    <div className="p-2 border ml-pc-product-image">
+                      <div className="">
+                        <img
+                          className="img-fluid"
+                          onClick={this.selectpicO}
+                          src={PlaceHolderImage}
+                        />
                       </div>
                     </div>
                   </div>

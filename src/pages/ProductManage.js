@@ -73,31 +73,31 @@ class ProductAdd extends Component {
       return <ProductManage />;
     } else {
       return (
-        <div className="card c-blue p-2 card-body ml-card-shadow card-block ml-2">
+        <div className="card mt-4 p-2 card-body ml-card-shadow">
           <div className="card-body p-2">
-            <h5 className="c-blue text-center mb-3 border-bottom pb-2">
-              <span className=" bold b- c-blue">Actions</span>
-            </h5>
-            <div className="mb-1">
-              <span>Status : </span>
-              <span className="a">---</span>
-            </div>
-            <div className="mb-1">
-              <span>Visibity : </span>
-              <span className="a">Public</span>
-            </div>
-            <div className="mb-1">
-              <span>Searchable : </span>
-              <span className="a">Yes</span>
+            <div className="mb-1 text-secondary">
+              <div>
+                If your product sells, you will be able to see it on a order.
+              </div>
+              <div>
+                By clicking the create product button, you accept the listing
+                conditions, and accept full responsibility for this product.
+              </div>
             </div>
           </div>
-          <div className="px-3 pb-2 text-center ">
+          <div className="px-2 pb-2">
             <button
               onClick={this.handleCreate}
               type="button"
-              className="btn ml-dash-btn w-100"
+              className="btn px-3 py-2 border-0 rounded-0 ml-dash-btn"
             >
               Create Product
+            </button>
+            <button
+              type="button"
+              className="btn ml-2 px-3 py-2 border-0 rounded-0 ml-btn"
+            >
+              Cancel
             </button>
           </div>
         </div>
@@ -206,7 +206,7 @@ class ProductAdd extends Component {
               <ProductData />
             </div>
             {/* Begining of Left SideBar and the */}
-            <div className="col-lg-12 d- px-0">{this.operationButtons()}</div>
+            <div className="col-lg-12 px-0">{this.operationButtons()}</div>
           </div>
         </div>
       </section>

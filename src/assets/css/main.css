@@ -3860,4 +3860,19 @@ a.ml-btn {
 .ml-product-pm .border-bottom {
   border-bottom: 3px solid #f0f0f0 !important;
 }
+
+.ml-pc-product-image {
+  display: inline-block;
+  height: 120px;
+  width: 119px;
+}
+
+.ml-pc-product-image-container {
+  max-width: 360px;
+  min-width: 356px;
+}
+
+.ml-main-image-pc {
+  height: 360px;
+}
 /*# sourceMappingURL=main.css.map */

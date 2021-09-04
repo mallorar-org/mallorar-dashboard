@@ -122,22 +122,23 @@ class ProductData extends Component {
   render() {
     console.log(this.state);
     return (
-      <section className="pr-2" autocomplete="off">
-        <div className="ml-card-shadow mt-4">
+      <section className="" autoComplete="new-password">
+        <div className="bg-white mt-4">
           <div className="card-body  px-0">
             <div>
-              <div className="bold h5 mx-3 mb-3 pt-0 pb-3">
-                <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-                  <img alt="" className="ml-icon-size1 mr-2" src={money} />
-                  <span className="bold c-blue">Pricing</span>
+              <div className="bold h5 mx-3 mb-3 pt-0">
+                <h5 className="c-blue d-flex align-items-center  pb-2">
+                  <span className="bold c-blue">
+                    Pricing &amp; Selling Details
+                  </span>
                 </h5>
               </div>
             </div>
             <div className="container-fluid">
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
-                    <span>Base currency </span>
+                  <div className="col-lg-2">
+                    <span>Base currency* </span>
                   </div>
                   <div className="col-lg-3">
                     <MLSelect
@@ -157,8 +158,8 @@ class ProductData extends Component {
               </div>
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
-                    <span>Regular Price ({this.state.sellingCurrency})</span>
+                  <div className="col-lg-2">
+                    <span>Regular Price* ({this.state.sellingCurrency})</span>
                   </div>
                   <div className="col-lg-3">
                     <input
@@ -179,7 +180,7 @@ class ProductData extends Component {
               </div>
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-2">
                     <span> Sale Price ({this.state.sellingCurrency}) </span>
                   </div>
                   <div className="col-lg-3">
@@ -201,7 +202,7 @@ class ProductData extends Component {
               </div>
               <div className="mb-">
                 <div className="row">
-                  <div className="col-lg-3">
+                  <div className="col-lg-2">
                     <span> Product type </span>
                   </div>
                   <div className="col-lg-3">
@@ -227,28 +228,29 @@ class ProductData extends Component {
           </div>
         </div>
 
-        <div className="ml-card-shadow mt-4">
+        <div className="bg-white mt-4">
           <div className="card-body pb-2 p-0 mt-3">
-            <div className="bold h5 mx-3 mb-3 py-3">
-              <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-                <img alt="" className="ml-icon-size1 mr-2" src={delivery} />
-                <span className="bold c-blue">Shipping</span>
+            <div className="bold h5 mx-3 pt-3">
+              <h5 className="c-blue d-flex align-items-center  pb-3">
+                <span className="bold c-blue">Shipping Details</span>
               </h5>
             </div>
             <div className="container-fluid">
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
-                    <span> Shipping : </span>
+                  <div className="d-flex align-items-center col-lg-2">
+                    <span> Shipping* </span>
                   </div>
                   <div className="col-lg-9">
                     <select
                       defaultValue={this.props.product.shippingType}
-                      className="form-control w-25"
+                      className="form-control w-50"
                       onChange={this.onChangeFM}
                       name="shippingType"
                     >
-                      <option value="calculated">Calculated</option>
+                      <option value="calculated">
+                        Calculated : Varies with location
+                      </option>
                       <option disabled value="free">
                         Free
                       </option>
@@ -262,8 +264,8 @@ class ProductData extends Component {
 
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
-                    <span> Stock Warehouse : </span>
+                  <div className="col-lg-2 d-flex align-items-center">
+                    <span> Stock location* </span>
                   </div>
                   <div className="col-lg-9">
                     <input
@@ -283,8 +285,8 @@ class ProductData extends Component {
               </div>
               <div className="mb-3">
                 <div className="row">
-                  <div className="col-lg-3">
-                    <span> Apprx Delivery/Shipping duration (days) : </span>
+                  <div className="col-lg-2">
+                    <span> Apprx Delivery/Shipping duration (days)* </span>
                   </div>
                   <div className="col-lg-9">
                     <input

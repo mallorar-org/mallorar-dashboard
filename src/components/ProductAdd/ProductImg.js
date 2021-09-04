@@ -41,11 +41,11 @@ class ProductImg extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="card h-100 border p-2 card-body card-block">
+      <div className="card ml-main-image-pc border p-2 card-body card-block">
         {this.FileSelector()}
         <div className=" c-blue text-center">
           <div className="c-blue text-center py-3 pb-0">
-            <span className="">Main Product Image</span>
+            <span className="">Main Photo</span>
           </div>
           {/* <div>This will be displayed as the general product image</div> */}
         </div>

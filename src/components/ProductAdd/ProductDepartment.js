@@ -157,7 +157,7 @@ class ProductDepartment extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="mt-4">
+      <div id="product_department" className="mt-4">
         <div className="container-fluid px-0">
           <div className="row">
             <div className="col-2">

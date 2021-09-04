@@ -37,7 +37,33 @@ const initialData = {
   desc_editor: "quill",
   product_variations: [],
   product_specifications: [],
-  product_images: [],
+  product_images: [
+    {
+      index: 1,
+      product_url:
+        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
+    },
+    {
+      index: 1,
+      product_url:
+        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
+    },
+    {
+      index: 1,
+      product_url:
+        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
+    },
+    {
+      index: 2,
+      product_url:
+        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
+    },
+    {
+      index: 3,
+      product_url:
+        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
+    },
+  ],
 };
 
 const productReducer = (state = initialData, action) => {

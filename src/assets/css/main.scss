@@ -3633,3 +3633,19 @@ a.ml-btn {
     border-bottom: 3px solid rgb(240, 240, 240) !important;
   }
 }
+
+.ml-pc-product-image {
+  // overflow: hidden;
+  display: inline-block;
+  height: 120px;
+  width: 119px;
+}
+
+.ml-pc-product-image-container {
+  max-width: 360px;
+  min-width: 356px;
+}
+
+.ml-main-image-pc {
+  height: 360px;
+}

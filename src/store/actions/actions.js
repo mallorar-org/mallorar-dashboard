@@ -79,35 +79,18 @@ export const dashoverlay = (n) => (dispatch) => {
 
 export const createProduct = () => (dispatch) => {
   let product = store.getState().product;
-  let productVariations = store.getState().productAR.variations;
-  let productSpecs = store.getState().productAR.specifications;
 
   let finalProduct = {};
 
-  let productSpecsObject = {};
-  let specNameObject = [];
-
-  productSpecs.forEach((x) => {
-    productSpecsObject = {
-      ...productSpecsObject,
-      [x.sname.toLowerCase().replace(/ /g, "_")]: x.svalue
-        .toLowerCase()
-        .replace(/ /g, "_"),
-    };
-    specNameObject.push(x.sname.toLowerCase().replace(/ /g, "_"));
-  });
-
   finalProduct = {
     ...product,
-    ...productSpecsObject,
-    productSpecsFields: specNameObject,
   };
 
   // console.group("product creation");
   // console.log(finalProduct);
   // console.groupEnd();
 
-  if (product.productName === "") {
+  if (product.product_name === "") {
     return notify(
       2,
       "Invalid name",
@@ -115,7 +98,7 @@ export const createProduct = () => (dispatch) => {
       "All products must have a suitable name so that customers can easily find what they looking for",
     );
   }
-  if (product.productPrice === "" || product.productPrice === "0") {
+  if (product.product_price === "" || product.product_price === "0") {
     return notify(
       2,
       "Invalid price",
@@ -139,7 +122,8 @@ export const createProduct = () => (dispatch) => {
       "All products are required to have a product image so that customers can see what they buying",
     );
   }
-  if (product.productDepartment === "") {
+  if (product.product_department === "") {
+    window.location.href = "#product_department";
     return notify(
       2,
       "Invalid Department",
@@ -147,7 +131,7 @@ export const createProduct = () => (dispatch) => {
       "Assign your product to a suitable department to increase performance",
     );
   }
-  if (product.productCategory === "") {
+  if (product.product_category === "") {
     return notify(
       2,
       "Invalid Category",
@@ -155,7 +139,7 @@ export const createProduct = () => (dispatch) => {
       "Assign your product to a suitable category to increase performance",
     );
   }
-  if (product.childCategry === "") {
+  if (product.child_category === "") {
     return notify(
       2,
       "Invalid Sub category",
@@ -186,15 +170,15 @@ export const createProduct = () => (dispatch) => {
 
       productID = data.data.productID;
 
-      if (productVariations.length > 0) {
-        return productVariations.map((x) => {
-          axios.post("/dash/product/add/variable", {
-            productId: data.data.productID,
-            variableName: x.varibleName,
-            variableValue: x.variables,
-          });
-        });
-      }
+      // if (product productVariations.length > 0) {
+      //   return productVariations.map((x) => {
+      //     axios.post("/dash/product/add/variable", {
+      //       productId: data.data.productID,
+      //       variableName: x.varibleName,
+      //       variableValue: x.variables,
+      //     });
+      //   });
+      // }
     })
     .then(() => {
       store.dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
