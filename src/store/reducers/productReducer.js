@@ -42,6 +42,11 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_BRAND":
+      return {
+        ...state,
+        brand: action.payload,
+      };
     case "UPDATE_PRODUCT_STOCK_COUNT":
       let updated_st_product_variations = [];
       state.product_variations.forEach((x) => {

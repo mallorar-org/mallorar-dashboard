@@ -141,79 +141,88 @@ class ProductInfomation extends Component {
   };
   render() {
     return (
-      <div className="ml-container my-3 ml-card-shadow mr-2">
+      <div className="my-3">
         {this.Templates()}
-        <div>
-          <h5 className="c-blue d-flex align-items-center border-bottom pb-2">
-            <img alt="" className="ml-icon-size1 mr-2" src={skills} />
-            <span className="bold c-blue">Product Specifications</span>
-          </h5>
-          <p className="text-secondary">
-            We recommend you to provide product specifics as they are important
-            to customers when browsing and filtering products.
-          </p>
-        </div>
-        <div className="mt-2">
-          <div className="container-fluid my-3">
-            <div className="row">
-              <div className="col-12 px-0 border-bottom mb-3">
-                <div className="my-2 bold h6">Suggested</div>
-                <form autocomplete="off" className="d-flex my-3 ">
-                  <div class="form-group d-flex align-items-center">
-                    <label for="Student" className="mr-3 mb-0">
-                      Brand :
-                    </label>
-                    <input
-                      onChange={this.changeBrand}
-                      name="brand"
-                      placeholder="e.g Nike"
-                      type="text"
-                      className="ml-input"
-                    />
-                  </div>
-                </form>
+        <div className="container-fluid px-0">
+          <div className="row">
+            <div className="col-2">
+              <div className="d-flex align-items-center pb-2">
+                <span>Product Specifications</span>
               </div>
+            </div>
+            <div className="col-10">
+              <div>
+                <p className="text-secondary">
+                  We recommend you to provide product specifics as they are
+                  important to customers when browsing and filtering products.
+                </p>
+              </div>
+              <div className="mt-2">
+                <div className="container-fluid my-3">
+                  <div className="row">
+                    <div className="col-12 px-0 border-bottom mb-3">
+                      <div className="my-2 bold h6">Suggested</div>
+                      <form autocomplete="off" className="d-flex my-3 ">
+                        <div class="form-group d-flex align-items-center">
+                          <label for="Student" className="mr-3 mb-0">
+                            Brand :
+                          </label>
+                          <input
+                            onChange={this.changeBrand}
+                            name="brand"
+                            placeholder="e.g Nike"
+                            type="text"
+                            className="ml-input"
+                          />
+                        </div>
+                      </form>
+                    </div>
 
-              <div className="w-100 px-0 pt-0 mt-0 col-6 ttable-striped">
-                <table className="table table-bordered ">
-                  <tr className="bold bg-light">
-                    <td>Field Name</td>
-                    <td>Specification</td>
-                    <td>Action</td>
-                  </tr>
-                  {this.props.productAR.product_specifications.map(
-                    (x, index) => (
-                      <Pspecifics
-                        index={index}
-                        removeslItem={(n) => this.removeslItem(n)}
-                        x={x}
-                      />
-                    ),
-                  )}
-                  {this.props.productAR.product_specifications.length === 0 && (
-                    <tr className="p-0">
-                      <td className="p-3 border  justify-content-center align-items-center">
-                        No specifications created
-                      </td>
-                    </tr>
-                  )}
-                </table>
+                    <div className="w-100 px-0 pt-0 mt-0 col-8 ttable-striped">
+                      <table className="table table-bordered ">
+                        <tr className="bold bg-light">
+                          <td>Field Name</td>
+                          <td>Specification</td>
+                          <td>Action</td>
+                        </tr>
+                        {this.props.productAR.product_specifications.map(
+                          (x, index) => (
+                            <Pspecifics
+                              index={index}
+                              removeslItem={(n) => this.removeslItem(n)}
+                              x={x}
+                            />
+                          ),
+                        )}
+                        {this.props.productAR.product_specifications.length ===
+                          0 && (
+                          <tr className="p-0">
+                            <td className="p-3 border  justify-content-center align-items-center">
+                              No specifications created
+                            </td>
+                          </tr>
+                        )}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div>
+                  Click the button below to add specification fields to this
+                  product
+                </div>
+                <button
+                  onClick={() =>
+                    this.setState({ templateModal: !this.state.templateModal })
+                  }
+                  className="btn ml-btn mt-2"
+                >
+                  Add Fields
+                </button>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div>
-            Click the button below to add specification fields to this product
-          </div>
-          <button
-            onClick={() =>
-              this.setState({ templateModal: !this.state.templateModal })
-            }
-            className="btn ml-btn mt-2"
-          >
-            Add Fields
-          </button>
         </div>
       </div>
     );

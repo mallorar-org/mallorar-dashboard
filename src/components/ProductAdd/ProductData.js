@@ -123,8 +123,6 @@ class ProductData extends Component {
     console.log(this.state);
     return (
       <section className="pr-2" autocomplete="off">
-        <ProductVariations />
-
         <div className="ml-card-shadow mt-4">
           <div className="card-body  px-0">
             <div>

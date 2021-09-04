@@ -203,21 +203,10 @@ class ProductAdd extends Component {
             <div className="col-lg-12 px-0">
               {this.props.product.productID && <ProductControls />}
               <ProductInfor />
-              <ProductInfomation />
               <ProductData />
             </div>
             {/* Begining of Left SideBar and the */}
-            <div className="col-lg-12 d- px-0">
-              {this.operationButtons()}
-              <ProductImg />
-              <ProductImgs />
-              <div className="position-department-stick">
-                {/* <ProductTags
-                  getTags={this.getTags}
-                  onRef6={(ref6) => (this.child6 = ref6)}
-                /> */}
-              </div>
-            </div>
+            <div className="col-lg-12 d- px-0">{this.operationButtons()}</div>
           </div>
         </div>
       </section>

@@ -8,6 +8,10 @@ import ShortDescription from "../ProductManage/ShortDescription";
 
 import { update_product_name } from "../../store/actions/productActions";
 import ProductDepartment from "./ProductDepartment";
+import ProductInfomation from "./ProductInfomation";
+import ProductVariations from "../ProductManage/ProductVariations";
+import ProductImg from "./ProductImg";
+import ProductImgs from "./ProductImgs";
 
 const mapStateToProps = (state) => {
   return {
@@ -62,7 +66,11 @@ class ProductInfor extends Component {
               </div>
             </div>
             <ShortDescription />
+            <ProductVariations />
             <ProductDepartment />
+            {/* <ProductImg />  */}
+            <ProductImgs />
+            <ProductInfomation />
             <div className="container-fluid mt-4 pt-4 px-0 border-top">
               <div className="row">
                 <div className="col-2">

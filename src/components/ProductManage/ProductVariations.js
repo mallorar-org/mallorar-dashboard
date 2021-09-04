@@ -188,8 +188,14 @@ class ProductVariations extends Component {
             </button>
           </>
         )}
+        <div className="ml-dash-tab-header-APP nav-tabs py-2  bg-white d-flex">
+          <div to="#" role="tab">
+            Give your variations seperate costs. Leave cost as 0 if the cost
+            doesn't change with selected variations.
+          </div>
+        </div>
         <div className="container-fluid">
-          <div className="row border shadow-sm text-center bold">
+          <div className="row border bg-light shadow-sm text-center bold">
             {this.state.variation_names.map((x) => (
               <div className="col-2 p-2 border-right">{x}</div>
             ))}
@@ -288,12 +294,12 @@ class ProductVariations extends Component {
     if (this.state.add_variations) {
       return (
         <div>
-          <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
+          <div className="ml-dash-tab-header-APP nav-tabs py-2  bg-white d-flex">
             <div to="#" role="tab">
-              Create Variation
+              Add up to 3 different variations
             </div>
           </div>
-          <div className="pt-3">
+          <div className="pt-3 col-6 px-0">
             <form onSubmit={this.add_variation_toList} className="d-flex mb-3">
               <input
                 id="txtNV_van"
@@ -347,15 +353,22 @@ class ProductVariations extends Component {
 
     return (
       <div>
-        <div className="ml-container py-0 px-0">
-          <div className="mt-0 border-top">
+        <div className="py-0 px-0">
+          <div className="mt-0">
             <div>
-              <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
+              <div className="ml-dash-tab-header-APP nav-tabs bold py-2  bg-white d-flex">
                 <div to="#" role="tab">
                   Create Variation
                 </div>
               </div>
             </div>
+            {/* <div>
+              <div className="ml-dash-tab-header-APP nav-tabs px-3 py-2  bg-white d-flex">
+                <div to="#" role="tab">
+                  Create Variation
+                </div>
+              </div>
+            </div> */}
             <div className="">
               {this.state.variationDafts.map((x) => (
                 <VariationControl
@@ -407,29 +420,42 @@ class ProductVariations extends Component {
   render() {
     console.log("state=>", this.state);
     return (
-      <div className="ml-card-shadow mt-4">
-        <div className="card-body col-8">
-          <div className="h5 bold ">
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="">
-                <h5 className="c-blue d-flex align-items-center ">
-                  <FaStumbleupon className="ml-icon-size1 mr-2" />
-                  <span className="bold c-blue">Variation combination</span>
-                </h5>
+      <div className="mt-4">
+        <div className="px-0">
+          <div className="container-fluid px-0">
+            <div className="row">
+              <div className="col-2">
+                <div className="d-flex align-items-center ">
+                  <span>Variations</span>
+                </div>
               </div>
-              <div>
-                {!this.state.edit_state && (
-                  <button
-                    onClick={() => this.switchToEdit()}
-                    className="btn ml-btn"
-                  >
-                    Edit combination
-                  </button>
-                )}
+              <div className="col-10">
+                <div className="h5 bold mb-0">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className=""></div>
+                    <div>
+                      {!this.state.edit_state && (
+                        <button
+                          onClick={() => this.switchToEdit()}
+                          className="btn ml-btn"
+                        >
+                          Edit combination
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-2">
+                  <div className="mb-2">
+                    List all available product variations with seperate pricing
+                    and multi-quantity
+                  </div>
+
+                  <div>{this.tabinator()}</div>
+                </div>
               </div>
             </div>
           </div>
-          <div>{this.tabinator()}</div>
         </div>
       </div>
     );

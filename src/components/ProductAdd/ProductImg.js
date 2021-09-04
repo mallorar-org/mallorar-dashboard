@@ -41,20 +41,20 @@ class ProductImg extends Component {
   render() {
     // console.log(this.state);
     return (
-      <div className="card pt-3 ml-card-shadow p-2 card-body mt-3 card-block ml-2">
+      <div className="card h-100 border p-2 card-body card-block">
         {this.FileSelector()}
         <div className=" c-blue text-center">
-          <h5 className="c-blue text-center mb-3 border-botto pb-0">
-            <span className=" bold b-borde c-blue">Product Image</span>
-          </h5>
+          <div className="c-blue text-center py-3 pb-0">
+            <span className="">Main Product Image</span>
+          </div>
           {/* <div>This will be displayed as the general product image</div> */}
         </div>
         <div className="mt-0">
-          <div className="ml-dash-productimage d-flex rounded justify-content-center">
+          <div className="ml-dash-productimage d-flex  justify-content-center">
             <img
               id="productImg"
               src={
-                this.props.product.productImg !== "default"
+                this.props.product.productImg !== ""
                   ? this.props.product.productImg
                   : PlaceHolderImage
               }
