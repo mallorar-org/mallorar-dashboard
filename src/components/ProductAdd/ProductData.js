@@ -9,6 +9,7 @@ import delivery from "../../assets/images/delivery.svg";
 import setup from "../../assets/images/setup.svg";
 import AtrributeManage from "../ProductAdd/AtrributeManage";
 import ProductVariations from "../ProductManage/ProductVariations";
+import { registerLocale } from "react-datepicker";
 
 const mapStateToProps = (state) => {
   return {
@@ -142,12 +143,24 @@ class ProductData extends Component {
                   </div>
                   <div className="col-lg-3">
                     <MLSelect
-                      handleChange={(n) =>
-                        this.changeSelect("sellingCurrency", n)
+                      use_prop_value={true}
+                      value={
+                        this.props.product.base_currency
+                          ? [
+                              {
+                                value: this.props.product.base_currency,
+                                label: this.props.product.base_currency,
+                              },
+                            ]
+                          : []
                       }
-                      defaultValue={[
-                        { label: "USD (US Dollar)", value: "USD" },
-                      ]}
+                      handleChange={(n) =>
+                        store.dispatch({
+                          type: "UPDATE_BASE_CURRENCY",
+                          payload: n.value,
+                        })
+                      }
+                      placeholder="Select base currency"
                       options={[
                         { label: "USD (US Dollar)", value: "USD" },
                         { label: "ZAR (South African Rand)", value: "ZAR" },
@@ -159,70 +172,86 @@ class ProductData extends Component {
               <div className="mb-3">
                 <div className="row">
                   <div className="col-lg-2">
-                    <span>Regular Price* ({this.state.sellingCurrency})</span>
+                    <span>
+                      Regular Price* ({this.props.product.base_currency})
+                    </span>
                   </div>
                   <div className="col-lg-3">
                     <input
                       className="form-control"
-                      name="productPrice"
                       min="0"
-                      value={
-                        this.props.product.productPrice !== "default"
-                          ? this.props.product.productPrice
-                          : ""
+                      value={this.props.product.product_price}
+                      onChange={(e) =>
+                        store.dispatch({
+                          type: "UPDATE_PRODUCT_PRICE",
+                          payload: parseFloat(e.target.value),
+                        })
                       }
-                      onChange={this.onChangeFM}
                       type="number"
                       placeholder="0.00"
                     />
                   </div>
                 </div>
               </div>
+
               <div className="mb-3">
                 <div className="row">
                   <div className="col-lg-2">
-                    <span> Sale Price ({this.state.sellingCurrency}) </span>
-                  </div>
-                  <div className="col-lg-3">
-                    <input
-                      defaultValue={
-                        this.props.product.oldPrice !== "default"
-                          ? this.props.product.oldPrice
-                          : ""
-                      }
-                      className="form-control"
-                      name="salePrice"
-                      onChange={this.onChangeFM}
-                      type="number"
-                      min="0"
-                      placeholder="0.00"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="mb-">
-                <div className="row">
-                  <div className="col-lg-2">
-                    <span> Product type </span>
+                    <span>Product on sale ? </span>
                   </div>
                   <div className="col-lg-3">
                     <MLSelect
-                      handleChange={(n) => this.changeSelect("productType", n)}
-                      defaultValue={[
-                        { label: "General product", value: "general_product" },
-                      ]}
-                      options={[
-                        { label: "General product", value: "general_product" },
+                      use_prop_value={true}
+                      value={[
                         {
-                          label: "Downloadable product",
-                          value: "downloadable",
-                          isDisabled: true,
+                          value: this.props.product.on_sale,
+                          label: this.props.product.on_sale.toString(),
                         },
+                      ]}
+                      handleChange={(n) =>
+                        store.dispatch({
+                          type: "UPDATE_PRODUCT_ON_SALE",
+                          payload: n.value,
+                        })
+                      }
+                      options={[
+                        { label: "true", value: true },
+                        { label: "false", value: false },
                       ]}
                     />
                   </div>
                 </div>
               </div>
+
+              {this.props.product.on_sale && (
+                <>
+                  <div className="mb-3">
+                    <div className="row">
+                      <div className="col-lg-2">
+                        <span>
+                          {" "}
+                          Sale Price ({this.props.product.base_currency}){" "}
+                        </span>
+                      </div>
+                      <div className="col-lg-3">
+                        <input
+                          value={this.props.product.sale_price}
+                          className="form-control"
+                          onChange={(e) =>
+                            store.dispatch({
+                              type: "UPDATE_PRODUCT_SALE_PRICE",
+                              payload: parseFloat(e.target.value),
+                            })
+                          }
+                          type="number"
+                          min="0"
+                          placeholder="0.00"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
             <span></span>
           </div>

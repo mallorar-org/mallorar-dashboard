@@ -12,6 +12,7 @@ import ProductInfomation from "./ProductInfomation";
 import ProductVariations from "../ProductManage/ProductVariations";
 import ProductImg from "./ProductImg";
 import ProductImgs from "./ProductImgs";
+import MLSelect from "../MLSelect/MLSelect";
 
 const mapStateToProps = (state) => {
   return {
@@ -66,6 +67,93 @@ class ProductInfor extends Component {
               </div>
             </div>
             <ShortDescription />
+
+            <div className="my-3">
+              <div className="row">
+                <div className="col-lg-2">
+                  <span> Product type* </span>
+                </div>
+                <div className="col-lg-3">
+                  <MLSelect
+                    use_prop_value={true}
+                    value={[
+                      {
+                        value: this.props.product.product_type,
+                        label: (
+                          <span
+                            style={{
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {this.props.product.product_type.replace(/_/g, " ")}
+                          </span>
+                        ),
+                      },
+                    ]}
+                    handleChange={(n) =>
+                      store.dispatch({
+                        type: "UPDATE_PRODUCT_TYPE",
+                        payload: n.value,
+                      })
+                    }
+                    defaultValue={[
+                      { label: "General Product", value: "general_product" },
+                    ]}
+                    options={[
+                      { label: "General Product", value: "general_product" },
+                      {
+                        label: "Downloadable product",
+                        value: "downloadable",
+                        isDisabled: true,
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mt-3">
+              <div className="row">
+                <div className="col-lg-2">
+                  <span> Product condition* </span>
+                </div>
+                <div className="col-lg-3">
+                  <MLSelect
+                    use_prop_value={true}
+                    value={[
+                      {
+                        value: this.props.product.product_condition,
+                        label: (
+                          <span
+                            style={{
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {this.props.product.product_condition.replace(
+                              /_/g,
+                              " ",
+                            )}
+                          </span>
+                        ),
+                      },
+                    ]}
+                    handleChange={(n) =>
+                      store.dispatch({
+                        type: "UPDATE_PRODUCT_CONDITION",
+                        payload: n.value,
+                      })
+                    }
+                    defaultValue={[{ label: "New", value: "new" }]}
+                    options={[
+                      { label: "New", value: "new" },
+                      {
+                        label: "Used",
+                        value: "used",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
             <ProductVariations />
             <ProductDepartment />
 
@@ -84,6 +172,7 @@ class ProductInfor extends Component {
                           ? this.props.product.product_long_description
                           : ""
                       }
+                      //_987________
                       ohtml={(n) =>
                         store.dispatch({
                           type: "PRODUCT_DESCRIPTION",

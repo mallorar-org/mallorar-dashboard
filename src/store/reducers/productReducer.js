@@ -13,7 +13,7 @@ const initialData = {
   child_category: "",
   //
   product_type: "general_product",
-  product_state: "new",
+  product_condition: "new",
   //
   product_price: 0.0,
   sale_price: 0.0,
@@ -27,7 +27,9 @@ const initialData = {
   //
   shipping_type: "free",
   shipping_costs: [],
-  stock_warehouses: [],
+  stock_warehouses: "",
+  //
+  handling_time: "",
   earliest_shipping_duration: 2,
   latest_shipping_duration: 5,
   //
@@ -68,10 +70,40 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_PRODUCT_CONDITION":
+      return {
+        ...state,
+        product_condition: action.payload,
+      };
+    case "UPDATE_PRODUCT_TYPE":
+      return {
+        ...state,
+        product_type: action.payload,
+      };
+    case "UPDATE_PRODUCT_SALE_PRICE":
+      return {
+        ...state,
+        sale_price: action.payload,
+      };
+    case "UPDATE_PRODUCT_ON_SALE":
+      return {
+        ...state,
+        on_sale: action.payload,
+      };
+    case "UPDATE_PRODUCT_PRICE":
+      return {
+        ...state,
+        product_price: action.payload,
+      };
     case "UPDATE_BRAND":
       return {
         ...state,
         brand: action.payload,
+      };
+    case "UPDATE_BASE_CURRENCY":
+      return {
+        ...state,
+        base_currency: action.payload,
       };
     case "UPDATE_PRODUCT_STOCK_COUNT":
       let updated_st_product_variations = [];
