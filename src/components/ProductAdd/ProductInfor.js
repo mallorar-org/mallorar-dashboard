@@ -68,7 +68,7 @@ class ProductInfor extends Component {
             <ShortDescription />
             <ProductVariations />
             <ProductDepartment />
-            {/* <ProductImg />  */}
+
             <ProductImgs />
             <ProductInfomation />
             <div className="container-fluid mt-4 pt-4 px-0 border-top">
