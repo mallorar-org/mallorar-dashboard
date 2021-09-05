@@ -24,16 +24,20 @@ const initialData = {
   is_featured: false,
   on_sale: false,
   featured_expiration: "",
+
+  //
+  product_in_country: "",
+  product_in_city: "",
   //
   //local
   local_shipping_type: "free",
-  local_handling_time: "3 days",
+  local_handling_time: "3 business days",
   local_shipping_cost: 0.0,
   local_estimated_del_duration: "3-5 days",
 
   //int shipping
-  intl_shipping_type: "calculated",
-  intl_handling_time: "3 days",
+  intl_shipping_type: "no-shipping",
+  intl_handling_time: "3 business days",
   intl_del_flat_fee: 0.0,
   intl_shipping_zones: [
     {
@@ -83,6 +87,60 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_INTL_DEL_FLAT_FEE":
+      return {
+        ...state,
+        intl_del_flat_fee: action.payload,
+      };
+    case "UPDATE_INTL_HANDLING_TIME":
+      return {
+        ...state,
+        intl_handling_time: action.payload,
+      };
+    case "UPDATE_INTL_SHIPING_TYPE":
+      return {
+        ...state,
+        intl_shipping_type: action.payload,
+      };
+    case "UPDATE_LOCAL_EST_SHIPPING_DUR":
+      return {
+        ...state,
+        local_estimated_del_duration: action.payload,
+      };
+    case "UPDATE_LOCAL_SHIPPING_COST":
+      return {
+        ...state,
+        local_shipping_cost: action.payload,
+      };
+    case "UPDATE_LOCAL_HANDLING_TIME":
+      return {
+        ...state,
+        local_handling_time: action.payload,
+      };
+    case "UPDATE_LOCAL_SHIPPING_TYPE":
+      if (action.payload === "free") {
+        return {
+          ...state,
+          local_shipping_type: action.payload,
+          local_shipping_cost: 0.0,
+        };
+      } else {
+        return {
+          ...state,
+          local_shipping_type: action.payload,
+        };
+      }
+
+    case "UPDATE_PRODUCT_COUNTRY":
+      return {
+        ...state,
+        product_in_country: action.payload,
+      };
+    case "UPDATE_PRODUCT_CITY":
+      return {
+        ...state,
+        product_in_city: action.payload,
+      };
     case "UPDATE_PRODUCT_CONDITION":
       return {
         ...state,

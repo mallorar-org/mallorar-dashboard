@@ -55,6 +55,14 @@ export const getStore = () => (dispatch) => {
     .get("/dash/store")
     .then((data) => {
       dispatch({
+        type: "UPDATE_PRODUCT_COUNTRY",
+        payload: data.data.baseCountry,
+      });
+      dispatch({
+        type: "UPDATE_PRODUCT_CITY",
+        payload: data.data.storeData.city,
+      });
+      dispatch({
         type: "GET_STORE_DEFAULTS",
         payload: data.data,
       });

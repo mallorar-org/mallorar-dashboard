@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import store from "../../store/store";
+import countries from "../../util/countries";
+import ProductShippingZone from "./ProductShippingZone";
 
 const mapStateToProps = (state) => {
   return {
@@ -22,21 +25,39 @@ class ShippingDetails extends Component {
             <div className="container-fluid">
               <div className="mb- mb-4 pb-4 border-bottom">
                 <div className="row">
-                  <div className="col-lg-2 d-flex align-items-center">
-                    <span> Stock location* </span>
+                  <div className="col-lg-2">
+                    <span>From location* </span>
                   </div>
                   <div className="col-lg-9">
+                    <div className="mb-2">Country</div>
+                    <select
+                      value={this.props.product.product_in_country}
+                      className="form-control col-4"
+                      onChange={(e) =>
+                        store.dispatch({
+                          type: "UPDATE_PRODUCT_COUNTRY",
+                          payload: e.target.value,
+                        })
+                      }
+                    >
+                      {countries.map((x) => (
+                        <option value={x}>{x}</option>
+                      ))}
+                    </select>
+                    <div className="mb-2 mt-3">State/City</div>
                     <input
-                      defaultValue={
-                        this.props.product.stockfrom !== "default"
-                          ? this.props.product.stockfrom
-                          : ""
+                      value={this.props.product.product_in_city}
+                      className="form-control col-4"
+                      onChange={(e) =>
+                        store.dispatch({
+                          type: "UPDATE_PRODUCT_CITY",
+                          payload: e.target.value,
+                        })
                       }
                       className="form-control col-4"
-                      onChange={this.onChangeFM}
                       name="stockfrom"
                       type="text"
-                      placeholder="JHB"
+                      placeholder="State/City"
                     />
                   </div>
                 </div>
@@ -48,10 +69,14 @@ class ShippingDetails extends Component {
                   </div>
                   <div className="col-lg-9">
                     <select
-                      defaultValue={this.props.product.shipping_type}
+                      defaultValue={this.props.product.local_shipping_type}
                       className="form-control col-4"
-                      onChange={this.onChangeFM}
-                      name="shippingType"
+                      onChange={(e) =>
+                        store.dispatch({
+                          type: "UPDATE_LOCAL_SHIPPING_TYPE",
+                          payload: e.target.value,
+                        })
+                      }
                     >
                       <option value="free">Free : No delivery costs</option>
                       <option value="flat">Flat : Same delivery costs</option>
@@ -62,10 +87,16 @@ class ShippingDetails extends Component {
                           <div className="col-4 px-0">
                             <div className="mb-2">Handling time</div>
                             <select
-                              defaultValue={this.props.product.shipping_type}
+                              defaultValue={
+                                this.props.product.local_handling_time
+                              }
+                              onChange={(e) =>
+                                store.dispatch({
+                                  type: "UPDATE_LOCAL_HANDLING_TIME",
+                                  payload: e.target.value,
+                                })
+                              }
                               className="form-control"
-                              onChange={this.onChangeFM}
-                              name="shippingType"
                             >
                               <option value="1 business day">
                                 Same business day
@@ -92,7 +123,7 @@ class ShippingDetails extends Component {
                                 10-15 business days
                               </option>
                               <option value="25-30 business days">
-                                25-30 business days
+                                15-30 business days
                               </option>
                             </select>
                           </div>
@@ -103,13 +134,19 @@ class ShippingDetails extends Component {
                               </div>
                               <input
                                 disabled={
-                                  this.props.product.shipping_type === "free"
+                                  this.props.product.local_shipping_type ===
+                                  "free"
                                     ? true
                                     : false
                                 }
+                                value={this.props.product.local_shipping_cost}
+                                onChange={(e) =>
+                                  store.dispatch({
+                                    type: "UPDATE_LOCAL_SHIPPING_COST",
+                                    payload: parseFloat(e.target.value),
+                                  })
+                                }
                                 className="form-control"
-                                onChange={this.onChangeFM}
-                                name="shippingType"
                                 type="number"
                                 placeholder="0.00"
                               />
@@ -123,19 +160,24 @@ class ShippingDetails extends Component {
                       <div className="mb-3 mt-4">
                         Estimated Shipping Duration
                       </div>
-                      <input
+                      <select
                         defaultValue={
-                          this.props.product.esShippingDates !== "default"
-                            ? this.props.product.esShippingDates
-                            : ""
+                          this.props.product.local_estimated_del_duration
                         }
                         className="form-control col-4"
-                        onChange={this.onChangeFM}
-                        name="esShippingDates"
-                        type="number"
-                        max="45"
-                        placeholder="3-5 Days"
-                      />
+                        onChange={(e) =>
+                          store.dispatch({
+                            type: "UPDATE_LOCAL_EST_SHIPPING_DUR",
+                            payload: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="1-3 days">1-3 days</option>
+                        <option value="3-5 days">3-5 days</option>
+                        <option value="5-7 days">5-7 days</option>
+                        <option value="7-14 days">7-14 days</option>
+                        <option value="15-30 days">15-30 days</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -147,10 +189,14 @@ class ShippingDetails extends Component {
                   </div>
                   <div className="col-lg-9">
                     <select
-                      defaultValue={this.props.product.shipping_type}
+                      defaultValue={this.props.product.intl_shipping_type}
                       className="form-control col-4"
-                      onChange={this.onChangeFM}
-                      name="shippingType"
+                      onChange={(e) =>
+                        store.dispatch({
+                          type: "UPDATE_INTL_SHIPING_TYPE",
+                          payload: e.target.value,
+                        })
+                      }
                     >
                       <option value="flat">
                         Flat : Same delivery costs for all
@@ -162,87 +208,115 @@ class ShippingDetails extends Component {
                         No international shipping
                       </option>
                     </select>
-                    <div className="my-3">
-                      <div className="container-fluid">
-                        <div className="row">
-                          <div className="col-4 px-0">
-                            <div className="mb-2">Handling time</div>
-                            <select
-                              defaultValue={this.props.product.shipping_type}
-                              className="form-control"
-                              onChange={this.onChangeFM}
-                              name="shippingType"
-                            >
-                              <option value="1 business day">
-                                Same business day
-                              </option>
-                              <option value="1 business day">
-                                1 business day
-                              </option>
-                              <option value="2 business days">
-                                2 business days
-                              </option>
-                              <option value="3 business days">
-                                3 business days
-                              </option>
-                              <option value="4 business days">
-                                4 business days
-                              </option>
-                              <option value="5 business days">
-                                5 business days
-                              </option>
-                              <option value="5-10 business days">
-                                5-10 business days
-                              </option>
-                              <option value="10-15 business days">
-                                10-15 business days
-                              </option>
-                              <option value="25-30 business days">
-                                25-30 business days
-                              </option>
-                            </select>
-                          </div>
-                          <div className="col-4">
-                            <div className="my-0">
-                              <div className="mb-2">
-                                Cost ({this.props.product.base_currency})
+                    {this.props.product.intl_shipping_type !==
+                      "no-shipping" && (
+                      <>
+                        <div className="my-3">
+                          <div className="container-fluid">
+                            <div className="row">
+                              <div className="col-4 px-0">
+                                <div className="mb-2">Handling time</div>
+                                <select
+                                  defaultValue={
+                                    this.props.product.intl_handling_time
+                                  }
+                                  className="form-control"
+                                  onChange={(e) =>
+                                    store.dispatch({
+                                      type: "UPDATE_INTL_HANDLING_TIME",
+                                      payload: e.target.value,
+                                    })
+                                  }
+                                >
+                                  <option value="1 business day">
+                                    Same business day
+                                  </option>
+                                  <option value="1 business day">
+                                    1 business day
+                                  </option>
+                                  <option value="2 business days">
+                                    2 business days
+                                  </option>
+                                  <option value="3 business days">
+                                    3 business days
+                                  </option>
+                                  <option value="4 business days">
+                                    4 business days
+                                  </option>
+                                  <option value="5 business days">
+                                    5 business days
+                                  </option>
+                                  <option value="5-10 business days">
+                                    5-10 business days
+                                  </option>
+                                  <option value="10-15 business days">
+                                    10-15 business days
+                                  </option>
+                                  <option value="25-30 business days">
+                                    25-30 business days
+                                  </option>
+                                </select>
                               </div>
-                              <input
-                                disabled={
-                                  this.props.product.shipping_type === "free"
-                                    ? true
-                                    : false
-                                }
-                                className="form-control"
-                                onChange={this.onChangeFM}
-                                name="shippingType"
-                                type="number"
-                                placeholder="0.00"
-                              />
+                              <div className="col-4">
+                                {this.props.product.intl_shipping_type ===
+                                  "flat" && (
+                                  <>
+                                    <div className="my-0">
+                                      <div className="mb-2">
+                                        Cost ({this.props.product.base_currency}
+                                        )
+                                      </div>
+                                      <input
+                                        value={
+                                          this.props.product.intl_del_flat_fee
+                                        }
+                                        className="form-control"
+                                        onChange={(e) =>
+                                          store.dispatch({
+                                            type: "UPDATE_INTL_DEL_FLAT_FEE",
+                                            payload: parseFloat(e.target.value),
+                                          })
+                                        }
+                                        type="number"
+                                        placeholder="0.00"
+                                      />
+                                    </div>
+                                  </>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="my-3">
-                      <button className="btn ml-btn mb-3">Add country</button>
-                      <div className="">
-                        <table className="table-bordered table-striped table">
-                          <tr className="bg-light">
-                            <td>Country</td>
-                            <td>Delivery duration</td>
-                            <td>Cost ({this.props.product.base_currency})</td>
-                            <td>Action</td>
-                          </tr>
-                          <tr>
-                            <td>es</td>
-                            <td>es</td>
-                            <td>es</td>
-                            <td>es</td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
+                        <div className="my-3">
+                          <button className="btn ml-btn mb-3">
+                            Add country
+                          </button>
+                          <div className="">
+                            <table className="table-bordered table-striped table">
+                              <tr className="bg-light">
+                                <td>Country</td>
+                                <td>Delivery duration</td>
+                                {this.props.product.intl_shipping_type !==
+                                  "flat" && (
+                                  <>
+                                    <td>
+                                      Cost ({this.props.product.base_currency})
+                                    </td>
+                                  </>
+                                )}
+
+                                <td>Action</td>
+                              </tr>
+                              {this.props.product.intl_shipping_zones.map(
+                                (x) => (
+                                  <ProductShippingZone key={x.index} x={x} />
+                                ),
+                              )}
+                            </table>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
