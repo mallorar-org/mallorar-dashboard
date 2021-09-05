@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Chip from "../common/Chip";
 import countries from "../../util/countries";
 
 class ZoneSelector extends Component {
@@ -104,8 +105,24 @@ class ZoneSelector extends Component {
               </div>
             </div>
           </div>
-          <div className="border-top mt-3 pt-3">es</div>
-          <div className="col-12 mt-3 border-top pt-3">
+          <div className="border-top ml-modal-shipping-zones-sec mt-3 pt-3">
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+            <Chip />
+          </div>
+          <div className="col-12 mt-0 border-top pt-3">
             <button onClick={this.selectZone} className="ml-dash-btn">
               Add Shipping Zone
             </button>
