@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import store from "../../store/store";
 import countries from "../../util/countries";
+import ZoneAdder from "./ZoneAdder";
 import ProductShippingZone from "./ProductShippingZone";
 
 const mapStateToProps = (state) => {
@@ -11,9 +12,13 @@ const mapStateToProps = (state) => {
 };
 
 class ShippingDetails extends Component {
+  state = {
+    add_sz_modal_on: false,
+  };
   render() {
     return (
       <div>
+        <ZoneAdder modal_on={this.state.add_sz_modal_on} />
         <div className="bg-white mt-4">
           <div className="card-body pb-2 p-0 mt-3">
             <div className="bold h5 mx-3 pt-3">
@@ -288,7 +293,14 @@ class ShippingDetails extends Component {
                           </div>
                         </div>
                         <div className="my-3">
-                          <button className="btn ml-btn mb-3">
+                          <button
+                            onClick={() =>
+                              this.setState({
+                                add_sz_modal_on: !this.state.add_sz_modal_on,
+                              })
+                            }
+                            className="btn ml-btn mb-3"
+                          >
                             Add country
                           </button>
                           <div className="">
