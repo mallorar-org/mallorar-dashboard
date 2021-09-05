@@ -5,7 +5,7 @@ const initialData = {
   product_slug: "",
   status: "active",
   stock_count: 0,
-  productImg: "",
+  productImg: "", //** */
   brand: "",
   //
   product_department: "",
@@ -25,14 +25,27 @@ const initialData = {
   on_sale: false,
   featured_expiration: "",
   //
-  shipping_type: "free",
-  shipping_costs: [],
+  //local
+  local_shipping_type: "free",
+  local_handling_time: "3 days",
+  local_shipping_cost: 0.0,
+  local_estimated_del_duration: "3-5 days",
+
+  //int shipping
+  intl_shipping_type: "calculated",
+  intl_handling_time: "3 days",
+  intl_del_flat_fee: 0.0,
+  intl_shipping_zones: [
+    {
+      index: 1,
+      country: "South Africa",
+      shipping_duration: "3-5 days",
+      cost: 0.0,
+    },
+  ],
+
   stock_warehouses: "",
-  //
-  handling_time: "",
-  earliest_shipping_duration: 2,
-  latest_shipping_duration: 5,
-  //
+
   tags: "",
   product_short_desc: [],
   product_long_description: "",

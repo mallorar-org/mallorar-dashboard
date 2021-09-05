@@ -19,6 +19,7 @@ import ProductInfomation from "../components/ProductAdd/ProductInfomation";
 import ProductControls from "../components/ProductAdd/ProductControls";
 import ProductManage from "../components/ProductAdd/ProductManage";
 import store from "../store/store";
+import ShippingDetails from "../components/ProductManage/ShippingDetails";
 toast.configure();
 
 const mapdispatchToProps = (dispatch) => {
@@ -203,8 +204,8 @@ class ProductAdd extends Component {
             <div className="col-lg-12 px-0">
               {this.props.product.productID && <ProductControls />}
               <ProductInfor />
-
               <ProductData />
+              <ShippingDetails />
             </div>
             {/* Begining of Left SideBar and the */}
             <div className="col-lg-12 px-0">{this.operationButtons()}</div>
