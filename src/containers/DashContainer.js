@@ -20,7 +20,9 @@ import MLProductCreated from "../components/Modals/MLProductCreated";
 import MLProductDelModal from "../components/Modals/MLProductDelModal";
 
 // axios.defaults.baseURL = "http://localhost:5000/mallorar/us-central1/apis";
-axios.defaults.baseURL = "https://us-central1-mallorar.cloudfunctions.net/apis";
+// axios.defaults.baseURL = "https://us-central1-mallorar.cloudfunctions.net/apis";
+axios.defaults.baseURL = "http://localhost:5000";
+
 const token = localStorage.mdt;
 if (token) {
   // const decodedToken = jwtDecode(token);

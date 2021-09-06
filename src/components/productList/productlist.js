@@ -58,9 +58,9 @@ class productlist extends Component {
             pid={pr.PID}
             productName={pr.productName}
             productpic={pr.img}
-            stockAvailibity={pr.stock}
-            category={pr.category.replace(/-/g, " ")}
-            isFeatured={pr.isFeatured}
+            stockAvailibity={pr.stock_count}
+            category={pr.product_category.replace(/-/g, " ")}
+            isFeatured={pr.is_featured}
             productStatus={pr.status}
             date={pr.date}
             datehtmlFor={"Date Created"}

@@ -55,6 +55,11 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "LOAD_PRODUCT_DETAILS":
+      return {
+        ...state,
+        ...action.payload,
+      };
     case "UPDATE_PRODUCT_RETURNABLE":
       return {
         ...state,

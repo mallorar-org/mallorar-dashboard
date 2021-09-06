@@ -114,9 +114,6 @@ export const createProduct = () => (dispatch) => {
 
   console.log({ finalProduct });
 
-  return;
-  return;
-
   let productID;
   axios
     .post(`/dash/product/add`, {
@@ -129,16 +126,6 @@ export const createProduct = () => (dispatch) => {
       });
 
       productID = data.data.productID;
-
-      // if (product productVariations.length > 0) {
-      //   return productVariations.map((x) => {
-      //     axios.post("/dash/product/add/variable", {
-      //       productId: data.data.productID,
-      //       variableName: x.varibleName,
-      //       variableValue: x.variables,
-      //     });
-      //   });
-      // }
     })
     .then(() => {
       store.dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
@@ -197,10 +184,7 @@ export const editProduct =
       .then((e) => {
         let product = {};
         product = {
-          ...product,
           ...e.data,
-          ...e.data.description,
-          ...e.data.productImages,
         };
         // console.log("+++=>>>>", e.data);
         dispatch({
@@ -346,6 +330,7 @@ export const getProducts =
     axios
       .get(`/dash/products?${qs}`)
       .then((res) => {
+        console.log({ res });
         dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
         dispatch({
           type: "LOAD_SELLER_PRODUCTS",
