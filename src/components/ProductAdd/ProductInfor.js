@@ -148,6 +148,46 @@ class ProductInfor extends Component {
                 </div>
               </div>
             </div>
+            <div className="mt-4 pt-2">
+              <div className="row">
+                <div className="col-lg-2">
+                  <span>Returnable product* </span>
+                </div>
+                <div className="col-lg-3">
+                  <MLSelect
+                    use_prop_value={true}
+                    value={[
+                      {
+                        value: this.props.product.returnable,
+                        label: (
+                          <span
+                            style={{
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {this.props.product.returnable.toString()}
+                          </span>
+                        ),
+                      },
+                    ]}
+                    handleChange={(n) =>
+                      store.dispatch({
+                        type: "UPDATE_PRODUCT_RETURNABLE",
+                        payload: n.value,
+                      })
+                    }
+                    defaultValue={[{ label: "True", value: true }]}
+                    options={[
+                      { label: "True", value: "true" },
+                      {
+                        label: "False",
+                        value: false,
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
             <ProductVariations />
             <ProductDepartment />
 

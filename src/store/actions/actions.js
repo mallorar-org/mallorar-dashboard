@@ -97,8 +97,6 @@ export const createProduct = () => (dispatch) => {
 
   let errors = validateProduct(product);
 
-  console.log({ errors });
-
   if (errors) {
     return notify(...errors);
   }
@@ -107,6 +105,7 @@ export const createProduct = () => (dispatch) => {
 
   finalProduct = {
     ...product,
+    productImg: product.product_images[0].product_url,
   };
 
   close();

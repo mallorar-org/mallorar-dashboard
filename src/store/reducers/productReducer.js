@@ -7,6 +7,9 @@ const initialData = {
   stock_count: 1,
   productImg: "", //** */
   brand: "",
+
+  //
+  returnable: true,
   //
   product_department: "",
   product_category: "",
@@ -52,6 +55,11 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_PRODUCT_RETURNABLE":
+      return {
+        ...state,
+        returnable: action.payload,
+      };
     case "UPDATE_STOCK_AVAILABLE":
       return {
         ...state,
