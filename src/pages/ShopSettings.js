@@ -4,7 +4,6 @@ import General from "../components/Settings/General";
 import Shipping from "../components/Settings/Shipping";
 import FixedShipping from "../components/Settings/FixedShipping";
 import ShippingZones from "../components/Settings/ShippingZones";
-import UserItem from "../components/Settings/UserItem";
 import icons from "../components/common/icons";
 
 class ShopSetting extends Component {
@@ -115,6 +114,7 @@ class ShopSetting extends Component {
                       className={this.pricingTabsCss("1")}
                     >
                       <img
+                        alt=""
                         src={icons.solid.spunner.blue}
                         className="img-fluid ml-icon-size2 mr-2"
                       />
@@ -142,6 +142,7 @@ class ShopSetting extends Component {
                     {" "}
                     <div to="#" role="tab" className={this.pricingTabsCss("4")}>
                       <img
+                        alt=""
                         src={icons.solid.users.blue}
                         className="img-fluid ml-icon-size2 mr-2"
                       />

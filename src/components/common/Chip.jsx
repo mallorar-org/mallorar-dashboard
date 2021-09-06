@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 export default class Chip extends Component {
   render() {
+    const { x } = this.props;
     return (
       <div className="ml-chip">
-        <div className="chip-head">1</div>
-        <div className="chip-content">United Sta</div>
-        <div className="chip-close">
+        <div className="chip-head">{this.props.index + 1}</div>
+        <div className="chip-content">{x.country}</div>
+        <div onClick={this.props.remove} className="chip-close">
           <svg
             class="chip-svg"
             focusable="false"

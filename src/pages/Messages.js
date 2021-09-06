@@ -5,11 +5,8 @@ import { connect } from "react-redux";
 // import axios from "axios";
 // import Loader from "./loading";
 import { navTitle } from "../store/actions/navTitles";
-import Dropdown from "../components/common/Dropdown";
 import axios from "axios";
 import Loading from "../pages/loading";
-
-import BG from "../assets/images/email-bg.svg";
 import Message from "../components/MessagesList/Message";
 import MessageItem from "../components/MessagesList/MessageLitem";
 import { Link } from "react-router-dom";

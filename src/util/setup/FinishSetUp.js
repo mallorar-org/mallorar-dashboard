@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import WelcomeTab from "../setup/WelcomeTab";
+// import WelcomeTab from "../setup/WelcomeTab";
 import UploadDocs from "./UploadBusDoc";
 import UploadPCDoc from "./UploadPCDoc";
 import UploadPRDoc from "./UploadPRDoc";
@@ -391,7 +391,7 @@ class FinishSetUp extends Component {
                 >
                   <div
                     class={`pie-wrapper position-relative progress-${this.renderPercentage(
-                      true
+                      true,
                     )}`}
                   >
                     <span className="text-white text-center position-absolute ml-s-l-percentage-c">
@@ -480,7 +480,7 @@ class FinishSetUp extends Component {
         <div className="container-fluid py-4 row px-0">
           <div className="col-5 h-100 d-flex align-items-center">
             <div>
-              <img src={Setup} className="img-fluid" />
+              <img src={Setup} alt="" className="img-fluid" />
             </div>
           </div>
           <div className="col-7 h-100 d-flex align-items-center">

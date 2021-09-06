@@ -7,7 +7,6 @@ import { navTitle } from "../store/actions/navTitles";
 import { Link } from "react-router-dom";
 import icons from "../components/common/icons";
 import MLSelect from "../components/MLSelect/MLSelect";
-import ShortDescription from "../components/ProductManage/ShortDescription";
 
 const mapStateToProps = (state) => {
   return {
@@ -183,6 +182,7 @@ class Products extends Component {
                 <div className="col-2 d-flex justify-content-between align-items-center px-0 pr-2">
                   <div className="p-3">
                     <img
+                      alt=""
                       className="img-fluid mr-2 ml-icon-size1"
                       src={icons.solid.filter}
                     />

@@ -18,7 +18,14 @@ class ShippingDetails extends Component {
   render() {
     return (
       <div>
-        <ZoneAdder modal_on={this.state.add_sz_modal_on} />
+        <ZoneAdder
+          close={() =>
+            this.setState({
+              add_sz_modal_on: false,
+            })
+          }
+          modal_on={this.state.add_sz_modal_on}
+        />
         <div className="bg-white mt-4">
           <div className="card-body pb-2 p-0 mt-3">
             <div className="bold h5 mx-3 pt-3">

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import logo from "../assets/images/mallorar-logo.png";
 import { loginSeller } from "../store/actions/sellerActions";
 import icons from "../components/common/icons";
 // import LockScreen from "./LockScreen";

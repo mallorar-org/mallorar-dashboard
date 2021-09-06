@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import pex from "../assets/images/pex.jpg";
 import Storeinformation from "../components/Admin/Storeinformation";
 import StorePayouts from "../components/Admin/StorePayouts";
-
-import { MDBTabPane, MDBTabContent } from "mdbreact";
 
 class Shop extends Component {
   state = {

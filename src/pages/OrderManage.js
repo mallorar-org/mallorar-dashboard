@@ -5,7 +5,6 @@ import axios from "axios";
 import Loader from "./loading";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import icons from "../components/common/icons";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -121,7 +120,7 @@ class OrderManage extends Component {
             say something
           </div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
 
@@ -142,7 +141,7 @@ class OrderManage extends Component {
             <div className="bold h6 mb-0">Success</div>
             <div>Tracking information successfully updated</div>
           </div>,
-          toast.TYPE.SUCCESS
+          toast.TYPE.SUCCESS,
         );
       })
       .catch(() => {
@@ -156,7 +155,7 @@ class OrderManage extends Component {
               contact Mallorar support is this problem persists
             </div>
           </div>,
-          toast.TYPE.ERROR
+          toast.TYPE.ERROR,
         );
       });
   };

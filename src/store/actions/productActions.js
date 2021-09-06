@@ -1,3 +1,27 @@
+export const update_int_zone_shipping_duration = (dur, zindex) => {
+  return {
+    type: "UPDATE_INTL_ZONE_SHIPPING_DURATION",
+    payload: { dur, zindex },
+  };
+};
+export const update_int_zone_shipping_cost = (cost, zindex) => {
+  return {
+    type: "UPDATE_INTL_ZONE_SHIPPING_COST",
+    payload: { cost, zindex },
+  };
+};
+export const remove_shipping_zone = (index) => {
+  return {
+    type: "REMOVE_SHIPPING_ZONE",
+    payload: index,
+  };
+};
+export const add_intl_shipping_zone = (data) => {
+  return {
+    type: "ADD_INTL_SHIPPING_ZONE",
+    payload: data,
+  };
+};
 export const update_product_name = (name) => {
   return {
     type: "PP_UPDATE_PRODUCT_NAME",

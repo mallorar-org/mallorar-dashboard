@@ -87,6 +87,74 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_INTL_ZONE_SHIPPING_COST":
+      let current_intl_shipping_zone_cost = state.intl_shipping_zones;
+      let updated_shipping_zones_cost = [];
+
+      current_intl_shipping_zone_cost.forEach((x) => {
+        if (action.payload.zindex === x.index) {
+          updated_shipping_zones_cost.push({
+            ...x,
+            cost: action.payload.cost,
+          });
+        } else {
+          updated_shipping_zones_cost.push(x);
+        }
+      });
+
+      return {
+        ...state,
+        intl_shipping_zones: updated_shipping_zones_cost,
+      };
+    case "UPDATE_INTL_ZONE_SHIPPING_DURATION":
+      let current_intl_shipping_zone_dur = state.intl_shipping_zones;
+      let updated_shipping_zones_dur = [];
+
+      current_intl_shipping_zone_dur.forEach((x) => {
+        if (action.payload.zindex === x.index) {
+          updated_shipping_zones_dur.push({
+            ...x,
+            shipping_duration: action.payload.dur,
+          });
+        } else {
+          updated_shipping_zones_dur.push(x);
+        }
+      });
+
+      return {
+        ...state,
+        intl_shipping_zones: updated_shipping_zones_dur,
+      };
+    case "REMOVE_SHIPPING_ZONE":
+      let current_intl_shipping_zones = state.intl_shipping_zones;
+      let updated_shipping_zones = [];
+
+      current_intl_shipping_zones.forEach((x) => {
+        if (action.payload !== x.index) {
+          updated_shipping_zones.push(x);
+        }
+      });
+
+      return {
+        ...state,
+        intl_shipping_zones: updated_shipping_zones,
+      };
+    case "ADD_INTL_SHIPPING_ZONE":
+      let current_shipping_zones = state.intl_shipping_zones;
+
+      let newIndex = 0;
+      current_shipping_zones.forEach((x) => {
+        if (x.index > newIndex) {
+          newIndex = x.index;
+        }
+      });
+
+      current_shipping_zones.push({ ...action.payload, index: newIndex + 1 });
+
+      return {
+        ...state,
+        intl_shipping_zones: current_shipping_zones,
+      };
     case "UPDATE_INTL_DEL_FLAT_FEE":
       return {
         ...state,

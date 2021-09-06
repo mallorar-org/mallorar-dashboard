@@ -1,21 +1,14 @@
 import React, { Component } from "react";
-import Loading from "../pages/loading";
 import ProductData from "../components/ProductAdd/ProductData";
 import ProductInfor from "../components/ProductAdd/ProductInfor";
-import ProductImg from "../components/ProductAdd/ProductImg";
-import ProductImgs from "../components/ProductAdd/ProductImgs";
-import ProductDepartment from "../components/ProductAdd/ProductDepartment";
 import {
   updatetotalproducts,
   createProduct,
   editProduct,
 } from "../store/actions/actions";
-import ProductTags from "../components/ProductAdd/ProductTags";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import ProductInfomation from "../components/ProductAdd/ProductInfomation";
 import ProductControls from "../components/ProductAdd/ProductControls";
 import ProductManage from "../components/ProductAdd/ProductManage";
 import store from "../store/store";

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import icons from "../components/common/icons";
-import MLSelect from "../components/MLSelect/MLSelect";
+import { NavLink } from "react-router-dom";
 import DateRangePicker from "../components/Analytics/DateRangePicker";
 import RevenueAnalytics from "../components/Analytics/RevenueAnalytics";
 import ProductAnalytics from "../components/Analytics/ProductAnalytics";

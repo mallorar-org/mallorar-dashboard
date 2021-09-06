@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import CheckBox from "../common/CheckBox";
@@ -9,7 +8,6 @@ import {
   deleteProduct,
 } from "../../store/actions/actions";
 import store from "../../store/store";
-import { FaEllipsisV } from "react-icons/fa";
 import { ImBin } from "react-icons/im";
 import { AiFillEdit, AiOutlineEllipsis } from "react-icons/ai";
 import "react-dropdown/style.css";

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import BG from "../assets/images/backend.png";
-import jwt from "jwt-decode";
+import React from "react";
+// import jwt from "jwt-decode";
 import icons from "../components/common/icons";
 import { Link } from "react-router-dom";
 import Progress from "../components/common/circleprogress";
@@ -14,7 +13,7 @@ const mapStateToProps = (state) => {
 };
 
 function Homepage({ core }) {
-  const [tokenData] = useState(jwt(localStorage.mdt));
+  // const [tokenData] = useState(jwt(localStorage.mdt));
   const pages = [
     {
       title: "Messages",
@@ -103,6 +102,7 @@ function Homepage({ core }) {
                   <div className=" ml-s-h-t-subtext d-flex c-blue align-items-center">
                     <span className="bold">Products</span>
                     <img
+                      alt=""
                       className="ml-2 img-fluid ml-h-in-cr-icon"
                       src={icons.solid.chevron.right}
                     />
@@ -126,6 +126,7 @@ function Homepage({ core }) {
                   <div className=" ml-s-h-t-subtext d-flex c-blue align-items-center">
                     <span className="bold">Product Visits</span>
                     <img
+                      alt=""
                       className="ml-2 img-fluid ml-h-in-cr-icon"
                       src={icons.solid.chevron.right}
                     />
@@ -148,6 +149,7 @@ function Homepage({ core }) {
                 >
                   <span>Store visits</span>
                   <img
+                    alt=""
                     className="ml-2 img-fluid ml-h-in-cr-icon"
                     src={icons.solid.chevron.right}
                   />
@@ -165,6 +167,7 @@ function Homepage({ core }) {
                 >
                   <span>Total Sales</span>
                   <img
+                    alt=""
                     className="ml-2 img-fluid ml-h-in-cr-icon"
                     src={icons.solid.chevron.right}
                   />
