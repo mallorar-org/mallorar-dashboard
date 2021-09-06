@@ -70,7 +70,9 @@ class ProductImg extends Component {
             className="ml-dash-btn w-100"
             // style={{ float: "right" }}
           >
-            Select Image
+            {this.props.product.product_images.length > 0
+              ? "Change main photo"
+              : "Select Images"}
           </button>
           {/* <button type="button" className="btn btn-green px-4 mr-2" style={{ float: "right" }}>Save</button> */}
         </div>

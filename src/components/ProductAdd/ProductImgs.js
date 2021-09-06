@@ -1,14 +1,21 @@
 import React, { Component } from "react";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
 import FileSelector from "../../components/FileSelector/FileSelector";
-import { IoIosRemoveCircle } from "react-icons/Io5";
+import { IoIosRemoveCircle } from "react-icons/io";
 import { connect } from "react-redux";
 import store from "../../store/store";
 import ProductImg from "./ProductImg";
+import { remove_photo } from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {
   return {
     product: state.product,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    remove_photo: (index) => dispatch(remove_photo(index)),
   };
 };
 
@@ -100,6 +107,12 @@ class ProductImgs extends Component {
                   <div className="ml-pc-product-image-container px-0 border-left-0 border">
                     {this.props.product.product_images.map((x) => (
                       <div className="p-2 border ml-pc-product-image">
+                        <div className="d-flex align-items-center ml-top-bar justify-content-between">
+                          <div></div>
+                          <div onClick={() => this.props.remove_photo(x.index)}>
+                            <IoIosRemoveCircle />
+                          </div>
+                        </div>
                         <div className="">
                           <img className="img-fluid" src={x.product_url} />
                         </div>
@@ -109,12 +122,6 @@ class ProductImgs extends Component {
                     {this.props.product.product_images.length <= 8 && (
                       <>
                         <div className="p-2 border mb-0 pb-0 ml-pc-product-image">
-                          <div className="d-flex ml-top-bar justify-content-between">
-                            <div></div>
-                            <div>
-                              <IoIosRemoveCircle />
-                            </div>
-                          </div>
                           <div className="">
                             <img
                               className="img-fluid mb-0 pb-0"
@@ -137,4 +144,4 @@ class ProductImgs extends Component {
   }
 }
 
-export default connect(mapStateToProps, null)(ProductImgs);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductImgs);

@@ -2,6 +2,12 @@ import axios from "axios";
 import store from "../store";
 import { notify, close } from "../../components/MLNotify/controls";
 
+export const remove_photo = (index) => {
+  return {
+    type: "REMOVE_PRODUCT_PHOTO",
+    payload: index,
+  };
+};
 export const remove_short_desc = (id) => {
   return {
     type: "REMOVE_SHORT_DESC_FIELD",

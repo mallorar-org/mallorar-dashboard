@@ -29,11 +29,6 @@ const mapDispatchToProps = (dispatch) => {
 class ProductInfor extends Component {
   state = {};
 
-  slugPreview = (e) => {
-    let value = e.replace(/ /g, "-").toLowerCase();
-    return <span>{`https://mallorar.com/p/MP000/${value}`}</span>;
-  };
-
   on_productname_change = (e) => {
     this.props.update_product_name(e.target.value);
   };
@@ -61,8 +56,8 @@ class ProductInfor extends Component {
                 />
                 <label>
                   {" "}
-                  Permalink Preview:{" "}
-                  {this.slugPreview(this.props.product.product_name)}
+                  Permalink Preview: https://mallorar/p/
+                  {this.props.product.product_slug}
                 </label>
               </div>
             </div>

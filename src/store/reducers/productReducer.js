@@ -4,7 +4,7 @@ const initialData = {
   product_name: "",
   product_slug: "",
   status: "active",
-  stock_count: 0,
+  stock_count: 1,
   productImg: "", //** */
   brand: "",
   //
@@ -48,8 +48,6 @@ const initialData = {
     },
   ],
 
-  stock_warehouses: "",
-
   tags: "",
   product_short_desc: [],
   product_long_description: "",
@@ -61,6 +59,22 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "REMOVE_PRODUCT_PHOTO":
+      let current_product_images_c3 = state.product_images;
+
+      let filtered_product_images = [];
+
+      current_product_images_c3.forEach((x) => {
+        if (x.index !== action.payload) {
+          filtered_product_images.push(x);
+        }
+      });
+
+      return {
+        ...state,
+        product_images: filtered_product_images,
+      };
+
     case "ADD_PRODUCT_PHOTO":
       let current_product_images_c2 = state.product_images;
       let new_image_index = 0;
@@ -305,6 +319,11 @@ const productReducer = (state = initialData, action) => {
       return {
         ...state,
         product_name: action.payload,
+      };
+    case "PP_UPDATE_PRODUCT_SLUG":
+      return {
+        ...state,
+        product_slug: action.payload,
       };
     case "PRODUCT_DESCRIPTION":
       return {

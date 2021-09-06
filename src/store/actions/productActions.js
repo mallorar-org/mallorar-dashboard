@@ -22,11 +22,17 @@ export const add_intl_shipping_zone = (data) => {
     payload: data,
   };
 };
-export const update_product_name = (name) => {
-  return {
+export const update_product_name = (name) => (dispatch) => {
+  let slug = name.replace(/ /g, "-").toLowerCase();
+
+  dispatch({
+    type: "PP_UPDATE_PRODUCT_SLUG",
+    payload: slug,
+  });
+  dispatch({
     type: "PP_UPDATE_PRODUCT_NAME",
     payload: name,
-  };
+  });
 };
 export const update_product_variations = (v) => {
   return {
