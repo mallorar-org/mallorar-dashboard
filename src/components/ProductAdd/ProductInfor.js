@@ -55,8 +55,7 @@ class ProductInfor extends Component {
                   className="form-control mb-2"
                 />
                 <label>
-                  {" "}
-                  Permalink Preview: https://mallorar/p/
+                  Permalink Preview&nbsp;:&nbsp;https://mallorar.com/p/
                   {this.props.product.product_slug}
                 </label>
               </div>

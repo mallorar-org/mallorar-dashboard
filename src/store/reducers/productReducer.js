@@ -39,14 +39,7 @@ const initialData = {
   intl_shipping_type: "no-shipping",
   intl_handling_time: "3 business days",
   intl_del_flat_fee: 0.0,
-  intl_shipping_zones: [
-    {
-      index: 1,
-      country: "South Africa",
-      shipping_duration: "3-5 days",
-      cost: 0.0,
-    },
-  ],
+  intl_shipping_zones: [],
 
   tags: "",
   product_short_desc: [],
@@ -59,6 +52,11 @@ const initialData = {
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "UPDATE_STOCK_AVAILABLE":
+      return {
+        ...state,
+        stock_count: action.payload,
+      };
     case "REMOVE_PRODUCT_PHOTO":
       let current_product_images_c3 = state.product_images;
 

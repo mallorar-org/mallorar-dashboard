@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "../store";
 import { notify, close } from "../../components/MLNotify/controls";
+import { validateProduct } from "../../util/validateProductObj";
 
 export const remove_photo = (index) => {
   return {
@@ -94,73 +95,19 @@ export const dashoverlay = (n) => (dispatch) => {
 export const createProduct = () => (dispatch) => {
   let product = store.getState().product;
 
+  let errors = validateProduct(product);
+
+  console.log({ errors });
+
+  if (errors) {
+    return notify(...errors);
+  }
+
   let finalProduct = {};
 
   finalProduct = {
     ...product,
   };
-
-  // console.group("product creation");
-  // console.log(finalProduct);
-  // console.groupEnd();
-
-  if (product.product_name === "") {
-    return notify(
-      2,
-      "Invalid name",
-      "",
-      "All products must have a suitable name so that customers can easily find what they looking for",
-    );
-  }
-  if (product.product_price === "" || product.product_price === "0") {
-    return notify(
-      2,
-      "Invalid price",
-      "",
-      "Products are required to have a suitable pricing. Free products are not allowed in Mallorar. See mallorar policy",
-    );
-  }
-  if (product.esShippingDates === "" || product.esShippingDates === "0") {
-    return notify(
-      2,
-      "Invalid shipping dur...",
-      "",
-      "We require sellers to provide an estimation to the possible shipping duration taken to deliver a product to your furthest shipping zone",
-    );
-  }
-  if (product.productImg === "default") {
-    return notify(
-      2,
-      "No product image",
-      "",
-      "All products are required to have a product image so that customers can see what they buying",
-    );
-  }
-  if (product.product_department === "") {
-    window.location.href = "#product_department";
-    return notify(
-      2,
-      "Invalid Department",
-      "",
-      "Assign your product to a suitable department to increase performance",
-    );
-  }
-  if (product.product_category === "") {
-    return notify(
-      2,
-      "Invalid Category",
-      "",
-      "Assign your product to a suitable category to increase performance",
-    );
-  }
-  if (product.child_category === "") {
-    return notify(
-      2,
-      "Invalid Sub category",
-      "",
-      "Assign your product to a suitable sub category to better place your product",
-    );
-  }
 
   close();
 

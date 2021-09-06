@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import Loader from "../../pages/loading";
 import axios from "axios";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {};
+};
 
 class ShowFiles extends Component {
   state = {
@@ -67,7 +72,7 @@ class ShowFiles extends Component {
         {this.state.images.map((x, index) => (
           <div
             className={`${this.cssRacho(
-              index
+              index,
             )} col-6 p-2 col-md-4 col-lg-3 text-center`}
             key={index}
           >
@@ -84,4 +89,4 @@ class ShowFiles extends Component {
   }
 }
 
-export default ShowFiles;
+export default connect(mapStateToProps, null)(ShowFiles);
