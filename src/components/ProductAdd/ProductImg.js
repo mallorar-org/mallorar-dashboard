@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import FileSelector from "../../components/FileSelector/FileSelector";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
 import store from "../../store/store";
-
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -18,7 +17,7 @@ class ProductImg extends Component {
   };
 
   fileUrl = (x) => {
-    store.dispatch({ type: "UPDATE_PRODUCT_IMG", payload: x });
+    store.dispatch({ type: "UPDATE_MAIN_PRODUCT_PHOTO", payload: x });
   };
 
   FileSelector = () => {
@@ -51,15 +50,17 @@ class ProductImg extends Component {
         </div>
         <div className="mt-0">
           <div className="ml-dash-productimage d-flex  justify-content-center">
+            <div></div>
             <img
               id="productImg"
               src={
-                this.props.product.productImg !== ""
-                  ? this.props.product.productImg
+                this.props.product.product_images.length > 0
+                  ? this.props.product.product_images[0].product_url
                   : PlaceHolderImage
               }
               alt=""
             />
+            <div></div>
           </div>
         </div>
         <div className="text-center mt-3">

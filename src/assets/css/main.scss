@@ -995,7 +995,7 @@ input[type="radio"]:checked + .ml-radio-btn {
 }
 
 .ml-dash-productimage {
-  border: 1px solid rgb(211, 209, 209);
+  // border: 1px solid rgb(211, 209, 209);
   width: 100%;
   height: 240px;
 }
@@ -3635,10 +3635,13 @@ a.ml-btn {
 }
 
 .ml-pc-product-image {
-  // overflow: hidden;
+  overflow: hidden;
   display: inline-block;
+  position: relative;
   height: 120px;
   width: 119px;
+  .ml-top-bar {
+  }
 }
 
 .ml-pc-product-image-container {
@@ -3647,7 +3650,7 @@ a.ml-btn {
 }
 
 .ml-main-image-pc {
-  height: 360px;
+  height: 377px;
 }
 
 .ml-chip {

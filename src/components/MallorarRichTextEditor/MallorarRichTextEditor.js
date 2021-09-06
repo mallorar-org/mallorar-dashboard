@@ -18,6 +18,8 @@ class MallorarRTE extends Component {
         editorHtml: this.props.initial,
         notdlp: false,
       });
+    } else {
+      return null;
     }
   }
 

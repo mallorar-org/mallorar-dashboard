@@ -1003,7 +1003,6 @@ input[type="radio"]:checked + .ml-radio-btn .ml-dot {
 }
 
 .ml-dash-productimage {
-  border: 1px solid #d3d1d1;
   width: 100%;
   height: 240px;
 }
@@ -3858,7 +3857,9 @@ a.ml-btn {
 }
 
 .ml-pc-product-image {
+  overflow: hidden;
   display: inline-block;
+  position: relative;
   height: 120px;
   width: 119px;
 }
@@ -3869,7 +3870,7 @@ a.ml-btn {
 }
 
 .ml-main-image-pc {
-  height: 360px;
+  height: 377px;
 }
 
 .ml-chip {

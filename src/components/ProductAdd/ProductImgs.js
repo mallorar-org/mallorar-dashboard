@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
 import FileSelector from "../../components/FileSelector/FileSelector";
-import ProductImage from "../ProductAdd/ProductImage";
+import { IoIosRemoveCircle } from "react-icons/Io5";
 import { connect } from "react-redux";
 import store from "../../store/store";
 import ProductImg from "./ProductImg";
@@ -63,28 +63,28 @@ class ProductImgs extends Component {
   };
 
   fileUrl = (x) => {
-    this.setState({
-      [this.state.target]: x,
-    });
+    store.dispatch({ type: "ADD_PRODUCT_PHOTO", payload: x });
 
-    setTimeout(
-      () =>
-        store.dispatch({ type: "UPDATE_PRODUCTS_IMGS", payload: this.state }),
-      50,
-    );
+    // this.setState({
+    //   [this.state.target]: x,
+    // });
+
+    // setTimeout(
+    //   () =>
+    //     store.dispatch({ type: "UPDATE_PRODUCTS_IMGS", payload: this.state }),
+    //   50,
+    // );
   };
 
   selectpicO = (e) => {
-    let name = e.target.id;
-
     this.setState({
       fileselector: true,
-      target: name,
     });
   };
 
   render() {
     // console.log(this.state);
+
     return (
       <div className="overflow-hidde  mt-3">
         {this.FileSelector()}
@@ -101,24 +101,31 @@ class ProductImgs extends Component {
                     {this.props.product.product_images.map((x) => (
                       <div className="p-2 border ml-pc-product-image">
                         <div className="">
-                          <img
-                            className="img-fluid"
-                            onClick={this.selectpicO}
-                            src={x.product_url}
-                          />
+                          <img className="img-fluid" src={x.product_url} />
                         </div>
                       </div>
                     ))}
 
-                    <div className="p-2 border ml-pc-product-image">
-                      <div className="">
-                        <img
-                          className="img-fluid"
-                          onClick={this.selectpicO}
-                          src={PlaceHolderImage}
-                        />
-                      </div>
-                    </div>
+                    {this.props.product.product_images.length <= 8 && (
+                      <>
+                        <div className="p-2 border mb-0 pb-0 ml-pc-product-image">
+                          <div className="d-flex ml-top-bar justify-content-between">
+                            <div></div>
+                            <div>
+                              <IoIosRemoveCircle />
+                            </div>
+                          </div>
+                          <div className="">
+                            <img
+                              className="img-fluid mb-0 pb-0"
+                              onClick={this.selectpicO}
+                              src={PlaceHolderImage}
+                            />
+                          </div>
+                          <div></div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

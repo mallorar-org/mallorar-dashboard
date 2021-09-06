@@ -56,37 +56,51 @@ const initialData = {
   desc_editor: "quill",
   product_variations: [],
   product_specifications: [],
-  product_images: [
-    {
-      index: 1,
-      product_url:
-        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
-    },
-    {
-      index: 1,
-      product_url:
-        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
-    },
-    {
-      index: 1,
-      product_url:
-        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
-    },
-    {
-      index: 2,
-      product_url:
-        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
-    },
-    {
-      index: 3,
-      product_url:
-        "https://mallorar.imgix.net/Om_Bundle_New_33ceMI57845655.jpg?alt=media&height=130&q=60",
-    },
-  ],
+  product_images: [],
 };
 
 const productReducer = (state = initialData, action) => {
   switch (action.type) {
+    case "ADD_PRODUCT_PHOTO":
+      let current_product_images_c2 = state.product_images;
+      let new_image_index = 0;
+
+      current_product_images_c2.forEach((x) => {
+        if (x.index > new_image_index) {
+          new_image_index = x.index;
+        }
+      });
+
+      current_product_images_c2.push({
+        index: new_image_index + 1,
+        product_url: action.payload,
+      });
+
+      return {
+        ...state,
+        product_images: current_product_images_c2,
+      };
+
+    case "UPDATE_MAIN_PRODUCT_PHOTO":
+      let current_product_images_c1 = state.product_images;
+
+      if (current_product_images_c1.length > 0) {
+        current_product_images_c1[0] = {
+          ...current_product_images_c1[0],
+          product_url: action.payload,
+        };
+      } else {
+        current_product_images_c1.push({
+          index: 1,
+          product_url: action.payload,
+        });
+      }
+
+      return {
+        ...state,
+        product_images: current_product_images_c1,
+      };
+
     case "UPDATE_INTL_ZONE_SHIPPING_COST":
       let current_intl_shipping_zone_cost = state.intl_shipping_zones;
       let updated_shipping_zones_cost = [];
