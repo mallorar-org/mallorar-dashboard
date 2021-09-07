@@ -21,10 +21,23 @@ const mapDispatchToProps = (dispatch) => {
 
 class ProductVariations extends Component {
   state = {
-    edit_state: true,
+    edit_state: false,
     add_variations: false,
     variation_names: [],
     variationDafts: [],
+  };
+
+  componentDidMount = () => {
+    let variation_names = [];
+
+    this.props.variations.length > 0 &&
+      this.props.variations[0].variation_values.forEach((x) => {
+        variation_names.push(x.variation_name);
+      });
+
+    this.setState({
+      variation_names,
+    });
   };
 
   delete_var = (index) => {

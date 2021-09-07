@@ -207,7 +207,9 @@ class ProductItem extends Component {
         </div>
         <div className="col-2 d-flex align-items-center">
           <div className="aler border-0 alert-success px-2 py-1 mb-0">
-            In Stock
+            {/* | */}
+            {this.props.stockAvailibity === 0 ? "out of stock" : "In stock"}
+            {/* | */}
           </div>
         </div>
         <div className="col-2 ">
