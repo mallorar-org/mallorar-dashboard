@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
+import CheckBox from "../common/CheckBox";
+import { connect } from "react-redux";
+import { select_image_in_selector } from "../../store/actions/actions";
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    select_image_in_selector: (n) => dispatch(select_image_in_selector(n)),
+  };
+};
 
 class FileUploading extends Component {
   state = {
     file: {},
     uploading: true,
+    url: "",
+    selected: false,
+  };
+
+  select_image = () => {
+    this.props.select_image_in_selector(this.state.url);
+    this.setState({
+      selected: !this.state.selected,
+    });
   };
 
   componentDidMount = () => {
@@ -12,19 +30,17 @@ class FileUploading extends Component {
       file: this.props.data,
     });
 
-
-
-
     let file = this.props.data;
     let formData = new FormData();
-    formData.append("image", file, file.name)
+    formData.append("image", file, file.name);
     // console.log("==>",file)
     axios
-      .post("/dashbaord/feupload", formData)
-      .then(() => {
-        // console.log("done");
+      .post("/dashbaord/feupload?return=true", formData)
+      .then((data) => {
+        console.log(data.data);
         this.setState({
           uploading: false,
+          url: data.data.fileAt,
         });
       })
       .catch((err) => {
@@ -47,15 +63,57 @@ class FileUploading extends Component {
   };
 
   render() {
-    // console.log("name", this.state);
-    return (
-      <div className="align-items-center col-12 d-flex">
-        <div className="col-6 text-capitalize text-left text-truncate">{this.state.file.name}</div>
-        <div className="col-4 ">{this.uploadStatus()}</div>
-        <div className="col-2 ">{Math.round(this.state.file.size / 2048)} KB</div>
-      </div>
-    );
+    if (!this.state.uploading) {
+      return (
+        <div className="align-items-center w-100 col-12 d-flex">
+          <div className=" d-flex w-100 align-items-center justify-content-between text-capitalize text-left text-truncate">
+            <div className="d-flex align-items-center">
+              <CheckBox
+                id={this.state.file.name.replace(/ /g, "-")}
+                checked={this.state.selected}
+                onchange={this.select_image}
+              />{" "}
+              <img
+                src={this.state.url}
+                className="img-fluid ml-product-img ml-2 mr-2"
+              />
+              {this.state.file.name}
+            </div>
+            <div>
+              {this.state.selected ? (
+                <button
+                  onClick={this.select_image}
+                  className="btn-danger btn-sm btn"
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  onClick={this.select_image}
+                  className="ml-dash-btn btn-sm btn"
+                >
+                  Select
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      // console.log("name", this.state);
+      return (
+        <div className="align-items-center col-12 d-flex">
+          <div className="col-6 text-capitalize text-left text-truncate">
+            {this.state.file.name}
+          </div>
+          <div className="col-4 ">{this.uploadStatus()}</div>
+          <div className="col-2 ">
+            {Math.round(this.state.file.size / 2048)} KB
+          </div>
+        </div>
+      );
+    }
   }
 }
 
-export default FileUploading;
+export default connect(null, mapDispatchToProps)(FileUploading);

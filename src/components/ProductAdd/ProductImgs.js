@@ -10,6 +10,7 @@ import { remove_photo } from "../../store/actions/actions";
 const mapStateToProps = (state) => {
   return {
     product: state.product,
+    selected_images_in_selector: state.productAR.selected_images_in_selector,
   };
 };
 
@@ -62,6 +63,7 @@ class ProductImgs extends Component {
     if (this.state.fileselector) {
       return (
         <FileSelector
+          num_selected_images={this.props.selected_images_in_selector.length}
           url={(x) => this.fileUrl(x)}
           close={() => this.setState({ fileselector: false })}
         />

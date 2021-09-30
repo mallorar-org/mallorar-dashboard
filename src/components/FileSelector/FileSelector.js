@@ -155,14 +155,14 @@ class FileSelector extends Component {
     }
   };
 
-  runCall = (callback) => {
-    this.child.runCall();
-  };
+  // runCall = (callback) => {
+  //   this.child.runCall();
+  // };
 
   pageRender = () => {
     switch (this.state.activeItem) {
       case "1":
-        return <FileUpload />;
+        return <FileUpload close={this.props.close} />;
       case "2":
         return (
           <ShowFiles
@@ -178,7 +178,7 @@ class FileSelector extends Component {
           />
         );
       default:
-        return <FileUpload />;
+        return <FileUpload close={this.props.close} />;
     }
   };
 
@@ -253,19 +253,19 @@ class FileSelector extends Component {
               </div>
               <div className="col-lg-4 p-0 p-md-2 mb-3 mb-md-0 position-relative">
                 <div className="border p-2 ml-shadow ml-img-view">
+                  {/* {this.props.selected_images_in_selector.length} */}
                   {this.props.selected_images_in_selector.length > 0 ? (
                     <div className="ml-center">
-                      <div className="text-secondary text-center py-2">
+                      {/* <div className="text-secondary text-center py-2">
                         {this.props.selected_images_in_selector.length} Photos
                         selected
-                      </div>
+                      </div> */}
                       <div className="">
                         <button
                           onClick={this.add_selected_Pictures}
                           className="ml-dash-btn px-4"
                         >
-                          Add ({this.props.selected_images_in_selector.length})
-                          selected
+                          Add selected
                         </button>
                       </div>
                     </div>
