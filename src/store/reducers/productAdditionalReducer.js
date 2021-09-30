@@ -1,5 +1,6 @@
 const initialState = {
   selectedProducts: [],
+  selected_images_in_selector: [],
   tobdeleted: null,
   productPage: {
     loading: true,
@@ -10,6 +11,32 @@ const initialState = {
 
 const productInitialReducer = (state = initialState, actions) => {
   switch (actions.type) {
+    case "CLEAR_SELECTED_IMAGES_I_S":
+      return {
+        ...state,
+        selected_images_in_selector: [],
+      };
+    case "SELECT_IMAGE_IN_SELECTOR":
+      let selected_url = actions.payload;
+      let current_selected_images = state.selected_images_in_selector;
+
+      if (current_selected_images.indexOf(selected_url) === -1) {
+        current_selected_images.push(selected_url);
+      } else {
+        let temp_selected = [];
+        current_selected_images.forEach((x) => {
+          if (x !== selected_url) {
+            temp_selected.push(x);
+          }
+        });
+        current_selected_images = temp_selected;
+      }
+
+      return {
+        ...state,
+        selected_images_in_selector: current_selected_images,
+      };
+
     case "UPDATE_PRODUCTS_SELLER_PRODUCTS":
       let pd = state.productPage;
 

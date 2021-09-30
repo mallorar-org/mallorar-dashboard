@@ -86,6 +86,29 @@ const productReducer = (state = initialData, action) => {
         product_images: filtered_product_images,
       };
 
+    case "ADD_SELECTED_PHOTOS_IN_SELCT_TO_PRODUCT":
+      let pr_photos_to_update = state.product_images;
+
+      let new_starting_image_index = 0;
+      pr_photos_to_update.forEach((x) => {
+        if (x.index > new_starting_image_index) {
+          new_starting_image_index = x.index;
+        }
+      });
+
+      action.payload.forEach((x) => {
+        pr_photos_to_update.push({
+          index: new_starting_image_index + 1,
+          product_url: x,
+        });
+        new_starting_image_index = new_starting_image_index + 1;
+      });
+
+      return {
+        ...state,
+        product_images: pr_photos_to_update,
+      };
+
     case "ADD_PRODUCT_PHOTO":
       let current_product_images_c2 = state.product_images;
       let new_image_index = 0;

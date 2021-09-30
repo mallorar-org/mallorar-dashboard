@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Loader from "../../pages/loading";
 import axios from "axios";
 import { connect } from "react-redux";
+import Checkbox from "../common/CheckBox";
+import SelectorImage from "./SelectorImage";
 
 const mapStateToProps = (state) => {
   return {};
@@ -70,19 +72,15 @@ class ShowFiles extends Component {
     return (
       <div className="border-bottom pt-0 ml-image-selecter border-top- d-flex flex-wrap ml-modal-left-drawer">
         {this.state.images.map((x, index) => (
-          <div
-            className={`${this.cssRacho(
-              index,
-            )} col-6 p-2 col-md-4 col-lg-3 text-center`}
+          <SelectorImage
+            src={x.fileUrl.replace(orU, urlMask) + "&height=130&q=60"}
+            alt={x.fileUrl}
+            url={x.fileUrl}
+            className={this.cssRacho(index)}
             key={index}
-          >
-            <img
-              src={x.fileUrl.replace(orU, urlMask) + "&height=130&q=60"}
-              alt={x.fileUrl}
-              onClick={() => this.selectImage(index, x)}
-              className={` ml-img-preview`}
-            />
-          </div>
+            index={x.filename + index}
+            onClick={() => this.selectImage(index, x)}
+          />
         ))}
       </div>
     );

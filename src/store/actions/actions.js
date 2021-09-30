@@ -3,6 +3,22 @@ import store from "../store";
 import { notify, close } from "../../components/MLNotify/controls";
 import { validateProduct } from "../../util/validateProductObj";
 
+export const add_selected_Pictures_in_selector = () => (dispatch) => {
+  let selected_photos = store.getState().productAR.selected_images_in_selector;
+  dispatch({
+    type: "ADD_SELECTED_PHOTOS_IN_SELCT_TO_PRODUCT",
+    payload: selected_photos,
+  });
+  dispatch({
+    type: "CLEAR_SELECTED_IMAGES_I_S",
+  });
+};
+export const select_image_in_selector = (url) => {
+  return {
+    type: "SELECT_IMAGE_IN_SELECTOR",
+    payload: url,
+  };
+};
 export const remove_photo = (index) => {
   return {
     type: "REMOVE_PRODUCT_PHOTO",
@@ -26,7 +42,7 @@ export const add_new_short_desc_field = () => (dispatch) => {
       type: "SHORT_DESC_UPDATE",
       payload: {
         index: 1,
-        value: store.getState().product.product_short_desc[0].value,
+        text: store.getState().product.product_short_desc[0].text,
       },
     });
   }

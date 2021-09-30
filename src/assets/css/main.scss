@@ -1325,6 +1325,7 @@ input[type="radio"]:checked + .ml-radio-btn {
 .ml-product-img {
   width: 53px;
   height: 53px;
+  object-fit: contain;
 }
 
 .ml-row-btn {
@@ -1735,14 +1736,27 @@ select {
     cursor: pointer;
     object-fit: contain;
     border: 3px solid rgb(255, 255, 255);
+
+    &.selected {
+      box-shadow: inset 0px 0px 0px 4px #3e5973;
+      .m-selector-image-header {
+        background: #3e597391;
+      }
+    }
   }
 
   .ml-img-preview_a {
     -webkit-box-shadow: inset 0px 0px 0px 4px $shade5;
     -moz-box-shadow: inset 0px 0px 0px 4px $shade5;
     box-shadow: inset 0px 0px 0px 4px $shade5;
-    box-shadow: inset 0px 0px 0px 4px $shade5;
     object-fit: contain;
+
+    &.selected {
+      box-shadow: inset 0px 0px 0px 4px #3e5973;
+      .m-selector-image-header {
+        background: #3e597391;
+      }
+    }
   }
 
   &::-webkit-scrollbar {
@@ -3741,4 +3755,22 @@ a.ml-btn {
 .ml-modal-shipping-zones-sec {
   max-height: 100px;
   overflow: scroll;
+}
+
+.m-selector-image-header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: transparent;
+  div {
+    border: 0;
+  }
+}
+
+.selected {
+  box-shadow: inset 0px 0px 0px 4px #3e5973;
+  .m-selector-image-header {
+    background: #3e597391;
+  }
 }

@@ -4,13 +4,31 @@ import ShowFiles from "./ShowFiles";
 import ShowDocuments from "./ShowDocuments";
 import dayjs from "dayjs";
 import axios from "axios";
-import icons from "../common/icons";
+import { add_selected_Pictures_in_selector } from "../../store/actions/actions";
 
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    selected_images_in_selector: state.productAR.selected_images_in_selector,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    add_selected_Pictures: () => dispatch(add_selected_Pictures_in_selector()),
+  };
+};
 class FileSelector extends Component {
   state = {
     loading: true,
     activeItem: "1",
     selectimage: "",
+  };
+
+  add_selected_Pictures = () => {
+    this.props.add_selected_Pictures();
+    this.props.close();
   };
 
   selectPicture = () => {
@@ -84,13 +102,23 @@ class FileSelector extends Component {
 
           {this.state.selectimage.fileType === "document" ? undefined : (
             <div className="d-flex justify-content-end py-2">
-              <button
-                id="btnSele"
-                onClick={this.selectPicture}
-                className="ml-dash-btn px-4 mr-3"
-              >
-                Select
-              </button>
+              {this.props.selected_images_in_selector.length > 0 ? (
+                <button
+                  onClick={this.add_selected_Pictures}
+                  className="ml-dash-btn px-4 mr-3"
+                >
+                  Add ({this.props.selected_images_in_selector.length}) selected
+                </button>
+              ) : (
+                <button
+                  id="btnSele"
+                  onClick={this.selectPicture}
+                  className="ml-dash-btn px-4 mr-3"
+                >
+                  Select
+                </button>
+              )}
+
               <button
                 id="btnDel"
                 onClick={this.deleteImage}
@@ -103,7 +131,27 @@ class FileSelector extends Component {
         </>
       );
     } else {
-      return <div className="text-secondary ml-center">Nothing selected</div>;
+      return (
+        <>
+          {this.props.selected_images_in_selector.length > 0 ? (
+            <div className="ml-center">
+              <div className="text-secondary text-center py-2">
+                {this.props.selected_images_in_selector.length} Photos selected
+              </div>
+              <div className="">
+                <button
+                  onClick={this.add_selected_Pictures}
+                  className="ml-dash-btn px-4"
+                >
+                  Add ({this.props.selected_images_in_selector.length}) selected
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="text-secondary ml-center">Nothing selected</div>
+          )}
+        </>
+      );
     }
   };
 
@@ -162,8 +210,7 @@ class FileSelector extends Component {
             <div className="d-flex align-items-center">
               <div>
                 <h5 className="c-blue bold mb-0">
-                  {" "}
-                  File Explorer <small>v2.0.0</small>
+                  File Explorer <small>v2.2.1</small>
                 </h5>
                 {/* <div className="">Browse and upload pictures or documents</div> */}
               </div>
@@ -206,7 +253,25 @@ class FileSelector extends Component {
               </div>
               <div className="col-lg-4 p-0 p-md-2 mb-3 mb-md-0 position-relative">
                 <div className="border p-2 ml-shadow ml-img-view">
-                  {this.selecteditem()}
+                  {this.props.selected_images_in_selector.length > 0 ? (
+                    <div className="ml-center">
+                      <div className="text-secondary text-center py-2">
+                        {this.props.selected_images_in_selector.length} Photos
+                        selected
+                      </div>
+                      <div className="">
+                        <button
+                          onClick={this.add_selected_Pictures}
+                          className="ml-dash-btn px-4"
+                        >
+                          Add ({this.props.selected_images_in_selector.length})
+                          selected
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    this.selecteditem()
+                  )}
                 </div>
               </div>
             </div>
@@ -217,4 +282,4 @@ class FileSelector extends Component {
   }
 }
 
-export default FileSelector;
+export default connect(mapStateToProps, mapDispatchToProps)(FileSelector);

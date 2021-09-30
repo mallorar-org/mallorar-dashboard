@@ -1377,6 +1377,8 @@ input[type="radio"]:checked + .ml-radio-btn .ml-dot {
 .ml-product-img {
   width: 53px;
   height: 53px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .ml-row-btn {
@@ -1784,12 +1786,29 @@ select {
   border: 3px solid white;
 }
 
+.ml-modal-left-drawer .ml-img-preview.selected {
+  -webkit-box-shadow: inset 0px 0px 0px 4px #3e5973;
+          box-shadow: inset 0px 0px 0px 4px #3e5973;
+}
+
+.ml-modal-left-drawer .ml-img-preview.selected .m-selector-image-header {
+  background: #3e597391;
+}
+
 .ml-modal-left-drawer .ml-img-preview_a {
   -webkit-box-shadow: inset 0px 0px 0px 4px #658ca4;
   box-shadow: inset 0px 0px 0px 4px #658ca4;
-  box-shadow: inset 0px 0px 0px 4px #658ca4;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.ml-modal-left-drawer .ml-img-preview_a.selected {
+  -webkit-box-shadow: inset 0px 0px 0px 4px #3e5973;
+          box-shadow: inset 0px 0px 0px 4px #3e5973;
+}
+
+.ml-modal-left-drawer .ml-img-preview_a.selected .m-selector-image-header {
+  background: #3e597391;
 }
 
 .ml-modal-left-drawer::-webkit-scrollbar {
@@ -3996,5 +4015,26 @@ a.ml-btn {
 .ml-modal-shipping-zones-sec {
   max-height: 100px;
   overflow: scroll;
+}
+
+.m-selector-image-header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: transparent;
+}
+
+.m-selector-image-header div {
+  border: 0;
+}
+
+.selected {
+  -webkit-box-shadow: inset 0px 0px 0px 4px #3e5973;
+          box-shadow: inset 0px 0px 0px 4px #3e5973;
+}
+
+.selected .m-selector-image-header {
+  background: #3e597391;
 }
 /*# sourceMappingURL=main.css.map */
