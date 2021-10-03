@@ -399,7 +399,7 @@ export default [
       },
       {
         subDName: "Cellphones n Accessories",
-        subCats: [{ subCatName: "" }],
+        subCats: [{ subCatName: "Mobile Phones" }],
       },
       {
         subDName: "Computer n Network",
@@ -734,7 +734,13 @@ export default [
       },
       {
         subDName: "Fragrances n Deodorants",
-        subCats: [{ subCatName: "Deodorants n Antiperspirants" }],
+        subCats: [
+          { subCatName: "Womens Fragrances" },
+          { subCatName: "Mens Fragrances" },
+          { subCatName: "Childrens Fragrances" },
+          { subCatName: "Unisex Fragrances" },
+          { subCatName: "Deodorants n Antiperspirants" },
+        ],
       },
       {
         subDName: "Bathing n Shower",
