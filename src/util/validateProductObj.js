@@ -80,7 +80,7 @@ export function validateProduct(product) {
       `You must set your shipping zones if you offer international shipping, else remove international shipping on this product.`,
     ]);
   }
-  if (product.product_images.length === 1) {
+  if (product.product_images.length === 0) {
     return (error = [
       2,
       "Add Product Photo",
