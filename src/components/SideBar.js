@@ -71,8 +71,6 @@ function Navigation({
     },
   ];
 
-  console.log({ authLevel });
-
   return (
     <aside
       style={{

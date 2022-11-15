@@ -1,6 +1,8 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { close, notify } from "../../components/MLNotify/controls";
 import { validateProduct } from "../../util/validateProductObj";
+import { SET_META } from "../contructors";
 import store from "../store";
 
 export const add_selected_Pictures_in_selector = () => (dispatch) => {
@@ -91,14 +93,13 @@ export const getStore = () => (dispatch) => {
         payload: data.data,
       });
 
-      // const decodedToken = jwtDecode(
-      //   JSON.parse(window.localStorage.getItem("mdt")),
-      // );
-      // console({ decodedToken });
-      // dispatch({
-      //   type: SET_META,
-      //   payload: decodedToken,
-      // });
+      const decodedToken = window.localStorage.getItem("mdt");
+
+      dispatch({
+        type: SET_META,
+        payload: jwtDecode(decodedToken.split(" ")[1]),
+      });
+
       dispatch({
         type: "SET_PROGRESS",
         payload: 100,
