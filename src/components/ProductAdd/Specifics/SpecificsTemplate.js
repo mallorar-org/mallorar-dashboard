@@ -32,11 +32,12 @@ class SpecificsTemplate extends Component {
   };
 
   handleVarNameChanged = (e) => {
-    if (typeof e !== undefined) {
-      this.setState({
-        sname: e.value,
-      });
-    }
+    // eslint-disable-next-line
+    if (typeof e === undefined) return;
+
+    this.setState({
+      sname: e.value,
+    });
   };
 
   handleMultiSelectChange = (n) => {

@@ -3598,4 +3598,9 @@ a.ml-btn {
 }
 .selected .m-selector-image-header {
   background: rgba(62, 89, 115, 0.568627451);
+}
+
+.department-list .cat-image {
+  height: 100px;
+  width: 100px;
 }/*# sourceMappingURL=main.css.map */
