@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import store from "../../store/store";
 import countries from "../../util/countries";
-import ZoneAdder from "./ZoneAdder";
 import ProductShippingZone from "./ProductShippingZone";
+import ZoneAdder from "./ZoneAdder";
 
 const mapStateToProps = (state) => {
   return {
@@ -66,7 +66,6 @@ class ShippingDetails extends Component {
                           payload: e.target.value,
                         })
                       }
-                      className="form-control col-4"
                       name="stockfrom"
                       type="text"
                       placeholder="State/City"

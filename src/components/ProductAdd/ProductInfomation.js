@@ -1,10 +1,10 @@
+import { MDBModal, MDBModalBody } from "mdbreact";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import skills from "../../assets/images/skills.svg";
+import store from "../../store/store";
 import Pspecifics from "../ProductAdd/Pspecifics";
 import CreateTemplate from "../ProductAdd/Specifics/SpecificsTemplate";
-import { MDBModal, MDBModalBody } from "mdbreact";
-import { connect } from "react-redux";
-import store from "../../store/store";
 
 const mapStateToProps = (state) => {
   return {
@@ -117,7 +117,9 @@ class ProductInfomation extends Component {
                   <div
                     to="#"
                     // onClick={this.toggle("2")}
+                    // eslint-disable-next-line jsx-a11y/aria-role
                     role="disabled"
+                    alt=""
                     className={this.pricingTabsCss("12")}
                   >
                     Saved Templates
@@ -125,7 +127,9 @@ class ProductInfomation extends Component {
                   <div
                     to="#"
                     // onClick={this.toggle("3")}
+                    // eslint-disable-next-line jsx-a11y/aria-role
                     role="disabled"
+                    alt=""
                     className={this.pricingTabsCss("13")}
                   >
                     Global

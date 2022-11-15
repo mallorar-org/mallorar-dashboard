@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import HomeSection from "../Admin/HomeSectionPart";
-import Categories from "../Admin/Categories";
-import Loading from "../../pages/loading";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+import React, { Component } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../pages/loading";
+import Categories from "../Admin/Categories";
+import HomeSection from "../Admin/HomeSectionPart";
 toast.configure();
 
 class Storefront extends Component {
@@ -48,7 +48,7 @@ class Storefront extends Component {
             <div className="bold h6 mb-0">Success</div>
             <div>Your store front has been updated successfully</div>
           </div>,
-          toast.TYPE.SUCCESS
+          toast.TYPE.SUCCESS,
         );
       })
       .catch(() => {
@@ -61,7 +61,7 @@ class Storefront extends Component {
               We could not update your settings, check your internet connection
             </div>
           </div>,
-          toast.TYPE.ERROR
+          toast.TYPE.ERROR,
         );
       });
   };

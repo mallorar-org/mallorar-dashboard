@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Loading from "../../components/loadingItem/loadingItem";
 import axios from "axios";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import Loading from "../../components/loadingItem/loadingItem";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +15,7 @@ class UserItem extends Component {
     loading: true,
   };
 
-  updateDetails = () => { };
+  updateDetails = () => {};
 
   handleSubmit = (e) => {
     e.preventDefault();

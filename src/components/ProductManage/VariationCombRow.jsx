@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   update_combination_cost,
   update_stock_count,
 } from "../../store/actions/productActions";
-import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -1,5 +1,5 @@
 import React from "react";
-const { useState, useEffect, useRef } = React;
+const { useState, useRef } = React;
 
 function Test({ url }) {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ function Test({ url }) {
     <>
       <div style={{ display: loading ? "block" : "none" }}>Loading images,</div>
       <div style={{ display: loading ? "none" : "block" }}>
-        <img src={url} onLoad={imageLoaded} />
+        <img alt="" src={url} onLoad={imageLoaded} />
       </div>
     </>
   );

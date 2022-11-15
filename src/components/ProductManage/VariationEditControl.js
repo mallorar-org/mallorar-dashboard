@@ -1,6 +1,4 @@
-import { random } from "chroma-js";
 import React, { Component } from "react";
-import { FaPencilAlt, FaPlus, FaStar } from "react-icons/fa";
 import { RiCloseLine } from "react-icons/ri";
 import CheckBox from "../common/CheckBox";
 import MLSelect from "../MLSelect/MLSelect";
@@ -176,7 +174,7 @@ class VariationControl extends Component {
           <div className="row">
             <div className="col-6">
               <div className="mt-">
-                {this.state.mlSelected.value == "" ? (
+                {this.state.mlSelected.value === "" ? (
                   <>
                     <div className="mb-2">Choose variation type</div>
 
@@ -247,7 +245,7 @@ class VariationControl extends Component {
               <div className="mt-3 ">
                 {/* <div className="form-control"> */}
 
-                {this.state.mlSelected.value == "create-new-variation" && (
+                {this.state.mlSelected.value === "create-new-variation" && (
                   <div className="d-flex">
                     <input
                       id="txtNV"
@@ -284,7 +282,6 @@ class VariationControl extends Component {
                             type="text"
                           />
                           <button
-                            type="button"
                             type="button"
                             onClick={this.saveVariant}
                             className="ml-btn shadow-none rounded-0 rounded-left btn border-left-0 border"

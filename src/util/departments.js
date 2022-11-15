@@ -1,4 +1,4 @@
-export default [
+const departments = [
   {
     departmentName: "Fashion",
     SubDepartments: [
@@ -2163,3 +2163,5 @@ export default [
     ],
   },
 ];
+
+export default departments;

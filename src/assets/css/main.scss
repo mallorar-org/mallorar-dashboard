@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+
 @font-face {
   font-family: Lato;
   src: url("../fonts/Lato/Lato-Regular.ttf");
@@ -620,6 +622,9 @@ input[type="radio"]:checked + .ml-radio-btn {
       background-color: #ffffff1f;
     }
 
+    svg {
+      font-size: 24px;
+    }
     img {
       width: 22px;
     }

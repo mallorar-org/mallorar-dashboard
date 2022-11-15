@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import RTE from "../MallorarRichTextEditor/MallorarRichTextEditor";
 import { connect } from "react-redux";
 import store from "../../store/store";
-import { AiOutlineTags } from "react-icons/ai";
-import { BiDetail } from "react-icons/bi";
+import RTE from "../MallorarRichTextEditor/MallorarRichTextEditor";
 import ShortDescription from "../ProductManage/ShortDescription";
 
 import { update_product_name } from "../../store/actions/productActions";
-import ProductDepartment from "./ProductDepartment";
-import ProductInfomation from "./ProductInfomation";
-import ProductVariations from "../ProductManage/ProductVariations";
-import ProductImg from "./ProductImg";
-import ProductImgs from "./ProductImgs";
 import MLSelect from "../MLSelect/MLSelect";
+import ProductVariations from "../ProductManage/ProductVariations";
+import ProductDepartment from "./ProductDepartment";
+import ProductImgs from "./ProductImgs";
+import ProductInfomation from "./ProductInfomation";
 
 const mapStateToProps = (state) => {
   return {

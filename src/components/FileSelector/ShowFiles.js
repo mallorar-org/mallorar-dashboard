@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import Loader from "../../pages/loading";
 import axios from "axios";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import Checkbox from "../common/CheckBox";
+import Loader from "../../pages/loading";
 import SelectorImage from "./SelectorImage";
 
 const mapStateToProps = (state) => {

@@ -1,13 +1,12 @@
-import React, { Component } from "react";
 import { MDBModal, MDBModalBody } from "mdbreact";
-import { IoIosCheckmark } from "react-icons/io";
+import React, { Component } from "react";
 import { RiAlarmWarningFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
-  productModalControl,
-  createNewProduct,
   confirmDeletion,
+  createNewProduct,
+  productModalControl,
 } from "../../store/actions/actions";
 import store from "../../store/store";
 

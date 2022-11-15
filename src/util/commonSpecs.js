@@ -1,4 +1,4 @@
-export default [
+const commonSpecs = [
   {
     value: "Size",
     label: "Size",
@@ -24,3 +24,4 @@ export default [
     label: "Year Manufactured",
   },
 ];
+export default commonSpecs;

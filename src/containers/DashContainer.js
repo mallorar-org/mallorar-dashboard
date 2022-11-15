@@ -1,18 +1,18 @@
+import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "../Routes";
+import LoadingBar from "react-top-loading-bar";
+import icons from "../components/common/icons";
 import Navigation from "../components/Navigation";
 import SideBar from "../components/SideBar";
-import { connect } from "react-redux";
-import axios from "axios";
-import LoadingBar from "react-top-loading-bar";
-import { SET_AUTHENTICATED } from "../store/contructors";
-import { logOutSeller } from "../store/actions/sellerActions";
-import store from "../store/store";
-import { setLoadingBarProgress, getStore } from "../store/actions/actions";
 import Loader from "../pages/loading";
+import Routes from "../Routes";
+import { getStore, setLoadingBarProgress } from "../store/actions/actions";
+import { logOutSeller } from "../store/actions/sellerActions";
+import { SET_AUTHENTICATED } from "../store/contructors";
+import store from "../store/store";
 import FinishSetUp from "../util/setup/FinishSetUp";
-import icons from "../components/common/icons";
 // import LoadingItem from "../components/loadingItem/loadingItem";
 import BG from "../assets/images/780_987.png";
 import MLNotify from "../components/MLNotify";
@@ -26,8 +26,9 @@ axios.defaults.baseURL = "https://api.mallorar.com";
 
 const token = localStorage.mdt;
 if (token) {
+  //
   // const decodedToken = jwtDecode(token);
-  // console.log(decodedToken);
+  // console.log({ decodedToken });
   // store.dispatch(loadmeta(decodedToken));
 
   // if (decodedToken.exp * 1000 < Date.now()) {
@@ -48,8 +49,8 @@ if (token) {
 //     const decodedToken = jwtDecode(token);
 //     if (decodedToken.exp * 1000 < Date.now()) {
 //       window.location.href = "/login";
-//       store.dispatch(logOutSeller());
-//     } else {
+//       store.dispatch(logOutSeller());es
+//     } else
 //       store.dispatch({ type: SET_AUTHENTICATED });
 //       axios.defaults.headers.common[`Authorization`] = token;
 //     }

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
 import axios from "axios";
-import CheckBox from "../common/CheckBox";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { select_image_in_selector } from "../../store/actions/actions";
+import CheckBox from "../common/CheckBox";
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -74,6 +74,7 @@ class FileUploading extends Component {
                 onchange={this.select_image}
               />{" "}
               <img
+                alt=""
                 src={this.state.url}
                 className="img-fluid ml-product-img ml-2 mr-2"
               />

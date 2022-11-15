@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Loading from "../../pages/loading";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+import React, { Component } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import FileSelector from "../../components/FileSelector/FileSelector";
+import Loading from "../../pages/loading";
 
 toast.configure();
 class Storeinformation extends Component {
@@ -70,7 +70,7 @@ class Storeinformation extends Component {
           <div className="bold h6 mb-0">Warning</div>
           <div>Please provide a valid store name</div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
     if (this.state.storeDescription === "") {
@@ -82,7 +82,7 @@ class Storeinformation extends Component {
             you
           </div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
     if (this.state.storeName === "") {
@@ -91,7 +91,7 @@ class Storeinformation extends Component {
           <div className="bold h6 mb-0">Warning</div>
           <div>Please provide a valid store name</div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
     if (this.state.storeTag === "") {
@@ -100,7 +100,7 @@ class Storeinformation extends Component {
           <div className="bold h6 mb-0">Warning</div>
           <div>Please provide a valid store tag</div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
 
@@ -117,7 +117,7 @@ class Storeinformation extends Component {
             <div className="bold h6 mb-0">Success</div>
             <div>Your changes have been saved successfully</div>
           </div>,
-          toast.TYPE.SUCCESS
+          toast.TYPE.SUCCESS,
         );
       })
       .catch(() => {
@@ -128,7 +128,7 @@ class Storeinformation extends Component {
             <div className="bold h6 mb-0">Caught Error</div>
             <div>We encountered an error, please retry or contact support</div>
           </div>,
-          toast.TYPE.ERROR
+          toast.TYPE.ERROR,
         );
       });
   };

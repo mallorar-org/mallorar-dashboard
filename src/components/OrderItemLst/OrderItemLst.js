@@ -6,7 +6,7 @@ export default function OrderItemLst({
   itemName,
   itemsQty,
   itemsTotal,
-  itemVar,
+  // itemVar,
   ItemId,
 }) {
   return (

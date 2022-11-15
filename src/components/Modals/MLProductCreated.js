@@ -1,12 +1,12 @@
-import React, { Component } from "react";
 import { MDBModal, MDBModalBody } from "mdbreact";
+import React, { Component } from "react";
 import { IoIosCheckmark } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
-  productModalControl,
   createNewProduct,
   editProduct,
+  productModalControl,
 } from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {

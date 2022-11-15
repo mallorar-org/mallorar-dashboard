@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import icons from "./common/icons";
-import { Link } from "react-router-dom";
-import jwt from "jwt-decode";
-import CreateProduct from "../components/CreateProduct/CreateProduct";
+import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import icons from "./common/icons";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +11,6 @@ const mapStateToProps = (state) => {
 };
 
 function Navigation({ stname, handleNav, navState, resize, title }) {
-  const [tokenData] = useState(jwt(localStorage.mdt));
   return (
     <div className="ml-nav border-bottom d-flex justify-content-between position-sticky align-items-center px-4">
       <div className="align-items-center d-flex">

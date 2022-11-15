@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import pex from "../../assets/images/pex.jpg";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
 import FileSelector from "../../components/FileSelector/FileSelector";
 
@@ -112,6 +111,7 @@ class ProductImgs extends Component {
                   <img
                     onClick={this.selectpicO}
                     id="img1"
+                    alt=""
                     src={this.state.img1}
                   />
                 </div>
@@ -121,6 +121,7 @@ class ProductImgs extends Component {
                   <img
                     onClick={this.selectpicO}
                     id="img2"
+                    alt=""
                     src={this.state.img2}
                   />
                 </div>
@@ -130,6 +131,7 @@ class ProductImgs extends Component {
                   <img
                     onClick={this.selectpicO}
                     id="img3"
+                    alt=""
                     src={this.state.img3}
                   />
                 </div>
@@ -139,6 +141,7 @@ class ProductImgs extends Component {
                   <img
                     onClick={this.selectpicO}
                     id="img4"
+                    alt=""
                     src={this.state.img4}
                   />
                 </div>

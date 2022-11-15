@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { Bar, Line } from "react-chartjs-2";
-import MLSelect from "../MLSelect/MLSelect";
 import {
-  AiFillCaretDown,
-  AiFillFilePdf,
   AiOutlineBarChart,
   AiOutlineDownload,
   AiOutlineLineChart,
 } from "react-icons/ai";
-import { BiCalendar } from "react-icons/bi";
-
-import { Link } from "react-router-dom";
-import { BarChart } from "recharts";
-import { FaDownload } from "react-icons/fa";
+import MLSelect from "../MLSelect/MLSelect";
 
 const data = {
   options: {},
@@ -45,25 +38,8 @@ const data = {
       hoverBackgroundColor: "#1c3349",
       hoverBorderColor: "#1c3349",
       data: [
-        465,
-        59,
-        80,
-        181,
-        56,
-        55,
-        150,
-        180,
-        381,
-        56,
-        555,
-        50,
-        180,
-        381,
-        256,
-        455,
-        410,
-        402,
-        232,
+        465, 59, 80, 181, 56, 55, 150, 180, 381, 56, 555, 50, 180, 381, 256,
+        455, 410, 402, 232,
       ],
     },
   ],

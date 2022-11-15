@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import { MDBTabPane, MDBTabContent } from "mdbreact";
 import { connect } from "react-redux";
-import Atrribute from "./Atrribute";
 import store from "../../store/store";
 import MLSelect from "../MLSelect/MLSelect";
-import money from "../../assets/images/money.svg";
-import delivery from "../../assets/images/delivery.svg";
-import setup from "../../assets/images/setup.svg";
-import AtrributeManage from "../ProductAdd/AtrributeManage";
-import ProductVariations from "../ProductManage/ProductVariations";
-import { registerLocale } from "react-datepicker";
 
 const mapStateToProps = (state) => {
   return {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import CheckBox from "../common/CheckBox";
 import { connect } from "react-redux";
 import { select_image_in_selector } from "../../store/actions/actions";
+import CheckBox from "../common/CheckBox";
 
 const mapStateToProps = (state) => {
   return {

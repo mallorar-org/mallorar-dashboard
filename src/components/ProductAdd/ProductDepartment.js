@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import store from "../../store/store";
 import departments from "../../util/departments";
 import MLSelect from "../MLSelect/MLSelect";
-import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
@@ -250,7 +250,11 @@ class ProductDepartment extends Component {
               </div>
               <div className="px-0 col-4"></div>
               <div className="mt-3 text-center">
-                <a target="_blank" href="https://support.mallorar.com/support">
+                <a
+                  target="_blank"
+                  href="https://support.mallorar.com/support"
+                  rel="noreferrer"
+                >
                   Report Missing Categories
                 </a>
               </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import MessageItem from "./MessageItem";
 
 export default function MessagesList({ messages }) {
@@ -20,7 +20,6 @@ export default function MessagesList({ messages }) {
           dateSent={mess.timeSent}
         />
       ))}
-
     </div>
-  )
+  );
 }

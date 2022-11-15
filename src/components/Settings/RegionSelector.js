@@ -81,19 +81,19 @@ class RegionSelector extends Component {
 
   selected = (n) => {
     let selected = this.state.selected;
-    selected.forEach(x => {
+    selected.forEach((x) => {
       if (n === x) {
-        return selected.push(x)
+        return selected.push(x);
       }
-    })
+    });
 
     this.setState({
-      selected: selected
-    })
-  }
+      selected: selected,
+    });
+  };
 
   render() {
-    console.log(this.state.selected)
+    console.log(this.state.selected);
     return (
       <div className="modal pt-5">
         <div className="border card-body modal-content">
@@ -107,8 +107,12 @@ class RegionSelector extends Component {
               </h5>
             </div>
             <div>
-              <button onClick={this.props.close} className="btn shadow-none btn-light bold rounded-circle btn-lg"
-              >&times;</button>
+              <button
+                onClick={this.props.close}
+                className="btn shadow-none btn-light bold rounded-circle btn-lg"
+              >
+                &times;
+              </button>
             </div>
           </div>
           <div>

@@ -1,9 +1,9 @@
 import React from "react";
 // import jwt from "jwt-decode";
-import icons from "../components/common/icons";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Progress from "../components/common/circleprogress";
-import { connect } from "react-redux";
+import icons from "../components/common/icons";
 import { formatNumber } from "../util/longNumber";
 
 const mapStateToProps = (state) => {

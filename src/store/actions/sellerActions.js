@@ -29,9 +29,9 @@ export const loginSeller = (userCred, history) => (dispatch) => {
         type: SET_META,
         payload: decodedToken,
       });
+
       // dispatch(getLoggedInUserData());
       dispatch({ type: CLEAR_ERRORS });
-
       dispatch({ type: SET_AUTHENTICATED });
 
       history.push(`/`);

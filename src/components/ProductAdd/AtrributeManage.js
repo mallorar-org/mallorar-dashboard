@@ -43,7 +43,7 @@ class AtrributeManage extends Component {
   isValidColor(strColor) {
     var s = new Option().style;
     s.background = strColor;
-    return s.background == strColor.toLowerCase();
+    return s.background === strColor.toLowerCase();
   }
   render() {
     return (

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FileSelector from "../../components/FileSelector/FileSelector";
-import PlaceHolderImage from "../../assets/images/addpicture.svg";
-import store from "../../store/store";
 import { connect } from "react-redux";
+import PlaceHolderImage from "../../assets/images/addpicture.svg";
+import FileSelector from "../../components/FileSelector/FileSelector";
+import store from "../../store/store";
 
 const mapStateToProps = (state) => {
   return {

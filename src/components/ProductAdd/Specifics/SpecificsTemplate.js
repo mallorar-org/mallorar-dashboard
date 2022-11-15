@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import commonSpecs from "../../../util/commonSpecs.js";
 import Creatable from "../../MLSelect/CreatableSelect";
 import STlistitem from "../Specifics/STlistitem";
-import commonSpecs from "../../../util/commonSpecs.js";
 
 class SpecificsTemplate extends Component {
   state = {

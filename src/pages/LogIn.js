@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { loginSeller } from "../store/actions/sellerActions";
 import icons from "../components/common/icons";
+import { loginSeller } from "../store/actions/sellerActions";
 // import LockScreen from "./LockScreen";
 // import LoadingItem from "../components/loadingItem/loadingItem";
 

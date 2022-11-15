@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import { CgDetailsLess } from "react-icons/cg";
+import React from "react";
 import { connect } from "react-redux";
 import {
-  short_desc_update,
   add_new_short_desc_field,
   remove_short_desc,
+  short_desc_update,
 } from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {

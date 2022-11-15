@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import UserItem from "../Users/UserItem";
 import axios from "axios";
+import React, { Component } from "react";
 import Loading from "../../pages/loading";
+import UserItem from "../Users/UserItem";
 
 class AllUsers extends Component {
   state = {

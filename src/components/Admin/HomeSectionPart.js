@@ -9,30 +9,44 @@ class HomeSectionPart extends Component {
     BannerImg:
       "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
 
-    SliderImgs: [{
-      title: 'Slider One',
-      SliderImg: "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
-    }, {
-      title: 'Slider Two',
-      SliderImg: "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
-    }, {
-      title: 'Slider Three',
-      SliderImg: "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
-    }]
+    SliderImgs: [
+      {
+        title: "Slider One",
+        SliderImg:
+          "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
+      },
+      {
+        title: "Slider Two",
+        SliderImg:
+          "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
+      },
+      {
+        title: "Slider Three",
+        SliderImg:
+          "https://pnp-hybris-media-prod.s3-eu-west-1.amazonaws.com/media/2020/New+Homepage+2/header/Fathers_Day_OLS_Homepage_Banner_01.jpg",
+      },
+    ],
   };
 
-  selectpicO = e => this.setState({ fileselector: true, target: e.target.id, });
+  selectpicO = (e) =>
+    this.setState({ fileselector: true, target: e.target.id });
 
-  fileUrl = url => this.setState({ [this.state.target]: url });
+  fileUrl = (url) => this.setState({ [this.state.target]: url });
 
-  FileSelector = () => this.state.fileselector ? <FileSelector url={(x) => this.fileUrl(x)} close={() => this.setState({ fileselector: false })} /> : undefined;
+  FileSelector = () =>
+    this.state.fileselector ? (
+      <FileSelector
+        url={(x) => this.fileUrl(x)}
+        close={() => this.setState({ fileselector: false })}
+      />
+    ) : undefined;
 
   componentDidMount() {
-    this.props.onRef1(this)
-    this.setState({ ...this.props.defaults })
+    this.props.onRef1(this);
+    this.setState({ ...this.props.defaults });
   }
   componentWillUnmount() {
-    this.props.onRef1(undefined)
+    this.props.onRef1(undefined);
   }
 
   captureData = () => this.props.getHomeBannerSlider(this.state);
@@ -50,7 +64,13 @@ class HomeSectionPart extends Component {
                     <img className="img-fluid" src={card.SliderImg} alt="" />
                   </div>
                   <div className="card-footer">
-                    <button onClick={this.selectpicO} id="SliderImg1" className="ml-dash-btn">Change Image</button>
+                    <button
+                      onClick={this.selectpicO}
+                      id="SliderImg1"
+                      className="ml-dash-btn"
+                    >
+                      Change Image
+                    </button>
                   </div>
                 </div>
               </div>
@@ -70,7 +90,13 @@ class HomeSectionPart extends Component {
           <div className="col-md-4 col-12 border p-3 d-flex justify-content-center align-items-center">
             <div className="d-flex align-items-center justify-content-center">
               <div>
-                <button id="BannerImg" onClick={this.selectpicO} className="btn shadow-none btn-info px-3 bold r-0  mr-2">Change Image</button>
+                <button
+                  id="BannerImg"
+                  onClick={this.selectpicO}
+                  className="btn shadow-none btn-info px-3 bold r-0  mr-2"
+                >
+                  Change Image
+                </button>
               </div>
             </div>
           </div>
@@ -94,13 +120,26 @@ class HomeSectionPart extends Component {
         <div className="d-flex justify-content-between">
           {this.FileSelector()}
           <div>
-            <h6 className="mb-0 bold">{this.state.selected === "banner" ? 'Home Banner' : 'Slider Section'}</h6>
+            <h6 className="mb-0 bold">
+              {this.state.selected === "banner"
+                ? "Home Banner"
+                : "Slider Section"}
+            </h6>
             <div>Please select what you want to display on this section</div>
           </div>
           <div>
-            <button id="btnSwitchBack" onClick={() => this.setState({ selected: this.state.selected === "slider" ? 'banner' : "slider" })} className="ml-dash-btn no-outline">
+            <button
+              id="btnSwitchBack"
+              onClick={() =>
+                this.setState({
+                  selected:
+                    this.state.selected === "slider" ? "banner" : "slider",
+                })
+              }
+              className="ml-dash-btn no-outline"
+            >
               Switch Feature
-              </button>
+            </button>
           </div>
         </div>
         {this.renderComponent()}

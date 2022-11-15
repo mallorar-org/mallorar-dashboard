@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 
 class ShippingZone extends Component {
   state = {
@@ -16,10 +16,9 @@ class ShippingZone extends Component {
         cost: Scost,
       })
       .then(() => {
-
         document.getElementById(this.props.x.id).innerHTML = "Save";
-        this.props.reload()
-        return this.setState({ edit: false })
+        this.props.reload();
+        return this.setState({ edit: false });
       })
       .catch((err) => {
         console.log(err);

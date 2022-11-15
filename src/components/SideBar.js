@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Logo from "../assets/images/ml-white-nbg.png";
+import React from "react";
+import { connect } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import icons from "./common/icons";
-import jwt from "jwt-decode";
-import Tooltip from "../components/common/Tooltip";
-import { connect } from "react-redux";
+
+import { BiCategory } from "react-icons/bi";
 
 const mapStateToProps = (state) => {
   return {
     stname: state.core.storeName,
+    authLevel: state.admin.authLevel,
     // stname: "es",
   };
 };
 
-function Navigation({ stname, resize, navState, metadata, logOutSeller }) {
+function Navigation({
+  stname,
+  resize,
+  navState,
+  metadata,
+  logOutSeller,
+  authLevel,
+}) {
   const navOptions = [
     {
       title: "Messages",
@@ -24,6 +31,13 @@ function Navigation({ stname, resize, navState, metadata, logOutSeller }) {
       title: "Products",
       link: "/products",
       icon: icons.solid.tag.offWhite,
+    },
+    {
+      title: "Categories",
+      link: "/categories",
+      icon: null,
+      svg_icon: <BiCategory className="" />,
+      admin: true,
     },
     {
       title: "Storefront",
@@ -57,7 +71,7 @@ function Navigation({ stname, resize, navState, metadata, logOutSeller }) {
     },
   ];
 
-  const [tokenData] = useState(jwt(localStorage.mdt));
+  console.log({ authLevel });
 
   return (
     <aside
@@ -106,23 +120,30 @@ function Navigation({ stname, resize, navState, metadata, logOutSeller }) {
                 </div>
               </Link>
             ) : (
-              navOptions.map((opt, index) => (
-                <NavLink
-                  key={index}
-                  title={opt.title}
-                  className="ml-dash-options rounded my-2 d-flex align-items-center"
-                  to={opt.link}
-                  activeClassName="ml-dash-options_a"
-                >
-                  <div className="d-flex justify-content-center align-items-center">
-                    <img src={opt.icon} alt="" />
+              navOptions.map((opt, index) => {
+                if (opt.admin && authLevel !== 6) return null;
+                return (
+                  <NavLink
+                    key={index}
+                    title={opt.title}
+                    className="ml-dash-options rounded my-2 d-flex align-items-center"
+                    to={opt.link}
+                    activeClassName="ml-dash-options_a"
+                  >
+                    <div className="d-flex justify-content-center align-items-center">
+                      {opt.svg_icon ? (
+                        opt.svg_icon
+                      ) : (
+                        <img src={opt.icon} alt="" />
+                      )}
 
-                    <span className="ml-2 mb-0 ml-change ml-sidebar-tt">
-                      {opt.title}
-                    </span>
-                  </div>
-                </NavLink>
-              ))
+                      <span className="ml-2 mb-0 ml-change ml-sidebar-tt">
+                        {opt.title}
+                      </span>
+                    </div>
+                  </NavLink>
+                );
+              })
             )
           ) : undefined}
           <div

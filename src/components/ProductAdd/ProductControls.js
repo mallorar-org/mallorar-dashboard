@@ -1,13 +1,8 @@
-import React, { Component } from "react";
 import dayjs from "dayjs";
-import { connect } from "react-redux";
-import {
-  IoMdCalendar,
-  IoIosTrendingUp,
-  IoIosRemoveCircle,
-  IoIosRocket,
-} from "react-icons/io";
+import React, { Component } from "react";
 import { ImBin } from "react-icons/im";
+import { IoIosRemoveCircle, IoIosRocket, IoMdCalendar } from "react-icons/io";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {

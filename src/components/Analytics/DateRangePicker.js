@@ -1,8 +1,7 @@
 import React, { Component } from "react";
+import DatePicker from "react-datepicker";
 import ReactDOM from "react-dom";
-import DatePicker, { ReactDatePickerProps } from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
-import { BiCalendar } from "react-icons/bi";
 import dayjs from "dayjs";
 
 class DateRangePicker extends Component {

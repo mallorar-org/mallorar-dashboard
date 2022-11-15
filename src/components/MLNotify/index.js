@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import alert from "../../assets/images/alert.svg";
 import check from "../../assets/images/check.svg";
 import warning from "../../assets/images/warning.svg";
-import alert from "../../assets/images/alert.svg";
-import { close, notify } from "../MLNotify/controls";
+import { close } from "../MLNotify/controls";
 
 const mapStateToProps = (state) => {
   return {

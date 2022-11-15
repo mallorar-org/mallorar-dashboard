@@ -1,9 +1,9 @@
 import {
+  LOADING_SIGNIN,
   SET_AUTHENTICATED,
   SET_ERRORS,
-  LOADING_SIGNIN,
-  UNSET_META,
   SET_META,
+  UNSET_META,
 } from "../contructors";
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
   userCredentials: [],
   error: "",
   loading: false,
+  authLevel: 0,
   meta: {
     claims: {
       fName: "Harmony",
@@ -55,6 +56,7 @@ const AdminReducer = (state = initialState, actions) => {
       return {
         ...state,
         meta: actions.payload,
+        authLevel: parseInt(actions.payload.claims.authLevel),
       };
     case LOADING_SIGNIN:
       return {

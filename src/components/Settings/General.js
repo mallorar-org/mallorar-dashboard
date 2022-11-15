@@ -1,7 +1,7 @@
-import React, { Component } from "react";
 import axios from "axios";
-import Loading from "../../pages/loading";
 import dayjs from "dayjs";
+import React, { Component } from "react";
+import Loading from "../../pages/loading";
 import icons from "../common/icons";
 
 class General extends Component {
@@ -168,7 +168,7 @@ class General extends Component {
                       readOnly
                       className="form-control"
                       defaultValue={dayjs(this.state.data.dataCreated).format(
-                        "L LT"
+                        "L LT",
                       )}
                     />
                   </div>

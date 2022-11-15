@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 
 class ZoneSelector extends Component {
   state = {
@@ -214,8 +214,8 @@ class ZoneSelector extends Component {
         cost: Scost,
       })
       .then(() => {
-        this.props.reload()
-        this.props.close()
+        this.props.reload();
+        this.props.close();
       })
       .catch((err) => {
         console.log(err);

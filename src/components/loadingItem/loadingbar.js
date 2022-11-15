@@ -1,5 +1,5 @@
-import store from "../../store/store";
 import { setLoadingBarProgress } from "../../store/actions/actions";
+import store from "../../store/store";
 
 export const beginTheBar = () => {
   // let i = Math.floor(Math.random() * 40) + 10;

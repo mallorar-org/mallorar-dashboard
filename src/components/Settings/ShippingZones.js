@@ -1,14 +1,14 @@
+import axios from "axios";
 import React, { Component } from "react";
+import Loading from "../../pages/loading";
 import ShippingZone from "./ShippingZone";
 import ZoneSelector from "./ZoneSelector";
-import axios from "axios";
-import Loading from "../../pages/loading";
 
 class ShippingZones extends Component {
   state = {
     showZS: false,
     loading: true,
-    currZones: []
+    currZones: [],
   };
   zoneSelector = () => {
     if (this.state.showZS) {
@@ -22,7 +22,7 @@ class ShippingZones extends Component {
   };
 
   componentDidMount = () => {
-    this.reload()
+    this.reload();
   };
 
   reload = () => {
@@ -32,8 +32,8 @@ class ShippingZones extends Component {
         console.log(data.data);
         this.setState({
           loading: false,
-          currZones: data.data
-        })
+          currZones: data.data,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +75,6 @@ class ShippingZones extends Component {
         {this.state.currZones.map((x, index) => (
           <ShippingZone index={index} x={x} key={index} reload={this.reload} />
         ))}
-
       </div>
     );
   }

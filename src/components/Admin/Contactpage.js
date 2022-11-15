@@ -1,7 +1,7 @@
-import React, { Component } from "react";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
+import React, { Component } from "react";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../pages/loading";
 toast.configure();
 
@@ -54,7 +54,7 @@ class Contactpage extends Component {
             <div className="bold h6 mb-0">Success</div>
             <div>Your store contact page has been updated successfully</div>
           </div>,
-          toast.TYPE.SUCCESS
+          toast.TYPE.SUCCESS,
         );
       })
       .catch((err) => {
@@ -66,7 +66,7 @@ class Contactpage extends Component {
             <div className="bold h6 mb-0">Error #67</div>
             <div>We failed to update your store</div>
           </div>,
-          toast.TYPE.ERROR
+          toast.TYPE.ERROR,
         );
       });
   };
@@ -92,7 +92,7 @@ class Contactpage extends Component {
               className="ml-dash-btn"
             >
               Save Changes
-              </button>
+            </button>
           </div>
         </div>
         <div className="container-fluid p-0">

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { BiCalendar } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import DateRangePicker from "../components/Analytics/DateRangePicker";
-import RevenueAnalytics from "../components/Analytics/RevenueAnalytics";
 import ProductAnalytics from "../components/Analytics/ProductAnalytics";
-import { BiCalendar } from "react-icons/bi";
+import RevenueAnalytics from "../components/Analytics/RevenueAnalytics";
 
 class Analytics extends Component {
   state = {

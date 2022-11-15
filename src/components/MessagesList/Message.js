@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import axios from "axios";
 import dayjs from "dayjs";
 import Local from "dayjs/plugin/relativeTime";
-import Loader from "../loadingItem/loadingItem";
-import axios from "axios";
+import React, { Component } from "react";
 import LoadingItem from "../loadingItem/loadingItem";
 
 dayjs.extend(Local);

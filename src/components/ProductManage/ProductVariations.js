@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { MDBModal, MDBModalBody } from "mdbreact";
-import { FaStumbleupon } from "react-icons/fa";
-import Variation from "./Variation";
-import VariationControl from "./VariationControl";
-import VariationEditControl from "./VariationEditControl";
-import VariationCombRow from "./VariationCombRow";
-import { update_product_variations } from "../../store/actions/productActions";
 import { connect } from "react-redux";
+import { update_product_variations } from "../../store/actions/productActions";
+import VariationCombRow from "./VariationCombRow";
+import VariationControl from "./VariationControl";
 
 const mapStateToProps = (state) => {
   return {

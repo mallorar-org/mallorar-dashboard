@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import productlist from "../productList/productlist";
 import RTE from "../MallorarRichTextEditor/MallorarRichTextEditor";
 
 class ProductInfor extends Component {
   state = {
-    productSlugPreview: "",
     productSlugPreview: "",
     productSlug: "",
     productName: "",

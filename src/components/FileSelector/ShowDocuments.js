@@ -1,8 +1,8 @@
+import axios from "axios";
 import React, { Component } from "react";
 import Loader from "../../pages/loading";
-import axios from "axios";
-import icons from "../common/icons";
 import { smoothenizename } from "../../util/smoothenizeurlname";
+import icons from "../common/icons";
 
 class ShowFiles extends Component {
   state = {
@@ -71,7 +71,11 @@ class ShowFiles extends Component {
             key={index}
           >
             <div className="col-2 p-2">
-              <img src={icons.solid.pdf.blue} className="ml-icon-size1" />
+              <img
+                alt=""
+                src={icons.solid.pdf.blue}
+                className="ml-icon-size1"
+              />
             </div>
             <div className="col-10 d-flex align-items-center p-2 text-left">
               {smoothenizename(x.filename)}

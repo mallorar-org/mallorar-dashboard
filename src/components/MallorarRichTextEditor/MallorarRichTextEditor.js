@@ -12,7 +12,7 @@ class MallorarRTE extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getSnapshotBeforeUpdate(prevProps) {
+  getSnapshotBeforeUpdate(_prevProps) {
     if (this.props.initial !== this.state.editorHtml && this.state.notdlp) {
       this.setState({
         editorHtml: this.props.initial,

@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { MDBTabPane, MDBTabContent } from "mdbreact";
-import Atrribute from "./AtrributeEdit";
-import productlist from "../productList/productlist";
 import axios from "axios";
+import { MDBTabContent, MDBTabPane } from "mdbreact";
+import React, { Component } from "react";
+import Atrribute from "./AtrributeEdit";
 
 class ProductData extends Component {
   state = {

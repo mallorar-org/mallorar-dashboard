@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import store from "../../store/store";
 import {
   remove_shipping_zone,
   update_int_zone_shipping_cost,

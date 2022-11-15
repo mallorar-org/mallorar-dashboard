@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
-import Chip from "../common/Chip";
-import MLSelect from "../MLSelect/MLSelect";
-import countries from "../../util/countries";
 import { connect } from "react-redux";
+import { notify } from "../../components/MLNotify/controls";
 import {
   add_intl_shipping_zone,
   remove_shipping_zone,
 } from "../../store/actions/productActions";
-import { notify } from "../../components/MLNotify/controls";
+import countries from "../../util/countries";
+import Chip from "../common/Chip";
+import MLSelect from "../MLSelect/MLSelect";
 
 const mapStateToProps = (state) => {
   return {

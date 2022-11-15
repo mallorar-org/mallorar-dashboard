@@ -1,7 +1,7 @@
 import axios from "axios";
-import store from "../store";
-import { notify, close } from "../../components/MLNotify/controls";
+import { close, notify } from "../../components/MLNotify/controls";
 import { validateProduct } from "../../util/validateProductObj";
+import store from "../store";
 
 export const add_selected_Pictures_in_selector = () => (dispatch) => {
   let selected_photos = store.getState().productAR.selected_images_in_selector;
@@ -74,6 +74,7 @@ export const getStore = () => (dispatch) => {
     type: "SET_PROGRESS",
     payload: 57,
   });
+
   axios
     .get("/dash/store")
     .then((data) => {
@@ -89,6 +90,15 @@ export const getStore = () => (dispatch) => {
         type: "GET_STORE_DEFAULTS",
         payload: data.data,
       });
+
+      // const decodedToken = jwtDecode(
+      //   JSON.parse(window.localStorage.getItem("mdt")),
+      // );
+      // console({ decodedToken });
+      // dispatch({
+      //   type: SET_META,
+      //   payload: decodedToken,
+      // });
       dispatch({
         type: "SET_PROGRESS",
         payload: 100,

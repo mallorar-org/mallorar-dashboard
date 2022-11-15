@@ -1,12 +1,9 @@
-import React, { Component } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import Status from "../common/Status";
-import Tooltip from "../common/Tooltip";
-import icons from "../common/icons";
-import Modal from "../common/Modal";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../common/Modal";
 
 dayjs.extend(LocalizedFormat);
 

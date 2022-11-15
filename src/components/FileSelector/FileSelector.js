@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import FileUpload from "./FileUpload";
-import ShowFiles from "./ShowFiles";
-import ShowDocuments from "./ShowDocuments";
-import dayjs from "dayjs";
 import axios from "axios";
+import dayjs from "dayjs";
+import React, { Component } from "react";
 import { add_selected_Pictures_in_selector } from "../../store/actions/actions";
+import FileUpload from "./FileUpload";
+import ShowDocuments from "./ShowDocuments";
+import ShowFiles from "./ShowFiles";
 
 import { connect } from "react-redux";
 

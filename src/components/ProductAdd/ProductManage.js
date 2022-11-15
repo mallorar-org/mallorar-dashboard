@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { IoMdStats, IoMdPulse, IoIosStar, IoMdEye } from "react-icons/io";
 import { BiPackage } from "react-icons/bi";
+import { IoIosStar, IoMdEye, IoMdPulse, IoMdStats } from "react-icons/io";
 
 import { connect } from "react-redux";
 

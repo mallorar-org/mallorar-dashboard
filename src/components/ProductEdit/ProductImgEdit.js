@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import FileSelector from "../../components/FileSelector/FileSelector";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
+import FileSelector from "../../components/FileSelector/FileSelector";
 
 class ProductImg extends Component {
   state = {

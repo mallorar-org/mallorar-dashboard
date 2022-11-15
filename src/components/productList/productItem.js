@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import { MenuItem } from "@trendmicro/react-dropdown";
 import dayjs from "dayjs";
-import { Link } from "react-router-dom";
-import CheckBox from "../common/CheckBox";
+import React, { Component } from "react";
+import "react-dropdown/style.css";
+import { AiFillEdit, AiOutlineEllipsis } from "react-icons/ai";
+import { ImBin } from "react-icons/im";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   addToSelectedPDList,
   deleteProduct,
 } from "../../store/actions/actions";
 import store from "../../store/store";
-import { ImBin } from "react-icons/im";
-import { AiFillEdit, AiOutlineEllipsis } from "react-icons/ai";
-import "react-dropdown/style.css";
+import CheckBox from "../common/CheckBox";
 import Dropdown from "../SelectItem/Dropdown/index";
-import { MenuItem } from "@trendmicro/react-dropdown";
 
 const mapStateToProps = (state) => {
   return {

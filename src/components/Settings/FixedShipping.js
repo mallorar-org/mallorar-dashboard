@@ -44,9 +44,7 @@ class FixedShipping extends Component {
               </div>
             </div>
             <div className="">
-              <button className=" ml-dash-btn">
-                Update/Save Settings
-              </button>
+              <button className=" ml-dash-btn">Update/Save Settings</button>
             </div>
           </div>
         </div>

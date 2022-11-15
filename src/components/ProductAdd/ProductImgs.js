@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import PlaceHolderImage from "../../assets/images/addpicture.svg";
-import FileSelector from "../../components/FileSelector/FileSelector";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { connect } from "react-redux";
+import PlaceHolderImage from "../../assets/images/addpicture.svg";
+import FileSelector from "../../components/FileSelector/FileSelector";
+import { remove_photo } from "../../store/actions/actions";
 import store from "../../store/store";
 import ProductImg from "./ProductImg";
-import { remove_photo } from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -116,7 +116,11 @@ class ProductImgs extends Component {
                           </div>
                         </div>
                         <div className="">
-                          <img className="img-fluid" src={x.product_url} />
+                          <img
+                            className="img-fluid"
+                            alt=""
+                            src={x.product_url}
+                          />
                         </div>
                       </div>
                     ))}
@@ -126,6 +130,7 @@ class ProductImgs extends Component {
                         <div className="p-2 border mb-0 pb-0 ml-pc-product-image">
                           <div className="">
                             <img
+                              alt=""
                               className="img-fluid mb-0 pb-0"
                               onClick={this.selectpicO}
                               src={PlaceHolderImage}

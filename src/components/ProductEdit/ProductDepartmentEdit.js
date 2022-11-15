@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import productlist from "../productList/productlist";
 import departments from "../../util/departments";
 import MLSelect from "../MLSelect/MLSelect";
 
