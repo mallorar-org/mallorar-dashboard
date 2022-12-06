@@ -9,6 +9,7 @@ const AddModal = ({
   close,
   label = "Department",
   subText = "Provide name of department and department image to continue",
+  loading,
 }) => {
   const [data, setData] = useState({
     name: "",
@@ -27,6 +28,7 @@ const AddModal = ({
   };
 
   const handleCreate = () => {
+    if (loading) return;
     if (!data.image) {
       return alert("Please select an image first");
     }
@@ -85,7 +87,7 @@ const AddModal = ({
           <div className="row">
             <div className="col-12 col-lg-8 mb-4">
               <button onClick={handleCreate} className="w-100 btn ml-dash-btn">
-                Create {label.toLowerCase()}
+                {loading ? "Working" : <>Create {label.toLowerCase()}</>}
               </button>
             </div>
             <div className="col-12 col-lg-4 mb-4">
