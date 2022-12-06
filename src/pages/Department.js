@@ -1,25 +1,52 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import CategoryList from "../components/Categories/CategoryList";
 import AddModal from "../components/DepartmentsHome/AddModal";
+import Loading from "../pages/loading";
 
 export default function Department() {
+  const params = useParams();
   const [add_modal_open, set_add_modal_state] = useState(false);
   const [creating_d, set_creating] = useState(false);
-  const [redirect, set_redirect] = useState("");
   const [activeItem, setActiveItem] = useState("1");
-  const [data, setData] = useState({
-    loading: false,
+
+  const [dep_data, setData] = useState({
+    loading: true,
     departmentName: "Women's Clothing",
+    id: "",
+    categories: [],
   });
+
+  useEffect(() => {
+    let dep_id = params.id;
+
+    get_department();
+
+    console.log({ dep_id });
+  }, []);
+
+  const get_department = async () => {
+    try {
+      let res = await axios.get(`/dash/department/${params.id}`);
+      setData({
+        ...dep_data,
+        ...res.data,
+        loading: false,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handle_create = async (data) => {
     set_creating(true);
 
     let category = {
-      departmentName: data.name,
-      departmentSlug: data.slug,
-      departmentImage: data.image,
+      categoryName: data.name,
+      categorySlug: data.slug,
+      categoryImage: data.image,
+      departmentID: dep_data.id,
     };
 
     try {
@@ -27,8 +54,17 @@ export default function Department() {
       set_creating(false);
       set_add_modal_state(false);
       console.log(result.data);
-      set_redirect(result.data.id);
+      let current_cats = dep_data.categories;
+      current_cats.push({
+        ...result.data,
+      });
+      setData({
+        ...dep_data,
+        categories: current_cats,
+      });
+      // set_redirect(result.data.id);
     } catch (err) {
+      set_creating(false);
       console.log(err);
     }
   };
@@ -50,6 +86,10 @@ export default function Department() {
     return cssRacho;
   };
 
+  if (dep_data.loading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <AddModal
@@ -61,7 +101,7 @@ export default function Department() {
       />
       <section className="ml-container bg-white h-100">
         <div className="text-secondary">Manage department / </div>
-        <h1 className="bold mb-0 ml-h c-blue">{data.departmentName}</h1>
+        <h1 className="bold mb-0 ml-h c-blue">{dep_data.departmentName}</h1>
 
         <div className="card mt-4 p-2 card-body ml-card-shadow">
           <div className="card-body p-2">
@@ -119,6 +159,9 @@ export default function Department() {
                 Brands
               </div>
             </div>
+          </div>
+          <div className="">
+            <CategoryList categories={dep_data.categories} />
           </div>
         </div>
       </section>

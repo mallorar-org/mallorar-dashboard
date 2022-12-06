@@ -3603,6 +3603,8 @@ a.ml-btn {
 .department-list .cat-image {
   height: 100px;
   width: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .ml-cd-image-container {
