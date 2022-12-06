@@ -22,7 +22,8 @@ import MLProductDelModal from "../components/Modals/MLProductDelModal";
 // axios.defaults.baseURL = "http://localhost:5000/mallorar/us-central1/apis";
 // axios.defaults.baseURL = "https://us-central1-mallorar.cloudfunctions.net/apis";
 // axios.defaults.baseURL = "http://localhost:5000";
-axios.defaults.baseURL = "https://api.mallorar.com";
+// axios.defaults.baseURL = "https://api.mallorar.com";
+axios.defaults.baseURL = "http://192.168.8.101:5000";
 
 const token = localStorage.mdt;
 if (token) {
@@ -131,7 +132,7 @@ class DashBoardContainer extends Component {
             </div>
             <div style={{ bottom: 20 }} className="position-absolute">
               <div className="d-flex  position-relative justify-content-between">
-                <div>Mallorar Seller Dashboard v2.2.5 </div>
+                <div>Martlyy Seller v1.0.1 </div>
               </div>
             </div>
           </div>

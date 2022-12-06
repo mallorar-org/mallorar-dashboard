@@ -1,11 +1,10 @@
 import React from "react";
-import CategoryList from "../components/Categories/CategoryList";
 
-export default function CatesgoriesHome() {
+export default function DepartmentAdd() {
   return (
     <section className="ml-container bg-white h-100">
-      <div className="text-secondary">Categories / </div>
-      <h1 className="bold mb-0 ml-h c-blue">Manage Categories</h1>
+      <div className="text-secondary">Departments / </div>
+      <h1 className="bold mb-0 ml-h c-blue">Add department</h1>
       <div className="card mt-4 p-2 card-body ml-card-shadow">
         <div className="card-body p-2">
           <div className="mb-1 text-secondary">
@@ -21,9 +20,6 @@ export default function CatesgoriesHome() {
           </div>
         </div>
         <div className="px-2 pb-2">
-          <button type="button" className="btn px-3 py-2 ml-dash-btn">
-            Add Department
-          </button>
           <button
             type="button"
             className="btn ml-2 px-3 py-2 border-0 rounded-0 ml-btn"
@@ -32,7 +28,6 @@ export default function CatesgoriesHome() {
           </button>
         </div>
       </div>
-      <CategoryList />
     </section>
   );
 }

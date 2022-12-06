@@ -3603,4 +3603,10 @@ a.ml-btn {
 .department-list .cat-image {
   height: 100px;
   width: 100px;
+}
+
+.ml-cd-image-container {
+  height: 120px;
+  overflow: hidden;
+  width: 120px;
 }/*# sourceMappingURL=main.css.map */

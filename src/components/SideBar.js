@@ -33,8 +33,8 @@ function Navigation({
       icon: icons.solid.tag.offWhite,
     },
     {
-      title: "Categories",
-      link: "/categories",
+      title: "Departments",
+      link: "/departments",
       icon: null,
       svg_icon: <BiCategory className="" />,
       admin: true,

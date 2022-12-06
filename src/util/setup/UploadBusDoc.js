@@ -42,7 +42,7 @@ class UploadDocs extends Component {
     this.props.dashoverlay(true);
     this.props.uploadingdoc(true);
     axios
-      .post("/dashbaord/feupload?return=true", formData)
+      .post("/dash/feupload?return=true", formData)
       .then((data) => {
         console.log(data.data);
         this.props.updateBusinessDocument(data.data.fileAt);

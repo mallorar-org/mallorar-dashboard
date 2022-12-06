@@ -15,7 +15,7 @@ class ShowFiles extends Component {
   }
 
   runCall = () => {
-    axios.get("/dashbaord/getstorefiles?type=document").then((data) => {
+    axios.get("/dash/getstorefiles?type=document").then((data) => {
       this.setState({
         images: data.data,
         loading: false,
@@ -26,7 +26,7 @@ class ShowFiles extends Component {
   componentDidMount = () => {
     this.props.onRef(this);
     axios
-      .get("/dashbaord/getstorefiles?type=document")
+      .get("/dash/getstorefiles?type=document")
       .then((data) => {
         // console.log(data.data);
         this.setState({

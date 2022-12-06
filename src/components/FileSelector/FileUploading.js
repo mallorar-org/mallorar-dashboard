@@ -35,7 +35,7 @@ class FileUploading extends Component {
     formData.append("image", file, file.name);
     // console.log("==>",file)
     axios
-      .post("/dashbaord/feupload?return=true", formData)
+      .post("/dash/feupload?return=true", formData)
       .then((data) => {
         console.log(data.data);
         this.setState({

@@ -42,7 +42,7 @@ class FileSelector extends Component {
     document.getElementById("btnSele").disabled = true;
 
     axios
-      .get(`/dashbaord/fedelete/${this.state.selectimage.id}`)
+      .get(`/dash/fedelete/${this.state.selectimage.id}`)
       .then(() => {
         this.runCall();
         document.getElementById("btnDel").disabled = false;
