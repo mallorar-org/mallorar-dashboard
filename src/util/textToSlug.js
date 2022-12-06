@@ -7,7 +7,8 @@ function textToSlug(text = "") {
     .replace(/&/g, "-n-")
     .replace(/\\/g, "-or-")
     .replace(/\//g, "-or-")
-    .replace(/ /g, "-");
+    .replace(/ /g, "-")
+    .replace(/'/g, "");
 
   return slug.trim();
 }

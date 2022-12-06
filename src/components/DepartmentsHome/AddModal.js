@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MDBModal, MDBModalBody } from "mdbreact";
 import textToSlug from "../../util/textToSlug";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
@@ -10,6 +10,7 @@ const AddModal = ({
   label = "Department",
   subText = "Provide name of department and department image to continue",
   loading,
+  handle_create,
 }) => {
   const [data, setData] = useState({
     name: "",
@@ -19,9 +20,18 @@ const AddModal = ({
 
   const [selectorOpen, selectorState] = useState(false);
 
+  useEffect(() => {
+    setData({
+      name: "",
+      slug: "",
+      image: "",
+    });
+  }, [opened]);
+
   const handleTextChange = (e) => {
     let slug = textToSlug(e.target.value);
     setData({
+      ...data,
       [e.target.name]: e.target.value,
       slug: slug,
     });
@@ -35,6 +45,8 @@ const AddModal = ({
     if (!data.name) {
       return alert("Please name this " + label.toLowerCase());
     }
+
+    handle_create(data);
   };
 
   return (

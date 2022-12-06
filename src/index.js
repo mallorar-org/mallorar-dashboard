@@ -12,7 +12,6 @@ import "react-quill/dist/quill.snow.css";
 import "./assets/css/main.css";
 import "normalize.css";
 
-
 const MallDashBoard = (
   <Provider store={store}>
     <BrowserRouter>
