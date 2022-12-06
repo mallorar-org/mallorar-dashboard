@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CategoryList from "../components/Categories/CategoryList";
+import DepartmentPageContent from "../components/Categories/DepartmentPageContent";
 import AddModal from "../components/DepartmentsHome/AddModal";
 import Loading from "../pages/loading";
 
@@ -86,6 +87,17 @@ export default function Department() {
     return cssRacho;
   };
 
+  const switch_tab = () => {
+    switch (activeItem) {
+      case "1":
+        return <CategoryList categories={dep_data.categories} />;
+      case "2":
+        return <DepartmentPageContent department={dep_data} />;
+      default:
+        return null;
+    }
+  };
+
   if (dep_data.loading) {
     return <Loading />;
   }
@@ -160,9 +172,7 @@ export default function Department() {
               </div>
             </div>
           </div>
-          <div className="">
-            <CategoryList categories={dep_data.categories} />
-          </div>
+          <div className="">{switch_tab()}</div>
         </div>
       </section>
     </>
