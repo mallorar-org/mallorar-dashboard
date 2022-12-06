@@ -1,46 +1,29 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import DepartmentList from "../components/Categories/DepartmentList";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AddModal from "../components/DepartmentsHome/AddModal";
-import Loading from "../pages/loading";
 
-export default function DepartmentsHome() {
+export default function Department() {
   const [add_modal_open, set_add_modal_state] = useState(false);
   const [creating_d, set_creating] = useState(false);
   const [redirect, set_redirect] = useState("");
+  const [activeItem, setActiveItem] = useState("1");
   const [data, setData] = useState({
-    loading: true,
-    departments: [],
+    loading: false,
+    departmentName: "Women's Clothing",
   });
-
-  useEffect(() => {
-    get_departments();
-  }, []);
-
-  const get_departments = async () => {
-    try {
-      let res = await axios.get("/dash/departments/get");
-      setData({
-        loading: false,
-        departments: res.data.departments,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handle_create = async (data) => {
     set_creating(true);
 
-    let department = {
+    let category = {
       departmentName: data.name,
       departmentSlug: data.slug,
       departmentImage: data.image,
     };
 
     try {
-      let result = await axios.post("/dash/departments/add", department);
+      let result = await axios.post("/dash/categories/add", category);
       set_creating(false);
       set_add_modal_state(false);
       console.log(result.data);
@@ -50,25 +33,35 @@ export default function DepartmentsHome() {
     }
   };
 
-  if (redirect) {
-    return <Redirect to={`/department/${redirect}`} />;
-  }
+  const toggle = (tab) => {
+    if (activeItem !== tab) {
+      setActiveItem(tab);
+    }
+  };
 
-  if (data.loading) {
-    return <Loading />;
-  }
+  const pricingTabsCss = (tab) => {
+    let cssRacho;
+    if (tab === activeItem) {
+      cssRacho = "ml-dash-PPtab ml-dash-PPtab-active";
+    } else {
+      cssRacho = "ml-dash-PPtab";
+    }
+
+    return cssRacho;
+  };
 
   return (
     <>
       <AddModal
+        label="Category"
         loading={creating_d}
         handle_create={handle_create}
         close={() => set_add_modal_state(false)}
         opened={add_modal_open}
       />
       <section className="ml-container bg-white h-100">
-        <div className="text-secondary">Departments / </div>
-        <h1 className="bold mb-0 ml-h c-blue">Manage Departments</h1>
+        <div className="text-secondary">Manage department / </div>
+        <h1 className="bold mb-0 ml-h c-blue">{data.departmentName}</h1>
 
         <div className="card mt-4 p-2 card-body ml-card-shadow">
           <div className="card-body p-2">
@@ -76,10 +69,6 @@ export default function DepartmentsHome() {
               <div>
                 <div>
                   Add or delete categories below and the category image aswell
-                </div>
-                <div>
-                  Creating a category or departments adds it in the system for
-                  all sellers and customers to navigate and create products
                 </div>
               </div>
             </div>
@@ -90,7 +79,7 @@ export default function DepartmentsHome() {
               type="button"
               className="btn px-3 py-2 ml-dash-btn"
             >
-              Create department
+              Create category
             </button>
             <button
               type="button"
@@ -100,7 +89,38 @@ export default function DepartmentsHome() {
             </button>
           </div>
         </div>
-        <DepartmentList departments={data.departments} />
+        <div className="card mt-4 p-0 card-body ml-card-shadow">
+          <div className="ml-dash-order-tab-nav mt-0 c-blue-">
+            <div className="border-bottom d-flex">
+              <div
+                to="#"
+                onClick={() => toggle("1")}
+                role="tab"
+                className={pricingTabsCss("1")}
+              >
+                Categories
+              </div>
+
+              <div
+                to="#"
+                onClick={() => toggle("2")}
+                role="tab"
+                className={pricingTabsCss("2")}
+              >
+                Department Page
+              </div>
+
+              <div
+                to="#"
+                onClick={() => toggle("3")}
+                role="tab"
+                className={pricingTabsCss("3")}
+              >
+                Brands
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
