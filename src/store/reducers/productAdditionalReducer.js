@@ -16,6 +16,7 @@ const productInitialReducer = (state = initialState, actions) => {
         ...state,
         selected_images_in_selector: [],
       };
+
     case "SELECT_IMAGE_IN_SELECTOR":
       let selected_url = actions.payload;
       let current_selected_images = state.selected_images_in_selector;
@@ -36,6 +37,28 @@ const productInitialReducer = (state = initialState, actions) => {
         ...state,
         selected_images_in_selector: current_selected_images,
       };
+
+    // case "SELECT_IMAGE_IN_SELECTOR":
+    //   let selected_url = actions.payload;
+    //   let current_selected_images = state.selected_images_in_selector;
+    //   let new_selected_images = [];
+    //   //
+    //   if (!current_selected_images.includes(selected_url)) {
+    //     new_selected_images.push(selected_url);
+    //     new_selected_images.concat(current_selected_images);
+    //   } else {
+    //     let temp_selected = [];
+    //     current_selected_images.forEach((x) => {
+    //       if (x !== selected_url) {
+    //         temp_selected.push(x);
+    //       }
+    //     });
+    //     current_selected_images = temp_selected;
+    //   }
+    //   return {
+    //     ...state,
+    //     selected_images_in_selector: new_selected_images,
+    //   };
 
     case "UPDATE_PRODUCTS_SELLER_PRODUCTS":
       let pd = state.productPage;

@@ -25,6 +25,7 @@ import Analytics from "./pages/Analytics";
 import DepartmentsHome from "./pages/DepartmentsHome";
 import DepartmentAdd from "./pages/DepartmentAdd";
 import Department from "./pages/Department";
+import Category from "./pages/Category";
 
 const mapStateToProps = (state) => {
   return {
@@ -81,6 +82,7 @@ class Router extends React.Component {
         <AuthRoute exact path="/departments" component={DepartmentsHome} />
         <AuthRoute exact path="/department/add" component={DepartmentAdd} />
         <AuthRoute exact path="/department/:id" component={Department} />
+        <AuthRoute exact path="/category/:id" component={Category} />
 
         <Route
           exact

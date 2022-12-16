@@ -6,7 +6,7 @@ import DepartmentPageContent from "../components/Categories/DepartmentPageConten
 import AddModal from "../components/DepartmentsHome/AddModal";
 import Loading from "../pages/loading";
 
-export default function Department() {
+export default function Category() {
   const params = useParams();
   const [add_modal_open, set_add_modal_state] = useState(false);
   const [creating_d, set_creating] = useState(false);
@@ -14,7 +14,7 @@ export default function Department() {
 
   const [dep_data, setData] = useState({
     loading: true,
-    departmentName: "",
+    departmentName: "Women's Clothing",
     id: "",
     categories: [],
   });

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { select_image_in_selector } from "../../store/actions/actions";
 import CheckBox from "../common/CheckBox";
+import * as uuid from "uuid";
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -33,7 +34,7 @@ class FileUploading extends Component {
     let file = this.props.data;
     let formData = new FormData();
     formData.append("image", file, file.name);
-    // console.log("==>",file)
+
     axios
       .post("/dash/feupload?return=true", formData)
       .then((data) => {
@@ -66,7 +67,7 @@ class FileUploading extends Component {
     if (!this.state.uploading) {
       return (
         <div className="align-items-center w-100 col-12 d-flex">
-          <div className=" d-flex w-100 align-items-center justify-content-between text-capitalize text-left text-truncate">
+          <div className=" d-flex w-100 align-items-center justify-content-between  text-left text-truncate">
             <div className="d-flex align-items-center">
               <CheckBox
                 id={this.state.file.name.replace(/ /g, "-")}
@@ -78,7 +79,7 @@ class FileUploading extends Component {
                 src={this.state.url}
                 className="img-fluid ml-product-img ml-2 mr-2"
               />
-              {this.state.file.name}
+              <span>{this.state.file.name}</span>
             </div>
             <div>
               {this.state.selected ? (
@@ -104,7 +105,7 @@ class FileUploading extends Component {
       // console.log("name", this.state);
       return (
         <div className="align-items-center col-12 d-flex">
-          <div className="col-6 text-capitalize text-left text-truncate">
+          <div className="col-6 text-left text-truncate">
             {this.state.file.name}
           </div>
           <div className="col-4 ">{this.uploadStatus()}</div>

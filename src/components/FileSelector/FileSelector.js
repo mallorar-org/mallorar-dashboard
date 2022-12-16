@@ -203,6 +203,9 @@ class FileSelector extends Component {
 
   render() {
     // console.log(this.state);
+    console.log({
+      selected: this.props.selected_images_in_selector,
+    });
     return (
       <div className="modal overflow-auto pt-5">
         <div className="rounded-0 ml-file-selector pt-3 modal-content">
@@ -210,7 +213,7 @@ class FileSelector extends Component {
             <div className="d-flex align-items-center">
               <div>
                 <h5 className="c-blue bold mb-0">
-                  File Explorer <small>v2.2.1</small>
+                  File Explorer <small>v2.2.2</small>
                 </h5>
                 {/* <div className="">Browse and upload pictures or documents</div> */}
               </div>

@@ -8,8 +8,12 @@ export default function Department({ data }) {
         to={`/department/${data.id}`}
         className="col d-flex a-cancel px- p-lg-3 border-right"
       >
-        <img className="cat-image" alt="" src={data.departmentImage} />
-        <div className="">
+        <img
+          className="cat-image img-fluid"
+          alt=""
+          src={data.departmentImage}
+        />
+        <div className="pl-3">
           <div className="bold">{data.departmentName}</div>
           <div className="text-secondary">Slug : {data.departmentSlug}</div>
           <div className="mt-3">
