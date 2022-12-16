@@ -18,6 +18,9 @@ export default function DepartmentPageContent({ department }) {
           <div className="text-secondary">
             (Optionally) Add the wide top image for this department page
           </div>
+          <div className="mt-4">
+            <button className="ml-dash-btn rounded-0">Upload</button>
+          </div>
         </section>
       </div>
     </div>
