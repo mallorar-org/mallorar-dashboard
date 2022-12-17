@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function BannerSection({ data, type, remove_banner }) {
+export default function BannerSection({
+  data,
+  type,
+  remove_banner,
+  move_down,
+  disable_move_down,
+}) {
   return (
     <div className="mt-3">
       <div className="mb-3 p-3 border rounded">
@@ -104,8 +110,18 @@ export default function BannerSection({ data, type, remove_banner }) {
                   ) : null}
 
                   <div className="pt-3">
-                    <span className="bold cp">Move down</span>
-                    <span className="px-2">|</span>
+                    {type === "banner" && !disable_move_down ? (
+                      <>
+                        <span
+                          onClick={() => move_down(data.id)}
+                          className="bold cp"
+                        >
+                          Move down
+                        </span>
+                        <span className="px-2">|</span>
+                      </>
+                    ) : null}
+
                     <span
                       onClick={() => remove_banner(type, data.id)}
                       className="bold cp"

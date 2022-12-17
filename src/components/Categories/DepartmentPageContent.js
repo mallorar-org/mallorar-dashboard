@@ -9,6 +9,7 @@ const DepartmentPageContent = ({
   department,
   remove_wide_banner,
   remove_banner,
+  move_down,
 }) => {
   const [config, set_config] = useState({
     field: "wide_banner",
@@ -102,11 +103,13 @@ const DepartmentPageContent = ({
               (Optionally) Add banners for the department section and optinaly
               link them to somewhere else
             </div>
-            {department.banners.map((x) => (
+            {department.banners.map((x, index) => (
               <BannerSection
+                move_down={move_down}
                 remove_banner={handle_remove_banner}
                 type="banner"
                 data={x}
+                disable_move_down={department.banners.length === index + 1}
                 key={x.id}
               />
             ))}

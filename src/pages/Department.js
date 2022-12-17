@@ -87,6 +87,33 @@ export default function Department() {
     return cssRacho;
   };
 
+  const move_down = (id) => {
+    let banners = dep_data.banners;
+
+    let id_index = -1;
+
+    banners.forEach((x, index) => {
+      if (x.id === id) id_index = index;
+    });
+
+    if (id_index > -1 && banners.length > 1) {
+      let next_index = id_index + 1;
+      let selected_banner = banners[id_index];
+      let next_banner = banners[next_index];
+
+      banners[id_index] = next_banner;
+      banners[next_index] = selected_banner;
+    }
+
+    let dep = dep_data;
+    dep.banners = banners;
+
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
+
   const add_wide_banner = (data) => {
     let dep = dep_data;
     dep.wide_banner = data;
@@ -139,6 +166,7 @@ export default function Department() {
       case "2":
         return (
           <DepartmentPageContent
+            move_down={move_down}
             remove_wide_banner={remove_wide_banner}
             remove_banner={remove_banner}
             add_wide_banner={(e) => add_wide_banner(e)}
