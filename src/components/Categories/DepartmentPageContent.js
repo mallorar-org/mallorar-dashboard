@@ -87,11 +87,17 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
             {department.banners.length < 3 ? (
               <button
                 onClick={open_config_banner}
-                className="ml-btn mt-2 rounded-0"
+                className="ml-btn mt-2 mr-3 rounded-0"
               >
                 Create banner
               </button>
             ) : null}
+            <button
+              onClick={open_config_banner}
+              className="ml-dash-btn mt-2 rounded-0"
+            >
+              Save changes
+            </button>
           </section>
         </div>
       </div>

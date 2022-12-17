@@ -92,6 +92,8 @@ export default function BannerSection({ data }) {
                   ) : null}
 
                   <div className="pt-3">
+                    <span className="bold cp">Move down</span>
+                    <span className="px-2">|</span>
                     <span className="bold cp">Delete</span>
                   </div>
                 </div>
