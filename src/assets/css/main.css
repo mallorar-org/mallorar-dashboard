@@ -3618,7 +3618,14 @@ a.ml-btn {
 }
 
 .ml-banner-image-container {
+  display: relative;
   height: 120px;
   overflow: hidden;
   width: 100%;
+}
+.ml-banner-image-container img {
+  height: 100%;
+  width: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=main.css.map */

@@ -87,12 +87,38 @@ export default function Category() {
     return cssRacho;
   };
 
+  const add_wide_banner = (data) => {
+    let dep = dep_data;
+    dep.wide_banner = data;
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
+
+  const add_banner = (data) => {
+    let dep = dep_data;
+    let current_banners = dep.banners;
+    current_banners.push(data);
+    dep.banners = current_banners;
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
+
   const switch_tab = () => {
     switch (activeItem) {
       case "1":
         return <CategoryList categories={dep_data.categories} />;
       case "2":
-        return <DepartmentPageContent department={dep_data} />;
+        return (
+          <DepartmentPageContent
+            department={dep_data}
+            add_wide_banner={(e) => add_wide_banner(e)}
+            add_banner={(e) => add_banner(e)}
+          />
+        );
       default:
         return null;
     }

@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import BannerSection from "./BannerSection";
 import PageContentModal from "./PageContentModal";
 
-export default function DepartmentPageContent({ department }) {
+const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
   const [config, set_config] = useState({
     field: "wide_banner",
     action: "create",
   });
   const [pc_modal_open, set_pc_modal_state] = useState(false);
+
+  const handle_create = (data) => {
+    if (config.field === "wide_banner") {
+      add_wide_banner(data);
+    } else {
+      add_banner(data);
+    }
+    set_pc_modal_state(false);
+  };
 
   const open_config_wide_banner = () => {
     set_config({
@@ -32,6 +41,7 @@ export default function DepartmentPageContent({ department }) {
         config={config}
         opened={pc_modal_open}
         close={() => set_pc_modal_state(false)}
+        handle_create={handle_create}
       />
       <div className="mt-0 department-list">
         <div className="container-fluid border overlow-hidden">
@@ -87,4 +97,6 @@ export default function DepartmentPageContent({ department }) {
       </div>
     </>
   );
-}
+};
+
+export default DepartmentPageContent;

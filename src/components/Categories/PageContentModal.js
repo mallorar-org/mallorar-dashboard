@@ -14,39 +14,48 @@ const PageContentModal = ({
   config,
 }) => {
   const [data, setData] = useState({
-    name: "",
-    slug: "",
-    image: "",
+    banner: "",
+    heading: "",
+    p_text: "",
+    bg_color: "",
+    btn_bg_color: "",
+    btn_text_color: "",
+    btn_border_color: "",
+    btn_text: "",
+    link_to: "",
   });
 
   const [selectorOpen, selectorState] = useState(false);
 
   useEffect(() => {
     setData({
-      name: "",
-      slug: "",
-      image: "",
+      banner: "",
+      heading: "",
+      p_text: "",
+      bg_color: "",
+      btn_bg_color: "",
+      btn_text_color: "",
+      btn_border_color: "",
+      btn_text: "",
+      link_to: "",
     });
   }, [opened]);
 
   const handleTextChange = (e) => {
-    let slug = textToSlug(e.target.value);
     setData({
       ...data,
       [e.target.name]: e.target.value,
-      slug: slug,
     });
   };
 
   const handleCreate = () => {
     if (loading) return;
-    if (!data.image) {
-      return alert("Please select an image first");
+    if (!data.banner) {
+      return alert("Please select a banner image first");
     }
-    if (!data.name) {
-      return alert("Please name this " + label.toLowerCase());
+    if (!data.bg_color) {
+      return alert("Please provide a background color");
     }
-
     handle_create(data);
   };
 
@@ -65,36 +74,156 @@ const PageContentModal = ({
               setimage={(img) => {
                 setData({
                   ...data,
-                  image: img,
+                  banner: img,
                 });
               }}
-              image={data.image}
+              image={data.banner}
             />
           </div>
 
           <div className="text-center mt-3">
-            <p>
-              Make sure the image is a perfect square or has dimensions of 1:1
-            </p>
+            <p>Make sure you're setting a banner that fits</p>
             <button onClick={() => selectorState(true)} className="btn ml-btn">
               Add/Replace Image
             </button>
           </div>
 
           <div>
-            <div className="mb-2 text-secondary">{label} name</div>
-            <input
-              onChange={handleTextChange}
-              type="text"
-              className="w-100 form-control"
-              placeholder=""
-              name="name"
-            />
-            {data.slug ? (
-              <>
-                <div className="mt-3 pb-1 text-secondary">Slug : </div>
-                <div className="px-2 py-1 border rounded">{data.slug}</div>
-              </>
+            <section className="mb-2">
+              <div className="mb-2 text-secondary">Banner big text</div>
+              <input
+                onChange={handleTextChange}
+                type="text"
+                className="w-100 form-control"
+                placeholder=""
+                name="heading"
+              />
+            </section>
+            <section className="mb-2">
+              <div className="mb-2 text-secondary">Banner p text</div>
+              <input
+                onChange={handleTextChange}
+                type="text"
+                className="w-100 form-control"
+                placeholder=""
+                name="p_text"
+              />
+            </section>
+
+            <section className="mb-2">
+              <div className="mb-2 text-secondary">Link to</div>
+              <input
+                onChange={handleTextChange}
+                type="text"
+                className="w-100 form-control"
+                placeholder=""
+                name="link_to"
+              />
+            </section>
+            <section className="mb-2">
+              <div className="mb-2 text-secondary">Button text</div>
+              <input
+                onChange={handleTextChange}
+                type="text"
+                className="w-100 form-control"
+                placeholder=""
+                name="btn_text"
+              />
+            </section>
+            {data.btn_text !== "" ? (
+              <section className="mb-2">
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-5 pl-0">
+                      <div className="mb-2 text-secondary">
+                        Background color
+                      </div>
+                      <input
+                        onChange={handleTextChange}
+                        type="text"
+                        className="w-100 form-control"
+                        placeholder=""
+                        name="bg_color"
+                      />
+                    </div>
+                    <div className="col-1 pl-0">
+                      <div className="mb-2 text-secondary">-</div>
+                      <div
+                        className="w-100 form-control"
+                        placeholder=""
+                        style={{
+                          background: data.bg_color,
+                        }}
+                      />
+                    </div>
+                    <div className="col-5 pr-0 pl-0">
+                      <div className="mb-2 text-secondary">Button color</div>
+                      <input
+                        onChange={handleTextChange}
+                        type="text"
+                        className="w-100 form-control"
+                        placeholder=""
+                        name="btn_bg_color"
+                      />
+                    </div>
+                    <div className="col-1 pr-0">
+                      <div className="mb-2 text-secondary">-</div>
+                      <div
+                        className="w-100 form-control"
+                        placeholder=""
+                        style={{
+                          background: data.btn_bg_color,
+                        }}
+                      />
+                    </div>
+                    <div className="col-12 py-2"></div>
+                    <div className="col-5 pl-0">
+                      <div className="mb-2 text-secondary">
+                        Button text color
+                      </div>
+                      <input
+                        onChange={handleTextChange}
+                        type="text"
+                        className="w-100 form-control"
+                        placeholder=""
+                        name="btn_text_color"
+                      />
+                    </div>
+                    <div className="col-1 pl-0">
+                      <div className="mb-2 text-secondary">-</div>
+                      <div
+                        className="w-100 form-control"
+                        placeholder=""
+                        style={{
+                          background: data.btn_text_color,
+                        }}
+                      />
+                    </div>
+                    <div className="col-5 pr-0 pl-0">
+                      <div className="mb-2 text-secondary">
+                        Button border color
+                      </div>
+                      <input
+                        onChange={handleTextChange}
+                        type="text"
+                        className="w-100 form-control"
+                        placeholder=""
+                        name="btn_border_color"
+                      />
+                    </div>
+                    <div className="col-1 pr-0">
+                      <div className="mb-2 text-secondary">-</div>
+                      <div
+                        className="w-100 form-control"
+                        placeholder=""
+                        style={{
+                          background: data.btn_border_color,
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
             ) : null}
           </div>
         </div>
@@ -131,9 +260,9 @@ const ImageSection = ({ image, setimage, closeSelector, open }) => {
       {open ? (
         <FileSelector url={(x) => setimage(x)} close={() => closeSelector()} />
       ) : null}
-      <div className="border p-2 ml-banner-image-container tex-center d-flex">
+      <div className="border p-2 ml-banner-image-container d-flex align-items-center justify-content-center">
         <img
-          className="img-fluid"
+          className="img-flui"
           src={image ? image : PlaceHolderImage}
           alt=""
         />
