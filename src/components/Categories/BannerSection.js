@@ -20,7 +20,9 @@ export default function BannerSection({ data }) {
                 <div className="border rounded p-2">
                   <div className="text-secondary">Banner text</div>
                   <div className="bold">{data.header}</div>
-                  <div className="text-secondary">{data.p_text}</div>
+                  {data.p_text ? (
+                    <div className="text-secondary">{data.p_text}</div>
+                  ) : null}
                 </div>
                 <div className="mt-2 px-1">
                   <div className="d-flex mt-3 align-items-center">
@@ -32,55 +34,63 @@ export default function BannerSection({ data }) {
                       className="text-small w-25 border bg-gray p-3 ml-3"
                     ></div>
                   </div>
-                  <div className="d-flex mt-2 align-items-center">
-                    <div className="bold">Button color</div>
-                    <div
-                      style={{
-                        backgroundColor: data.btn_bg_color,
-                      }}
-                      className="text-small w-25 border bg-gray p-3 ml-3"
-                    ></div>
-                  </div>
-                  <div className="d-flex mt-2 align-items-center">
-                    <div className="bold">Button text color</div>
-                    <div
-                      style={{
-                        backgroundColor: data.btn_text_color,
-                      }}
-                      className="text-small w-25 border bg-gray p-3 ml-3"
-                    ></div>
-                  </div>
-                  <div className="d-flex mt-2 align-items-center">
-                    <div className="bold">Button border color</div>
-                    <div
-                      style={{
-                        backgroundColor: data.btn_border_color,
-                      }}
-                      className="text-small w-25 border bg-gray p-3 ml-3"
-                    ></div>
-                  </div>
-                  <div className="d-flex mt-2 align-items-center">
-                    <div>Button preview - </div>
-                    <div>
-                      <div
-                        style={{
-                          background: data.btn_bg_color,
-                          color: data.btn_text_color,
-                          border: `2px solid ${data.btn_border_color}`,
-                        }}
-                        className="ml-btn ml-2 rounded-0"
-                      >
-                        {" "}
-                        Start shopping
+
+                  {data.btn_text ? (
+                    <>
+                      <div className="d-flex mt-2 align-items-center">
+                        <div className="bold">Button color</div>
+                        <div
+                          style={{
+                            backgroundColor: data.btn_bg_color,
+                          }}
+                          className="text-small w-25 border bg-gray p-3 ml-3"
+                        ></div>
+                      </div>
+                      <div className="d-flex mt-2 align-items-center">
+                        <div className="bold">Button text color</div>
+                        <div
+                          style={{
+                            backgroundColor: data.btn_text_color,
+                          }}
+                          className="text-small w-25 border bg-gray p-3 ml-3"
+                        ></div>
+                      </div>
+                      <div className="d-flex mt-2 align-items-center">
+                        <div className="bold">Button border color</div>
+                        <div
+                          style={{
+                            backgroundColor: data.btn_border_color,
+                          }}
+                          className="text-small w-25 border bg-gray p-3 ml-3"
+                        ></div>
+                      </div>
+                      <div className="d-flex mt-2 align-items-center">
+                        <div>Button preview - </div>
+                        <div>
+                          <div
+                            style={{
+                              background: data.btn_bg_color,
+                              color: data.btn_text_color,
+                              border: `2px solid ${data.btn_border_color}`,
+                            }}
+                            className="ml-btn ml-2 rounded-0"
+                          >
+                            {data.btn_text}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
+
+                  {data.link_to ? (
+                    <div className="d-flex mt-3 align-items-center">
+                      <div className="text-small bg-gray p-2 px-3">
+                        <div className="bold">Route click to</div>
+                        {data.link_to}
                       </div>
                     </div>
-                  </div>
-                  <div className="d-flex mt-3 align-items-center">
-                    <div className="text-small bg-gray p-2 px-3">
-                      <div className="bold">Route click to</div>
-                      https://m.martlyy.com/c/fashion/watches-parts-n-accessories
-                    </div>
-                  </div>
+                  ) : null}
+
                   <div className="pt-3">
                     <span className="bold cp">Delete</span>
                   </div>

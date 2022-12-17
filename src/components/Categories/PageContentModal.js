@@ -53,7 +53,7 @@ const PageContentModal = ({
     if (!data.banner) {
       return alert("Please select a banner image first");
     }
-    if (!data.bg_color) {
+    if (data.btn_text !== "" && !data.bg_color) {
       return alert("Please provide a background color");
     }
     handle_create(data);
