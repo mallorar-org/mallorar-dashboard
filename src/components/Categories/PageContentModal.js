@@ -11,6 +11,7 @@ const PageContentModal = ({
   subText = "Create or manage a banner for this product category/department",
   loading,
   handle_create,
+  handle_update,
   config,
 }) => {
   const [data, setData] = useState({
@@ -29,7 +30,7 @@ const PageContentModal = ({
   const [selectorOpen, selectorState] = useState(false);
 
   useEffect(() => {
-    setData({
+    let init_data = {
       id: "",
       banner: "",
       heading: "",
@@ -40,7 +41,18 @@ const PageContentModal = ({
       btn_border_color: "",
       btn_text: "",
       link_to: "",
-    });
+    };
+
+    if (config.data) {
+      setData({
+        ...init_data,
+        ...config.data,
+      });
+    } else {
+      setData({
+        ...init_data,
+      });
+    }
   }, [opened]);
 
   const handleTextChange = (e) => {
@@ -56,7 +68,11 @@ const PageContentModal = ({
       return alert("Please select a banner or write a heading first");
     }
 
-    handle_create(data);
+    if (config.action === "create") {
+      handle_create(data);
+    } else {
+      handle_update(data);
+    }
   };
 
   return (
@@ -97,6 +113,7 @@ const PageContentModal = ({
                 className="w-100 form-control"
                 placeholder=""
                 name="heading"
+                defaultValue={data.heading}
               />
             </section>
             <section className="mb-2">
@@ -107,6 +124,7 @@ const PageContentModal = ({
                 className="w-100 form-control"
                 placeholder=""
                 name="p_text"
+                defaultValue={data.p_text}
               />
             </section>
 
@@ -118,6 +136,7 @@ const PageContentModal = ({
                 className="w-100 form-control"
                 placeholder=""
                 name="link_to"
+                defaultValue={data.link_to}
               />
             </section>
             <section className="mb-2">
@@ -128,6 +147,7 @@ const PageContentModal = ({
                 className="w-100 form-control"
                 placeholder=""
                 name="btn_text"
+                defaultValue={data.btn_text}
               />
             </section>
 
@@ -142,6 +162,7 @@ const PageContentModal = ({
                       className="w-100 form-control"
                       placeholder=""
                       name="bg_color"
+                      defaultValue={data.bg_color}
                     />
                   </div>
                   <div className="col-1 pl-0">
@@ -165,6 +186,7 @@ const PageContentModal = ({
                           className="w-100 form-control"
                           placeholder=""
                           name="btn_bg_color"
+                          defaultValue={data.btn_bg_color}
                         />
                       </div>
                       <div className="col-1 pr-0">
@@ -188,6 +210,7 @@ const PageContentModal = ({
                           className="w-100 form-control"
                           placeholder=""
                           name="btn_text_color"
+                          defaultValue={data.btn_text_color}
                         />
                       </div>
                       <div className="col-1 pl-0">
@@ -210,6 +233,7 @@ const PageContentModal = ({
                           className="w-100 form-control"
                           placeholder=""
                           name="btn_border_color"
+                          defaultValue={data.btn_border_color}
                         />
                       </div>
                       <div className="col-1 pr-0">

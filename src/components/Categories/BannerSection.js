@@ -6,7 +6,18 @@ export default function BannerSection({
   remove_banner,
   move_down,
   disable_move_down,
+  initiate_edit,
 }) {
+  const handle_delete = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to remove this banner ?. It will be lost after you press save",
+      )
+    ) {
+      remove_banner(type, data.id);
+    }
+  };
+
   return (
     <div className="mt-3">
       <div className="mb-3 p-3 border rounded">
@@ -29,7 +40,12 @@ export default function BannerSection({
               <div className="border-bottom">
                 <div className="d-flex justify-content-between align-items-center pb-2">
                   <h6 className="bold text-secondary mb-0">Banner content</h6>
-                  <button className="ml-dash-btn py-1">Edit</button>
+                  <button
+                    onClick={() => initiate_edit(type, data.id)}
+                    className="ml-dash-btn py-1"
+                  >
+                    Edit
+                  </button>
                 </div>
               </div>
               <div className="py-2">
@@ -122,10 +138,7 @@ export default function BannerSection({
                       </>
                     ) : null}
 
-                    <span
-                      onClick={() => remove_banner(type, data.id)}
-                      className="bold cp"
-                    >
+                    <span onClick={handle_delete} className="bold cp">
                       Delete
                     </span>
                   </div>

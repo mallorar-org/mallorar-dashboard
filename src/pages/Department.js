@@ -122,6 +122,14 @@ export default function Department() {
       ...dep,
     });
   };
+  const update_wide_banner = (data) => {
+    let dep = dep_data;
+    dep.wide_banner = data;
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
   const remove_wide_banner = () => {
     let dep = dep_data;
     dep.wide_banner = "";
@@ -135,6 +143,22 @@ export default function Department() {
     let dep = dep_data;
     let current_banners = dep.banners;
     current_banners.push(data);
+    dep.banners = current_banners;
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
+  const update_banner = (data) => {
+    let dep = dep_data;
+    let current_banners = dep.banners;
+
+    current_banners.forEach((x, index) => {
+      if (x.id === data.id) {
+        current_banners[index] = data;
+      }
+    });
+
     dep.banners = current_banners;
     setData({
       ...dep_data,
@@ -172,6 +196,8 @@ export default function Department() {
             add_wide_banner={(e) => add_wide_banner(e)}
             add_banner={(e) => add_banner(e)}
             department={dep_data}
+            update_banner={update_banner}
+            update_wide_banner={update_wide_banner}
           />
         );
       default:

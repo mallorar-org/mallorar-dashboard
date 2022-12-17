@@ -6,6 +6,8 @@ import PageContentModal from "./PageContentModal";
 const DepartmentPageContent = ({
   add_wide_banner,
   add_banner,
+  update_wide_banner,
+  update_banner,
   department,
   remove_wide_banner,
   remove_banner,
@@ -14,8 +16,28 @@ const DepartmentPageContent = ({
   const [config, set_config] = useState({
     field: "wide_banner",
     action: "create",
+    data: null,
   });
   const [pc_modal_open, set_pc_modal_state] = useState(false);
+
+  const initiate_edit = (type, id) => {
+    let field = type === "banner" ? "banner" : "wide_banner";
+    let banner_data = null;
+
+    department.banners.forEach((x) => {
+      if (x.id === id) {
+        banner_data = x;
+      }
+    });
+
+    set_config({
+      ...config,
+      field: field,
+      action: "update",
+      data: banner_data,
+    });
+    set_pc_modal_state(true);
+  };
 
   const handle_create = (data) => {
     let new_id = v4();
@@ -24,6 +46,15 @@ const DepartmentPageContent = ({
       add_wide_banner(banner);
     } else {
       add_banner(banner);
+    }
+    set_pc_modal_state(false);
+  };
+  const handle_update = (data) => {
+    let banner = data;
+    if (config.field === "wide_banner") {
+      update_wide_banner(banner);
+    } else {
+      update_banner(banner);
     }
     set_pc_modal_state(false);
   };
@@ -58,8 +89,15 @@ const DepartmentPageContent = ({
       <PageContentModal
         config={config}
         opened={pc_modal_open}
-        close={() => set_pc_modal_state(false)}
+        close={() => {
+          set_pc_modal_state(false);
+          set_config({
+            ...config,
+            data: null,
+          });
+        }}
         handle_create={handle_create}
+        handle_update={handle_update}
       />
       <div className="mt-0 department-list">
         <div className="container-fluid border overlow-hidden">
@@ -84,6 +122,7 @@ const DepartmentPageContent = ({
                 remove_banner={handle_remove_banner}
                 type="wide_banner"
                 data={department.wide_banner}
+                initiate_edit={initiate_edit}
               />
             ) : null}
             {department.wide_banner === "" ? (
@@ -111,6 +150,7 @@ const DepartmentPageContent = ({
                 data={x}
                 disable_move_down={department.banners.length === index + 1}
                 key={x.id}
+                initiate_edit={initiate_edit}
               />
             ))}
             {department.banners.length < 3 ? (
