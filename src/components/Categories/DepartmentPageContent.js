@@ -20,6 +20,15 @@ const DepartmentPageContent = ({
   });
   const [pc_modal_open, set_pc_modal_state] = useState(false);
 
+  const handle_save = () => {
+    if (
+      window.confirm(
+        "Warning. Saved changes will appear, update on all Martlyy sites, continue to save ?",
+      )
+    ) {
+    }
+  };
+
   const initiate_edit = (type, id) => {
     let field = type === "banner" ? "banner" : "wide_banner";
     let banner_data = null;
@@ -162,7 +171,7 @@ const DepartmentPageContent = ({
               </button>
             ) : null}
             <button
-              onClick={open_config_banner}
+              onClick={handle_save}
               className="ml-dash-btn mt-2 rounded-0"
             >
               Save changes
