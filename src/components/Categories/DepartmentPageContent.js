@@ -40,9 +40,10 @@ const DepartmentPageContent = ({
     };
     set_loading(true);
     try {
-      await axios.post("/departments/banners/update", data);
+      await axios.post("/dash/departments/banners/update", data);
       set_loading(false);
     } catch (err) {
+      console.log(err);
       set_loading(false);
     }
   };
@@ -51,11 +52,15 @@ const DepartmentPageContent = ({
     let field = type === "banner" ? "banner" : "wide_banner";
     let banner_data = null;
 
-    department.banners.forEach((x) => {
-      if (x.id === id) {
-        banner_data = x;
-      }
-    });
+    if (field === "wide_banner") {
+      banner_data = department.wide_banner;
+    } else {
+      department.banners.forEach((x) => {
+        if (x.id === id) {
+          banner_data = x;
+        }
+      });
+    }
 
     set_config({
       ...config,
@@ -100,6 +105,7 @@ const DepartmentPageContent = ({
       ...config,
       field: "wide_banner",
       action: "create",
+      data: null,
     });
     set_pc_modal_state(true);
   };
@@ -108,6 +114,7 @@ const DepartmentPageContent = ({
       ...config,
       field: "banner",
       action: "create",
+      data: null,
     });
     set_pc_modal_state(true);
   };
