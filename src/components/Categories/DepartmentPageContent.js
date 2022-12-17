@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 } from "uuid";
 import BannerSection from "./BannerSection";
 import PageContentModal from "./PageContentModal";
 
@@ -10,10 +11,12 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
   const [pc_modal_open, set_pc_modal_state] = useState(false);
 
   const handle_create = (data) => {
+    let new_id = v4();
+    let banner = { ...data, id: new_id };
     if (config.field === "wide_banner") {
-      add_wide_banner(data);
+      add_wide_banner(banner);
     } else {
-      add_banner(data);
+      add_banner(banner);
     }
     set_pc_modal_state(false);
   };
@@ -81,8 +84,8 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
               (Optionally) Add banners for the department section and optinaly
               link them to somewhere else
             </div>
-            {department.banners.map((x, index) => (
-              <BannerSection data={x} key={index} />
+            {department.banners.map((x) => (
+              <BannerSection data={x} key={x.id} />
             ))}
             {department.banners.length < 3 ? (
               <button

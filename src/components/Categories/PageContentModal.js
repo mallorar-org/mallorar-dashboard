@@ -14,6 +14,7 @@ const PageContentModal = ({
   config,
 }) => {
   const [data, setData] = useState({
+    id: "",
     banner: "",
     heading: "",
     p_text: "",
@@ -29,6 +30,7 @@ const PageContentModal = ({
 
   useEffect(() => {
     setData({
+      id: "",
       banner: "",
       heading: "",
       p_text: "",
