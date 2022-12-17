@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { v4 } from "uuid";
 import BannerSection from "./BannerSection";
@@ -19,6 +20,7 @@ const DepartmentPageContent = ({
     data: null,
   });
   const [pc_modal_open, set_pc_modal_state] = useState(false);
+  const [loading, set_loading] = useState(false);
 
   const handle_save = () => {
     if (
@@ -26,6 +28,22 @@ const DepartmentPageContent = ({
         "Warning. Saved changes will appear, update on all Martlyy sites, continue to save ?",
       )
     ) {
+      update_department_banners();
+    }
+  };
+
+  const update_department_banners = async () => {
+    let data = {
+      id: department.id,
+      wide_banner: department.wide_banner,
+      banners: department.banners,
+    };
+    set_loading(true);
+    try {
+      await axios.post("/departments/banners/update", data);
+      set_loading(false);
+    } catch (err) {
+      set_loading(false);
     }
   };
 
@@ -48,9 +66,10 @@ const DepartmentPageContent = ({
     set_pc_modal_state(true);
   };
 
-  const handle_create = (data) => {
+  const handle_create = async (data) => {
     let new_id = v4();
     let banner = { ...data, id: new_id };
+
     if (config.field === "wide_banner") {
       add_wide_banner(banner);
     } else {
@@ -171,10 +190,11 @@ const DepartmentPageContent = ({
               </button>
             ) : null}
             <button
+              disabled={loading}
               onClick={handle_save}
               className="ml-dash-btn mt-2 rounded-0"
             >
-              Save changes
+              {loading ? "Saving..." : "Save changes"}
             </button>
           </section>
         </div>

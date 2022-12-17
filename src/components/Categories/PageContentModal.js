@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { MDBModal, MDBModalBody } from "mdbreact";
-import textToSlug from "../../util/textToSlug";
 import PlaceHolderImage from "../../assets/images/addpicture.svg";
 import FileSelector from "../FileSelector/FileSelector";
 
