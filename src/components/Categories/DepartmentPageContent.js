@@ -3,7 +3,13 @@ import { v4 } from "uuid";
 import BannerSection from "./BannerSection";
 import PageContentModal from "./PageContentModal";
 
-const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
+const DepartmentPageContent = ({
+  add_wide_banner,
+  add_banner,
+  department,
+  remove_wide_banner,
+  remove_banner,
+}) => {
   const [config, set_config] = useState({
     field: "wide_banner",
     action: "create",
@@ -19,6 +25,14 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
       add_banner(banner);
     }
     set_pc_modal_state(false);
+  };
+
+  const handle_remove_banner = (type, id) => {
+    if (type === "wide_banner") {
+      remove_wide_banner();
+    } else {
+      remove_banner(id);
+    }
   };
 
   const open_config_wide_banner = () => {
@@ -65,7 +79,11 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
               page
             </div>
             {department.wide_banner !== "" ? (
-              <BannerSection data={department.wide_banner} />
+              <BannerSection
+                remove_banner={handle_remove_banner}
+                type="wide_banner"
+                data={department.wide_banner}
+              />
             ) : null}
             {department.wide_banner === "" ? (
               <div className="mt-3">
@@ -85,7 +103,12 @@ const DepartmentPageContent = ({ add_wide_banner, add_banner, department }) => {
               link them to somewhere else
             </div>
             {department.banners.map((x) => (
-              <BannerSection data={x} key={x.id} />
+              <BannerSection
+                remove_banner={handle_remove_banner}
+                type="banner"
+                data={x}
+                key={x.id}
+              />
             ))}
             {department.banners.length < 3 ? (
               <button

@@ -95,12 +95,37 @@ export default function Department() {
       ...dep,
     });
   };
+  const remove_wide_banner = () => {
+    let dep = dep_data;
+    dep.wide_banner = "";
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
 
   const add_banner = (data) => {
     let dep = dep_data;
     let current_banners = dep.banners;
     current_banners.push(data);
     dep.banners = current_banners;
+    setData({
+      ...dep_data,
+      ...dep,
+    });
+  };
+  const remove_banner = (id) => {
+    let dep = dep_data;
+    let current_banners = dep.banners;
+    let filtered_banners = [];
+
+    current_banners.forEach((x) => {
+      if (x.id !== id) {
+        filtered_banners.push(x);
+      }
+    });
+
+    dep.banners = filtered_banners;
     setData({
       ...dep_data,
       ...dep,
@@ -114,6 +139,8 @@ export default function Department() {
       case "2":
         return (
           <DepartmentPageContent
+            remove_wide_banner={remove_wide_banner}
+            remove_banner={remove_banner}
             add_wide_banner={(e) => add_wide_banner(e)}
             add_banner={(e) => add_banner(e)}
             department={dep_data}

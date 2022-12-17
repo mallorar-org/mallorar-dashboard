@@ -24,7 +24,7 @@ import MLProductDelModal from "../components/Modals/MLProductDelModal";
 // axios.defaults.baseURL = "http://localhost:5000";
 // axios.defaults.baseURL = "https://api.mallorar.com";
 //
-axios.defaults.baseURL = "http://192.168.8.105:5000";
+axios.defaults.baseURL = "http://192.168.8.104:5000";
 
 const token = localStorage.mdt;
 if (token) {

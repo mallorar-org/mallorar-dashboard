@@ -1,13 +1,23 @@
 import React from "react";
 
-export default function BannerSection({ data }) {
+export default function BannerSection({ data, type, remove_banner }) {
   return (
     <div className="mt-3">
       <div className="mb-3 p-3 border rounded">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-6">
-              <img alt="" className="img-fluid" src={data.banner} />
+            <div
+              className={`col-6 ${
+                !data.banner
+                  ? "d-flex align-items-center justify-content-center"
+                  : ""
+              } `}
+            >
+              {data.banner ? (
+                <img alt="" className="img-fluid" src={data.banner} />
+              ) : (
+                <div className="text-center">no banner image selected</div>
+              )}
             </div>
             <div className="col-6 border-left">
               <div className="border-bottom">
@@ -17,23 +27,25 @@ export default function BannerSection({ data }) {
                 </div>
               </div>
               <div className="py-2">
-                <div className="border rounded p-2">
-                  <div className="text-secondary">Banner text</div>
-                  <div className="bold">{data.header}</div>
+                <div className="text-secondary t14">Promotional text</div>
+                <div className="border rounded p-2 mt-1">
+                  <div className="bold">{data.heading}</div>
                   {data.p_text ? (
                     <div className="text-secondary">{data.p_text}</div>
                   ) : null}
                 </div>
                 <div className="mt-2 px-1">
-                  <div className="d-flex mt-3 align-items-center">
-                    <div className="bold">Background color</div>
-                    <div
-                      style={{
-                        backgroundColor: data.bg_color,
-                      }}
-                      className="text-small w-25 border bg-gray p-3 ml-3"
-                    ></div>
-                  </div>
+                  {data.bg_color ? (
+                    <div className="d-flex mt-3 align-items-center">
+                      <div className="bold">Background color</div>
+                      <div
+                        style={{
+                          backgroundColor: data.bg_color,
+                        }}
+                        className="text-small w-25 border bg-gray p-3 ml-3"
+                      ></div>
+                    </div>
+                  ) : null}
 
                   {data.btn_text ? (
                     <>
@@ -94,7 +106,12 @@ export default function BannerSection({ data }) {
                   <div className="pt-3">
                     <span className="bold cp">Move down</span>
                     <span className="px-2">|</span>
-                    <span className="bold cp">Delete</span>
+                    <span
+                      onClick={() => remove_banner(type, data.id)}
+                      className="bold cp"
+                    >
+                      Delete
+                    </span>
                   </div>
                 </div>
               </div>

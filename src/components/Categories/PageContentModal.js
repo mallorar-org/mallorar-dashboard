@@ -52,12 +52,10 @@ const PageContentModal = ({
 
   const handleCreate = () => {
     if (loading) return;
-    if (!data.banner) {
-      return alert("Please select a banner image first");
+    if (!data.banner && !data.heading) {
+      return alert("Please select a banner or write a heading first");
     }
-    if (data.btn_text !== "" && !data.bg_color) {
-      return alert("Please provide a background color");
-    }
+
     handle_create(data);
   };
 
@@ -92,7 +90,7 @@ const PageContentModal = ({
 
           <div>
             <section className="mb-2">
-              <div className="mb-2 text-secondary">Banner big text</div>
+              <div className="mb-2 text-secondary">Heading</div>
               <input
                 onChange={handleTextChange}
                 type="text"
@@ -102,7 +100,7 @@ const PageContentModal = ({
               />
             </section>
             <section className="mb-2">
-              <div className="mb-2 text-secondary">Banner p text</div>
+              <div className="mb-2 text-secondary">Promo text</div>
               <input
                 onChange={handleTextChange}
                 type="text"
@@ -132,101 +130,103 @@ const PageContentModal = ({
                 name="btn_text"
               />
             </section>
-            {data.btn_text !== "" ? (
-              <section className="mb-2">
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-5 pl-0">
-                      <div className="mb-2 text-secondary">
-                        Background color
-                      </div>
-                      <input
-                        onChange={handleTextChange}
-                        type="text"
-                        className="w-100 form-control"
-                        placeholder=""
-                        name="bg_color"
-                      />
-                    </div>
-                    <div className="col-1 pl-0">
-                      <div className="mb-2 text-secondary">-</div>
-                      <div
-                        className="w-100 form-control"
-                        placeholder=""
-                        style={{
-                          background: data.bg_color,
-                        }}
-                      />
-                    </div>
-                    <div className="col-5 pr-0 pl-0">
-                      <div className="mb-2 text-secondary">Button color</div>
-                      <input
-                        onChange={handleTextChange}
-                        type="text"
-                        className="w-100 form-control"
-                        placeholder=""
-                        name="btn_bg_color"
-                      />
-                    </div>
-                    <div className="col-1 pr-0">
-                      <div className="mb-2 text-secondary">-</div>
-                      <div
-                        className="w-100 form-control"
-                        placeholder=""
-                        style={{
-                          background: data.btn_bg_color,
-                        }}
-                      />
-                    </div>
-                    <div className="col-12 py-2"></div>
-                    <div className="col-5 pl-0">
-                      <div className="mb-2 text-secondary">
-                        Button text color
-                      </div>
-                      <input
-                        onChange={handleTextChange}
-                        type="text"
-                        className="w-100 form-control"
-                        placeholder=""
-                        name="btn_text_color"
-                      />
-                    </div>
-                    <div className="col-1 pl-0">
-                      <div className="mb-2 text-secondary">-</div>
-                      <div
-                        className="w-100 form-control"
-                        placeholder=""
-                        style={{
-                          background: data.btn_text_color,
-                        }}
-                      />
-                    </div>
-                    <div className="col-5 pr-0 pl-0">
-                      <div className="mb-2 text-secondary">
-                        Button border color
-                      </div>
-                      <input
-                        onChange={handleTextChange}
-                        type="text"
-                        className="w-100 form-control"
-                        placeholder=""
-                        name="btn_border_color"
-                      />
-                    </div>
-                    <div className="col-1 pr-0">
-                      <div className="mb-2 text-secondary">-</div>
-                      <div
-                        className="w-100 form-control"
-                        placeholder=""
-                        style={{
-                          background: data.btn_border_color,
-                        }}
-                      />
-                    </div>
+
+            <section className="mb-2">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-5 pl-0">
+                    <div className="mb-2 text-secondary">Background color</div>
+                    <input
+                      onChange={handleTextChange}
+                      type="text"
+                      className="w-100 form-control"
+                      placeholder=""
+                      name="bg_color"
+                    />
                   </div>
+                  <div className="col-1 pl-0">
+                    <div className="mb-2 text-secondary">-</div>
+                    <div
+                      className="w-100 form-control"
+                      placeholder=""
+                      style={{
+                        background: data.bg_color,
+                      }}
+                    />
+                  </div>
+
+                  {data.btn_text !== "" ? (
+                    <>
+                      <div className="col-5 pr-0 pl-0">
+                        <div className="mb-2 text-secondary">Button color</div>
+                        <input
+                          onChange={handleTextChange}
+                          type="text"
+                          className="w-100 form-control"
+                          placeholder=""
+                          name="btn_bg_color"
+                        />
+                      </div>
+                      <div className="col-1 pr-0">
+                        <div className="mb-2 text-secondary">-</div>
+                        <div
+                          className="w-100 form-control"
+                          placeholder=""
+                          style={{
+                            background: data.btn_bg_color,
+                          }}
+                        />
+                      </div>
+                      <div className="col-12 py-2"></div>
+                      <div className="col-5 pl-0">
+                        <div className="mb-2 text-secondary">
+                          Button text color
+                        </div>
+                        <input
+                          onChange={handleTextChange}
+                          type="text"
+                          className="w-100 form-control"
+                          placeholder=""
+                          name="btn_text_color"
+                        />
+                      </div>
+                      <div className="col-1 pl-0">
+                        <div className="mb-2 text-secondary">-</div>
+                        <div
+                          className="w-100 form-control"
+                          placeholder=""
+                          style={{
+                            background: data.btn_text_color,
+                          }}
+                        />
+                      </div>
+                      <div className="col-5 pr-0 pl-0">
+                        <div className="mb-2 text-secondary">
+                          Button border color
+                        </div>
+                        <input
+                          onChange={handleTextChange}
+                          type="text"
+                          className="w-100 form-control"
+                          placeholder=""
+                          name="btn_border_color"
+                        />
+                      </div>
+                      <div className="col-1 pr-0">
+                        <div className="mb-2 text-secondary">-</div>
+                        <div
+                          className="w-100 form-control"
+                          placeholder=""
+                          style={{
+                            background: data.btn_border_color,
+                          }}
+                        />
+                      </div>
+                    </>
+                  ) : null}
                 </div>
-              </section>
-            ) : null}
+              </div>
+            </section>
           </div>
         </div>
         <div className="container-fluid">
