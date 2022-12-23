@@ -64,15 +64,11 @@ class ShowFiles extends Component {
       return <Loader />;
     }
 
-    const orU =
-      "https://firebasestorage.googleapis.com/v0/b/mallorar.appspot.com/o/";
-    const urlMask = "https://mallorar.imgix.net/";
-    // console.log(this.state);
     return (
       <div className="border-bottom pt-0 ml-image-selecter border-top- d-flex flex-wrap ml-modal-left-drawer">
         {this.state.images.map((x, index) => (
           <SelectorImage
-            src={x.fileUrl.replace(orU, urlMask) + "&height=130&q=60"}
+            src={x.fileUrl}
             alt={x.fileUrl}
             url={x.fileUrl}
             className={this.cssRacho(index)}

@@ -21,6 +21,9 @@ class FileUploading extends Component {
 
   select_image = () => {
     this.props.select_image_in_selector(this.state.url);
+
+    this.props.select_image_locally({ fileUrl: this.state.url });
+
     this.setState({
       selected: !this.state.selected,
     });
@@ -45,7 +48,7 @@ class FileUploading extends Component {
         });
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err?.response?.data);
       });
   };
 

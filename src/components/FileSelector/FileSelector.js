@@ -162,7 +162,12 @@ class FileSelector extends Component {
   pageRender = () => {
     switch (this.state.activeItem) {
       case "1":
-        return <FileUpload close={this.props.close} />;
+        return (
+          <FileUpload
+            select_image_locally={this.selectimage}
+            close={this.props.close}
+          />
+        );
       case "2":
         return (
           <ShowFiles
@@ -213,7 +218,7 @@ class FileSelector extends Component {
             <div className="d-flex align-items-center">
               <div>
                 <h5 className="c-blue bold mb-0">
-                  File Explorer <small>v2.2.2</small>
+                  File Explorer <small>(beta) v2.2.3</small>
                 </h5>
                 {/* <div className="">Browse and upload pictures or documents</div> */}
               </div>

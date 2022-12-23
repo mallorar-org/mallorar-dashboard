@@ -44,12 +44,18 @@ class FileUpload extends Component {
   };
 
   render() {
+    console.log({ c: this.props.selected_images_in_selector.length });
     return (
       <>
         <div className=" text-center ml-file-upload border-bottom-0 position-relative">
           {this.state.files.map((file, index) => (
             <div className="align-items-center d-flex flex-wrap ml-table-row">
-              <FileUploading id={index} key={index} data={file} />
+              <FileUploading
+                select_image_locally={this.props.select_image_locally}
+                id={index}
+                key={index}
+                data={file}
+              />
             </div>
           ))}
           {this.state.files.length === 0 ? (

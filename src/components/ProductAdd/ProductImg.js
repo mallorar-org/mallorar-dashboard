@@ -21,18 +21,6 @@ class ProductImg extends Component {
     store.dispatch({ type: "UPDATE_MAIN_PRODUCT_PHOTO", payload: x });
   };
 
-  FileSelector = () => {
-    if (this.state.fileselector) {
-      return (
-        <FileSelector
-          num_selected_images={this.props.selected_images_in_selector.length}
-          url={(x) => this.fileUrl(x)}
-          close={() => this.setState({ fileselector: false })}
-        />
-      );
-    }
-  };
-
   selectpic = () => {
     this.setState({
       fileselector: true,
@@ -40,10 +28,17 @@ class ProductImg extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.props.selected_images_in_selector.length);
     return (
       <div className="card ml-main-image-pc border p-2 card-body card-block">
-        {this.FileSelector()}
+        {this.state.fileselector ? (
+          <FileSelector
+            num_selected_images={this.props.selected_images_in_selector.length}
+            url={(x) => this.fileUrl(x)}
+            close={() => this.setState({ fileselector: false })}
+          />
+        ) : null}
+
         <div className=" c-blue text-center">
           <div className="c-blue text-center py-3 pb-0">
             <span className="">Main Photo</span>

@@ -59,18 +59,6 @@ class ProductImgs extends Component {
     this.props.imgs(imgs);
   }
 
-  FileSelector = () => {
-    if (this.state.fileselector) {
-      return (
-        <FileSelector
-          num_selected_images={this.props.selected_images_in_selector.length}
-          url={(x) => this.fileUrl(x)}
-          close={() => this.setState({ fileselector: false })}
-        />
-      );
-    }
-  };
-
   fileUrl = (x) => {
     store.dispatch({ type: "ADD_PRODUCT_PHOTO", payload: x });
 
@@ -96,7 +84,14 @@ class ProductImgs extends Component {
 
     return (
       <div className="overflow-hidde  mt-3">
-        {this.FileSelector()}
+        {this.state.fileselector ? (
+          <FileSelector
+            num_selected_images={this.props.selected_images_in_selector.length}
+            url={(x) => this.fileUrl(x)}
+            close={() => this.setState({ fileselector: false })}
+          />
+        ) : null}
+
         <div className="container-fluid mb-3 px-0">
           <div className="row">
             <div className="col-2">Product Photos*</div>
