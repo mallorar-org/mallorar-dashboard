@@ -201,7 +201,9 @@ class ProductAdd extends Component {
               <ShippingDetails />
             </div>
             {/* Begining of Left SideBar and the */}
-            <div className="col-lg-12 px-0">{this.operationButtons()}</div>
+            <div className="col-lg-12 px-0 bg-white mt-3">
+              {this.operationButtons()}
+            </div>
           </div>
         </div>
       </section>

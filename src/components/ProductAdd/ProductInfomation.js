@@ -177,6 +177,7 @@ class ProductInfomation extends Component {
                             placeholder="e.g Nike"
                             type="text"
                             className="ml-input"
+                            defaultValue={this.props.productAR.brand}
                           />
                         </div>
                       </form>

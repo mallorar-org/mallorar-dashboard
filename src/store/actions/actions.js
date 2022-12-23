@@ -124,6 +124,54 @@ export const dashoverlay = (n) => (dispatch) => {
   });
 };
 
+export const update_product = () => (dispatch) => {
+  let product = store.getState().product;
+
+  let errors = validateProduct(product);
+
+  if (errors) {
+    return notify(...errors);
+  }
+
+  let finalProduct = {};
+
+  finalProduct = {
+    ...product,
+    productImg: product.product_images[0].product_url,
+  };
+
+  close();
+
+  store.dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+
+  let productID;
+  axios
+    .post(`/dash/product/update`, {
+      id: product.productID,
+      productData: finalProduct,
+    })
+    .then((data) => {
+      store.dispatch({
+        type: "SET_PRODUCT_ID",
+        payload: data.data.productID,
+      });
+
+      productID = data.data.productID;
+    })
+    .then(() => {
+      store.dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+      store.dispatch({ type: "MLPC", payload: true });
+      return notify(
+        1,
+        `Product Updated`,
+        finalProduct.productImg,
+        `Product with ID ${productID} has successfully updated. Changes on this product should reflect from now across martlyy.com`,
+      );
+    })
+    .catch((err) => {
+      // console.log(err);
+    });
+};
 export const createProduct = () => (dispatch) => {
   let product = store.getState().product;
 
@@ -166,7 +214,7 @@ export const createProduct = () => (dispatch) => {
         1,
         `Product Created`,
         finalProduct.productImg,
-        `Product successfully created with ID ${productID}. Your product will be spread around Mallorar immediately`,
+        `Product successfully created with ID ${productID}. Your product will be spread around martlyy.com immediately`,
       );
     })
     .catch((err) => {
