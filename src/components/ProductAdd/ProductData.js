@@ -108,10 +108,14 @@ class ProductData extends Component {
         payload: 1,
       });
     } else {
-      return store.dispatch({
-        type: "UPDATE_STOCK_AVAILABLE",
-        payload: 0,
-      });
+      let confirm_change = window.confirm(
+        "You are changing stock availibility for this product. You will need to set the available stock after restocking, continue ?",
+      );
+      if (confirm_change) {
+        return store.dispatch({
+          type: "SET_OUT_OF_STOCK",
+        });
+      }
     }
   };
 
@@ -186,6 +190,9 @@ class ProductData extends Component {
                     <div>
                       <div className="">Available stock</div>
                       <input
+                        disabled={this.props.product.product_variations.some(
+                          (object) => object.stock_count > 0,
+                        )}
                         className="form-control mt-2"
                         value={this.props.product.stock_count}
                         onChange={this.updateAvailableStock}

@@ -65,6 +65,19 @@ const productReducer = (state = initialData, action) => {
         ...state,
         returnable: action.payload,
       };
+    case "SET_OUT_OF_STOCK":
+      let updated_product_stock_variations = [];
+      let new_stock_count = 0;
+
+      state.product_variations.forEach((x) => {
+        updated_product_stock_variations.push({ ...x, stock_count: 0 });
+      });
+
+      return {
+        ...state,
+        stock_count: new_stock_count,
+        product_variations: updated_product_stock_variations,
+      };
     case "UPDATE_STOCK_AVAILABLE":
       return {
         ...state,

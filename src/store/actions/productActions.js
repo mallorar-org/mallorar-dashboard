@@ -1,3 +1,5 @@
+import textToSlug from "../../util/textToSlug";
+
 export const update_int_zone_shipping_duration = (dur, zindex) => {
   return {
     type: "UPDATE_INTL_ZONE_SHIPPING_DURATION",
@@ -23,7 +25,7 @@ export const add_intl_shipping_zone = (data) => {
   };
 };
 export const update_product_name = (name) => (dispatch) => {
-  let slug = name.replace(/ /g, "-").toLowerCase();
+  let slug = textToSlug(name);
 
   dispatch({
     type: "PP_UPDATE_PRODUCT_SLUG",
