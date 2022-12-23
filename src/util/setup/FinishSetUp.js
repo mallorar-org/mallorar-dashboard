@@ -6,7 +6,7 @@ import UploadPRDoc from "./UploadPRDoc";
 import UpdateBanking from "./UpdateBanking";
 import { connect } from "react-redux";
 import Setup from "../../assets/images/Setup.png";
-import icons from "../../components/common/icons";
+import Logo from "../../assets/images/logos/logo192.png";
 import axios from "axios";
 import dayjs from "dayjs";
 import Locale from "dayjs/plugin/localizedFormat";
@@ -60,7 +60,6 @@ class FinishSetUp extends Component {
         return <UploadPRDoc done={() => this.setState({ activeItem: 1 })} />;
       case 5:
         return <UpdateBanking done={() => this.setState({ activeItem: 1 })} />;
-
       default:
         return this.HomeTab();
     }
@@ -462,15 +461,11 @@ class FinishSetUp extends Component {
               <div className=" w-100 d-flex  align-items-center justify-content-between">
                 <div>
                   <h3 className="bold mb-0 c-blue">
-                    Enhance your eCommerce game
+                    Request verification to sell
                   </h3>
                 </div>
                 <div>
-                  <img
-                    src={icons.logo}
-                    alt=""
-                    className="ml-logo-s-u-i img-fluid"
-                  />
+                  <img src={Logo} alt="" className="ml-logo-s-u-i img-fluid" />
                 </div>
               </div>
             </div>

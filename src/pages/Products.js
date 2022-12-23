@@ -87,11 +87,10 @@ class Products extends Component {
         <div className="d-flex justify-content-center">
           <div className=" m-5 ml-no-products d-block">
             <div className="d-flex justify-content-center">
-              <h1 className="c-blue bold mb-2">No Products</h1>
+              <h3 className="bold mb-2">No Products</h3>
             </div>
             <h6 className="text-secondary mb-3 ">
-              Don't leave your store empty, add your first product and start
-              selling now
+              You don't have any products in your store as yet
             </h6>
             <div className="mt-2 d-flex justify-content-center">
               <span>

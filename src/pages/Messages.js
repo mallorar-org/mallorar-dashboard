@@ -92,7 +92,7 @@ class Messages extends Component {
             <div className="col-6">
               <div>
                 <h1 className="c-blue bold">
-                  Grow your <br /> customer base with Mallorar
+                  Grow your <br /> customer base with Martlyy
                 </h1>
                 <p className="mt-3">
                   At the moment you have no active conversations. All your

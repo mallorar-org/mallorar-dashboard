@@ -273,7 +273,7 @@ export default function Department() {
                 to="#"
                 onClick={() => toggle("3")}
                 role="tab"
-                className={pricingTabsCss("3")}
+                className={pricingTabsCss("3") + " d-none"}
               >
                 Brands
               </div>

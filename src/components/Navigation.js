@@ -64,10 +64,7 @@ function Navigation({ stname, handleNav, navState, resize, title }) {
             {stname.charAt(0)}
           </div>
         </Link>
-        <button
-          disabled
-          className="ml-dash-outline-btn text-white disabled py-1 bold"
-        >
+        <button disable className="ml-btn isabled py-1">
           Upgrade
         </button>
       </div>

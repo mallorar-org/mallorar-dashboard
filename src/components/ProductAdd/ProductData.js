@@ -222,10 +222,7 @@ class ProductData extends Component {
                         })
                       }
                       placeholder="Select base currency"
-                      options={[
-                        { label: "USD (US Dollar)", value: "USD" },
-                        { label: "ZAR (South African Rand)", value: "ZAR" },
-                      ]}
+                      options={[{ label: "USD (US Dollar)", value: "USD" }]}
                     />
                   </div>
                 </div>

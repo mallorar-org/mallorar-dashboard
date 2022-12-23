@@ -8,6 +8,13 @@
   font-family: LatoBold;
   src: url("../fonts/Lato/Lato-Bold.ttf");
 }
+:root {
+  --primary: #113151ff;
+  --secondary: #ff6a05ff;
+  --black: #000001ff;
+  --shocking-pink: #fa02bdff;
+}
+
 html {
   font-family: Lato, sans-serif;
 }
@@ -163,17 +170,17 @@ body a:hover {
 }
 
 .ml-text-on-initial-loading {
-  color: #1c3349;
+  color: #113151;
   position: relative;
   top: 21px;
 }
 
 .ml-logo-o-l-scrin {
-  height: 51px;
+  height: 80px;
 }
 
 .ml-c-loading-c-cicl {
-  background: #1c3349;
+  background: #113151;
   height: 200px;
   width: 200px;
   border-radius: 50%;
@@ -191,15 +198,15 @@ body a:hover {
   height: 8px;
   width: 190px;
   overflow: hidden;
-  background: #9ebbd3;
-  border-radius: none;
+  background: var(--secondary);
+  border-radius: 10px;
 }
 .ml-loading-container-1 .ml-loading-bar-2 {
   -webkit-animation: loadingbarein 6s linear ease-in-out;
           animation: loadingbarein 6s linear ease-in-out;
   height: 100%;
   transition: 1s;
-  background: #16314d;
+  background: var(--primary);
 }
 
 @-webkit-keyframes loadingbarein {
@@ -477,8 +484,8 @@ body a:hover {
 }
 
 input[type=checkbox]:checked + .ml-checkbox {
-  border: 2px solid #1c3349;
-  background-color: #1c3349;
+  border: 2px solid #113151;
+  background-color: #113151;
 }
 
 .ml-radio-btn {
@@ -494,10 +501,10 @@ input[type=checkbox]:checked + .ml-checkbox {
 }
 
 input[type=radio]:checked + .ml-radio-btn {
-  border: 1.5px solid #1c3349;
+  border: 1.5px solid #113151;
 }
 input[type=radio]:checked + .ml-radio-btn .ml-dot {
-  background-color: #1c3349;
+  background-color: #113151;
   visibility: unset;
 }
 
@@ -596,7 +603,7 @@ input[type=radio]:checked + .ml-radio-btn .ml-dot {
   left: 0;
   z-index: 7;
   position: fixed;
-  background: #1c3349;
+  background: #113151;
   transition-property: width;
   transition-duration: 0.2s, 0.2s, 0.35s;
 }
@@ -1325,7 +1332,7 @@ input[type=radio]:checked + .ml-radio-btn .ml-dot {
   font-size: 24px;
 }
 .ml-login-page .login-logo img {
-  height: 120px;
+  height: 80px;
 }
 
 .btn-outline-info {
@@ -1404,7 +1411,7 @@ select {
 }
 
 .ml-dash-outline-btn {
-  color: #1c3349;
+  color: #113151;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -1415,11 +1422,11 @@ select {
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   border-radius: 0.25rem;
-  border: 2px solid #1c3349;
+  border: 2px solid #113151;
 }
 .ml-dash-outline-btn:hover {
   color: #fff;
-  background-color: #1c3349;
+  background-color: #113151;
 }
 .ml-dash-outline-btn:disabled {
   border: none;
@@ -1444,7 +1451,7 @@ select {
   outline: none;
   line-height: 1.5;
   border-radius: 0.2rem;
-  background-color: #3a5b77;
+  background-color: var(--primary);
 }
 .ml-dash-btn:hover {
   outline: 0;
@@ -1537,7 +1544,7 @@ select {
 }
 
 .ml-login-page {
-  background: url("../images/780_987.png");
+  box-shadow: 0 0 2px 2px rgba(35, 38, 59, 0.05);
   background-repeat: repeat;
 }
 
@@ -1547,7 +1554,7 @@ select {
   animation: loader 0.7s linear infinite;
   border: 3px solid #ddd;
   transition-duration: 0.2s;
-  border-top: 3px solid #1c3349;
+  border-top: 3px solid #113151;
   border-radius: 50%;
   height: 60px;
   width: 60px;
@@ -1555,13 +1562,13 @@ select {
 
 @-webkit-keyframes loader {
   to {
-    border-top-color: #1c3349;
+    border-top-color: #113151;
     transform: rotate(360deg);
   }
 }
 @keyframes loader {
   to {
-    border-top-color: #1c3349;
+    border-top-color: #113151;
     transform: rotate(360deg);
   }
 }
@@ -2043,7 +2050,7 @@ input:checked + .slider:before {
 .ml-t-n-u-n {
   height: 2.2rem;
   width: 2.2rem;
-  border: 3px solid #1c3349;
+  border: 3px solid #113151;
   font-size: 22px;
 }
 
@@ -2132,7 +2139,7 @@ input:checked + .slider:before {
   top: 0;
 }
 .pie-wrapper .label {
-  background: #1c3349;
+  background: #113151;
   border-radius: 50%;
   bottom: 0.52em;
   color: #ecf0f1;
@@ -2313,7 +2320,7 @@ input:checked + .slider:before {
 @-webkit-keyframes pulse-blue {
   0% {
     transform: scale(0.93);
-    box-shadow: 0 0 0 0 #1c3349;
+    box-shadow: 0 0 0 0 #113151;
   }
   70% {
     transform: scale(1);
@@ -2328,7 +2335,7 @@ input:checked + .slider:before {
 @keyframes pulse-blue {
   0% {
     transform: scale(0.93);
-    box-shadow: 0 0 0 0 #1c3349;
+    box-shadow: 0 0 0 0 #113151;
   }
   70% {
     transform: scale(1);
@@ -2399,7 +2406,7 @@ input:checked + .slider:before {
 }
 
 .circle-progress {
-  stroke: #3498db;
+  stroke: #d3d7e0;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -2407,7 +2414,7 @@ input:checked + .slider:before {
 .circle-text {
   font-size: 2em;
   font-weight: bold;
-  fill: #1c3349;
+  fill: #113151;
 }
 
 .ml-alert-o-h-i-icon {
@@ -2524,8 +2531,8 @@ input:checked + .slider:before {
 }
 
 .ml-stepper-buttons span {
-  background: #1c3349;
-  border: 2px solid #1c3349;
+  background: #113151;
+  border: 2px solid #113151;
   height: 35px;
   width: 35px;
   display: flex;
@@ -3425,15 +3432,15 @@ button {
 }
 
 .react-datepicker__day--range-start {
-  background: #1c3349;
+  background: #113151;
 }
 
 .react-datepicker__day--selected {
-  background: #1c3349;
+  background: #113151;
 }
 
 .react-datepicker__day--range-end {
-  background: #1c3349;
+  background: #113151;
 }
 
 .ml-button-tab a {
@@ -3441,7 +3448,7 @@ button {
 }
 .ml-button-tab .active {
   border-left: 5px solid rgb(0, 128, 0);
-  background-image: linear-gradient(rgba(255, 255, 255, 0) to top, #1c3349, rgba(255, 255, 255, 0.144));
+  background-image: linear-gradient(rgba(255, 255, 255, 0) to top, #113151, rgba(255, 255, 255, 0.144));
 }
 
 .analysis .table td,
@@ -3528,7 +3535,7 @@ a.ml-btn {
   display: flex;
   position: relative;
   overflow: hidden;
-  background-color: #1c3349;
+  background-color: #113151;
   flex-shrink: 0;
   align-items: center;
   -webkit-user-select: none;
@@ -3628,4 +3635,8 @@ a.ml-btn {
   width: auto;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.m-home-insight-wrapper a {
+  color: #3a5b77;
 }/*# sourceMappingURL=main.css.map */

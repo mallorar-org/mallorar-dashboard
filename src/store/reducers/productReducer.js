@@ -405,7 +405,7 @@ const productReducer = (state = initialData, action) => {
 
       current_short_desc_list.forEach((x) => {
         if (x.id > c_sd_highest) {
-          c_sd_highest = x.id;
+          c_sd_highest = parseInt(x.id);
         }
       });
 
@@ -427,7 +427,7 @@ const productReducer = (state = initialData, action) => {
         if (action.payload.index === x.id) {
           updated_product_short_desc.push({
             id: x.id,
-            text: action.payload.value,
+            text: action.payload.text,
           });
         } else {
           updated_product_short_desc.push(x);

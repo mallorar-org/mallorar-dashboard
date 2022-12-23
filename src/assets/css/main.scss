@@ -17,7 +17,7 @@
   // -webkit-overflow-scrolling: touch;
 }
 
-$primary: #1c3349;
+$primary: #113151ff;
 $secondary: #3c6f9e;
 $shade3: #3a5b77;
 $shade4: #3498db;
@@ -28,6 +28,13 @@ $default-size: 1.3em;
 $label-font-size: $default-size / 6;
 $label-font-size-redo: $default-size * 4;
 $bg-green: rgb(0, 128, 0);
+
+:root {
+  --primary: #113151ff;
+  --secondary: #ff6a05ff;
+  --black: #000001ff;
+  --shocking-pink: #fa02bdff;
+}
 
 html {
   font-family: Lato, sans-serif;
@@ -198,7 +205,7 @@ body {
 
 .ml-logo-o-l-scrin {
   // width: 45px;
-  height: 51px;
+  height: 80px;
 }
 
 .ml-c-loading-c-cicl {
@@ -218,15 +225,15 @@ body {
   height: 8px;
   width: 190px;
   overflow: hidden;
-  background: #9ebbd3;
-  border-radius: none;
+  background: var(--secondary);
+  border-radius: 10px;
 
   .ml-loading-bar-2 {
     animation: loadingbarein 6s linear ease-in-out;
     height: 100%;
     // width: 0;
     transition: 1s;
-    background: #16314d;
+    background: var(--primary);
   }
 }
 
@@ -1372,7 +1379,7 @@ input[type="radio"]:checked + .ml-radio-btn {
     }
 
     img {
-      height: 120px;
+      height: 80px;
     }
   }
 }
@@ -1494,7 +1501,7 @@ select {
   outline: none;
   line-height: 1.5;
   border-radius: 0.2rem;
-  background-color: $shade3;
+  background-color: var(--primary);
 
   &:hover {
     outline: 0;
@@ -1590,7 +1597,7 @@ select {
 }
 
 .ml-login-page {
-  background: url("../images/780_987.png");
+  box-shadow: 0 0 2px 2px rgba(35, 38, 59, 0.05);
   background-repeat: repeat;
 }
 
@@ -2463,7 +2470,7 @@ input:checked + .slider:before {
 }
 
 .circle-progress {
-  stroke: $shade4;
+  stroke: $grey;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -3806,5 +3813,11 @@ a.ml-btn {
     height: 100%;
     width: auto;
     object-fit: cover;
+  }
+}
+
+.m-home-insight-wrapper {
+  a {
+    color: $shade3;
   }
 }

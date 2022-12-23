@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
-import icons from "../components/common/icons";
+
 import Navigation from "../components/Navigation";
 import SideBar from "../components/SideBar";
 import Loader from "../pages/loading";
@@ -14,52 +14,20 @@ import { SET_AUTHENTICATED } from "../store/contructors";
 import store from "../store/store";
 import FinishSetUp from "../util/setup/FinishSetUp";
 // import LoadingItem from "../components/loadingItem/loadingItem";
-import BG from "../assets/images/780_987.png";
 import MLNotify from "../components/MLNotify";
 import MLProductCreated from "../components/Modals/MLProductCreated";
 import MLProductDelModal from "../components/Modals/MLProductDelModal";
+import DashLoading from "../pages/DashLoading";
 
-// axios.defaults.baseURL = "http://localhost:5000/mallorar/us-central1/apis";
-// axios.defaults.baseURL = "https://us-central1-mallorar.cloudfunctions.net/apis";
-// axios.defaults.baseURL = "http://localhost:5000";
 // axios.defaults.baseURL = "https://api.mallorar.com";
-//
-axios.defaults.baseURL = "http://192.168.8.103:5000";
+axios.defaults.baseURL = "http://192.168.8.106:5000";
+// axios.defaults.baseURL = "http://172.20.10.4:5000";
 
 const token = localStorage.mdt;
 if (token) {
-  //
-  // const decodedToken = jwtDecode(token);
-  // console.log({ decodedToken });
-  // store.dispatch(loadmeta(decodedToken));
-
-  // if (decodedToken.exp * 1000 < Date.now()) {
-  //   console.log("died");
-  // }
-
-  // else {
   store.dispatch({ type: SET_AUTHENTICATED });
   axios.defaults.headers.common[`Authorization`] = token;
-
-  // store.dispatch(getSellerData())
-  // }
 }
-
-// setInterval(() => {
-//   const token = localStorage.mdt;
-//   if (token) {
-//     const decodedToken = jwtDecode(token);
-//     if (decodedToken.exp * 1000 < Date.now()) {
-//       window.location.href = "/login";
-//       store.dispatch(logOutSeller());es
-//     } else
-//       store.dispatch({ type: SET_AUTHENTICATED });
-//       axios.defaults.headers.common[`Authorization`] = token;
-//     }
-//   }
-// }, 1000);
-
-// axios.defaults.baseURL = "https://us-central1-mallorar.cloudfunctions.net/api";
 
 class DashBoardContainer extends Component {
   state = {
@@ -74,7 +42,7 @@ class DashBoardContainer extends Component {
     if (this.props.atnd) {
       store.dispatch(getStore());
     }
-    axios.get("/");
+    // axios.get("/");
     this.setState({ href: window.location.pathname });
     window.addEventListener("resize", this.handleResize);
     return window.innerWidth <= 990
@@ -93,51 +61,13 @@ class DashBoardContainer extends Component {
   handleNav = () => this.setState({ navState: !this.state.navState });
 
   render() {
-    window.document.title = "Seller Dashboard | Mallorar Online Mall";
     let { navState, resize } = this.state;
-
-    // console.log(this.props.progress);
-
     if (!this.props.dashready && this.props.atnd) {
       return (
-        <>
-          <LoadingBar
-            loaderSpeed={1200}
-            className="ml-top-progress"
-            progress={this.props.progress}
-            onLoaderFinished={() => store.dispatch(setLoadingBarProgress(0))}
-          />
-          <div
-            style={{ background: `url(${BG})` }}
-            className="ml-bg-pic h-100 text-center w-100 d-flex align-items-center justify-content-center position-absolute"
-          >
-            <div className="text-center">
-              <div className=" justify-content-center">
-                <div className="d-flex  justify-content-center">
-                  <img
-                    src={icons.dashboardLogo}
-                    className="img-fluid ml-logo-o-l-scrin"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="h5 mt-3 bold">
-                <div className="ml-loading-container-1">
-                  <div
-                    style={{ width: `${this.props.progress}%` }}
-                    className="ml-loading-bar-2"
-                  ></div>
-                </div>
-                {/* <div className="mt-3 h4 c-blue- "></div> */}
-              </div>
-            </div>
-            <div style={{ bottom: 20 }} className="position-absolute">
-              <div className="d-flex  position-relative justify-content-between">
-                <div>Martlyy Seller v1.0.1 </div>
-              </div>
-            </div>
-          </div>
-        </>
+        <DashLoading
+          progress={this.props.progress}
+          onLoadingFinished={() => store.dispatch(setLoadingBarProgress(0))}
+        />
       );
     }
 
@@ -204,7 +134,7 @@ class DashBoardContainer extends Component {
 
             {this.props.core ? (
               <div>
-                {this.props.core.verified !== "true" ? (
+                {this.props.core.verified !== true ? (
                   <FinishSetUp />
                 ) : (
                   <>

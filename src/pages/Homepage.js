@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Progress from "../components/common/circleprogress";
 import icons from "../components/common/icons";
 import { formatNumber } from "../util/longNumber";
+import Logo from "../assets/images/logos/logo512.png";
 
 const mapStateToProps = (state) => {
   return {
@@ -71,23 +72,17 @@ function Homepage({ core }) {
           <div className="d-flex  justify-content-between align-content-center">
             <div className=" w-100 d-flex  align-items-center justify-content-between">
               <div>
-                <h3 className="bold mb-0 c-blue">
-                  Enhance your eCommerce game
-                </h3>
+                <h3 className="bold mb-0 c-blue">Insights for your store</h3>
               </div>
               <div>
-                <img
-                  src={icons.logo}
-                  alt=""
-                  className="ml-logo-s-u-i img-fluid"
-                />
+                <img src={Logo} alt="" className="ml-logo-s-u-i img-fluid" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-white border-bottom ml-container">
-        <div className="h5 bold c-blue mb-4">Today's Insights</div>
+      <div className="bg-white m-home-insight-wrapper border-bottom ml-container">
+        <div className="h5 bold mb-4">Today's Insights</div>
         <div className="container-fluid">
           <div className="row ">
             <div className="col-lg-3 px-0 col-6">
@@ -181,7 +176,7 @@ function Homepage({ core }) {
       <div className="">
         <div className="border">
           <div className="ml-whitish p-3">
-            <h2 className="bold mb-0 c-blue">Where to </h2>
+            <h2 className="bold mb-0 c-blue">Quick links</h2>
             <div className="c-blue-  border-bottom pb-3 t14">
               <div className="bol ">
                 Manage products, orders, your store and more in your secure
@@ -194,11 +189,13 @@ function Homepage({ core }) {
                 <div className="col-12 d-flex mt-3 flex-wrap mb-2 px-2">
                   {pages.map((x, index) => (
                     <Link to={x.link} key={index} className="col-4 mb-3 px-2">
-                      <div className=" cp bg-bg  ml-shadow p-3 rounded">
+                      <div className=" cp border ml-shadow p-3 rounded">
                         <div className="d-flex align-items-center">
                           <img src={x.icon} className="ml-o-s-ic" alt="" />
                           <div className="ml-2">
-                            <div className="bold c-blue mb-0 h5">{x.title}</div>
+                            <div className="bold text-dark mb-0 h5">
+                              {x.title}
+                            </div>
                             <div
                               style={{ lineHeight: "initial" }}
                               className="c-blue text-muted t15"

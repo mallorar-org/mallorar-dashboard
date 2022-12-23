@@ -4,6 +4,7 @@ import { close, notify } from "../../components/MLNotify/controls";
 import { validateProduct } from "../../util/validateProductObj";
 import { SET_META } from "../contructors";
 import store from "../store";
+import { logOutSeller } from "./sellerActions";
 
 export const add_selected_Pictures_in_selector = () => (dispatch) => {
   let selected_photos = store.getState().productAR.selected_images_in_selector;
@@ -40,11 +41,12 @@ export const add_new_short_desc_field = () => (dispatch) => {
   });
 
   if (store.getState().product.product_short_desc.length > 0) {
+    let text = store.getState().product.product_short_desc[0].text;
     dispatch({
       type: "SHORT_DESC_UPDATE",
       payload: {
         index: 1,
-        text: store.getState().product.product_short_desc[0].text,
+        text: text ? text : "",
       },
     });
   }
@@ -53,7 +55,7 @@ export const add_new_short_desc_field = () => (dispatch) => {
 export const short_desc_update = (index, value) => (dispatch) => {
   dispatch({
     type: "SHORT_DESC_UPDATE",
-    payload: { index, value },
+    payload: { index, text: value },
   });
 };
 
@@ -108,7 +110,10 @@ export const getStore = () => (dispatch) => {
       // console.log(data.data);
     })
     .catch((err) => {
-      // console.log(err);
+      let error = err?.response?.data?.error;
+      if (error === "not-exist") {
+        dispatch(logOutSeller());
+      }
     });
 };
 
