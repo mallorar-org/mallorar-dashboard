@@ -137,6 +137,10 @@ class ProductInfor extends Component {
                     options={[
                       { label: "New", value: "new" },
                       {
+                        label: "Refurbished",
+                        value: "refurbished",
+                      },
+                      {
                         label: "Used",
                         value: "used",
                       },
