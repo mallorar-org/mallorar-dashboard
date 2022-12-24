@@ -6,7 +6,7 @@ import {
   createProduct,
   editProduct,
 } from "../store/actions/actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
 import ProductControls from "../components/ProductAdd/ProductControls";
@@ -156,7 +156,7 @@ class ProductAdd extends Component {
     // console.log(this.state);
 
     if (!this.props.product.productID && this.state.page !== "add") {
-      return "";
+      return <Redirect to="/products" />;
     }
 
     return (

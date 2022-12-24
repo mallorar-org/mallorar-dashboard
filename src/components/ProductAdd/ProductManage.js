@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { BiPackage } from "react-icons/bi";
 import { ImBin } from "react-icons/im";
 import { IoIosStar, IoMdEye, IoMdPulse, IoMdStats } from "react-icons/io";
-
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { update_product } from "../../store/actions/actions";
+import {
+  deleteProduct,
+  delete_single_product,
+  update_product,
+} from "../../store/actions/actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     update_product: () => dispatch(update_product()),
+    delete_product: () => dispatch(delete_single_product()),
   };
 };
 
@@ -30,11 +35,21 @@ class ProductManage extends Component {
     }
   };
   handleDelete = () => {
-    window.confirm(
+    let confirmation = window.confirm(
       "Are you sure you want to delete this product ? You won't be able to make any sales on this product anymore.",
     );
+    if (confirmation) {
+      this.props.delete_product();
+    }
   };
   render() {
+    if (
+      !this.props.product.productID ||
+      this.props.product.productID === null
+    ) {
+      return <Redirect to="/products" />;
+    }
+
     return (
       <div className="container-fluid">
         <div className="row">

@@ -291,7 +291,53 @@ export const deleteProduct = (pid) => (dispatch) => {
   dispatch({ type: "SAVE_DE_PR", payload: pid });
   dispatch({ type: "PD_DEL-CONF", payload: true });
 };
+export const delete_single_product = () => (dispatch) => {
+  let tobdeleted = store.getState().product.productID;
+  dispatch({ type: "PD_DEL-CONF", payload: false });
+  dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: true });
+  //
+  axios
+    .get(`/dash/product/delete/${tobdeleted}`)
+    .then(() => {
+      dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
 
+      let currentProducts = store.getState().productAR.productPage.products;
+
+      let newlist = [];
+
+      currentProducts.forEach((x) => {
+        if (x.PID !== tobdeleted || x.productID !== tobdeleted) {
+          newlist.push(x);
+        }
+      });
+
+      dispatch({
+        type: "SUBT_TOTAL_PRODUCTS",
+      });
+      dispatch({
+        type: "UPDATE_PRODUCTS_SELLER_PRODUCTS",
+        payload: newlist,
+      });
+      dispatch({ type: "RESET_PRODUCT_STATE" });
+      dispatch({ type: "MLPC", payload: false });
+
+      return notify(
+        1,
+        `Product deleted`,
+        "",
+        `The product with ID ${tobdeleted} has been removed from Mallorar Online Mall`,
+      );
+    })
+    .catch(() => {
+      dispatch({ type: "DASH_OVERLAY_ACTIVE", payload: false });
+      return notify(
+        2,
+        `Operation failed`,
+        "",
+        `This is probably because the product with ID ${tobdeleted} has already been deleted. Try refeshing page`,
+      );
+    });
+};
 export const deleteSelectedProducts = () => (dispatch) => {
   let selectedProducts = store.getState().productAR.selectedProducts;
 
@@ -310,7 +356,7 @@ export const deleteSelectedProducts = () => (dispatch) => {
         let newlist = [];
 
         currentProducts.forEach((x) => {
-          if (x.PID !== tobdeleted) {
+          if (x.PID !== tobdeleted || x.productID !== tobdeleted) {
             newlist.push(x);
           }
         });
