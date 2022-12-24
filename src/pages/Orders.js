@@ -50,7 +50,7 @@ class OverView extends Component {
           <div className="bold h6 mb-0">Warning</div>
           <div>Please select an order number to update</div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
     if (!tInfor) {
@@ -62,7 +62,7 @@ class OverView extends Component {
             customer something
           </div>
         </div>,
-        toast.TYPE.WARNING
+        toast.TYPE.WARNING,
       );
     }
 
@@ -83,7 +83,7 @@ class OverView extends Component {
             <div className="bold h6 mb-0">Success</div>
             <div>Tracking information successfully updated</div>
           </div>,
-          toast.TYPE.SUCCESS
+          toast.TYPE.SUCCESS,
         );
       })
       .catch(() => {
@@ -97,7 +97,7 @@ class OverView extends Component {
               contact Mallorar support is this problem persists
             </div>
           </div>,
-          toast.TYPE.ERROR
+          toast.TYPE.ERROR,
         );
       });
   };
@@ -214,7 +214,9 @@ class OverView extends Component {
                   </MDBTabContent>
                 </div>
               </div>
+              <div className="text-center py-4 bold">No orders yet</div>
             </div>
+
             <div className="col-lg-3 px-0 col-12">
               <div className=" mt-3 card ml-shadow rounded-0">
                 <div className="bg-white card-header px-2  text-center text-secondary">

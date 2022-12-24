@@ -156,7 +156,7 @@ class ProductAdd extends Component {
     // console.log(this.state);
 
     if (!this.props.product.productID && this.state.page !== "add") {
-      return <Redirect to="/products" />;
+      return "";
     }
 
     return (

@@ -20,7 +20,7 @@ import MLProductDelModal from "../components/Modals/MLProductDelModal";
 import DashLoading from "../pages/DashLoading";
 
 // axios.defaults.baseURL = "https://api.mallorar.com";
-axios.defaults.baseURL = "http://192.168.8.106:5000";
+axios.defaults.baseURL = "http://192.168.8.105:5000";
 // axios.defaults.baseURL = "http://172.20.10.4:5000";
 
 const token = localStorage.mdt;
